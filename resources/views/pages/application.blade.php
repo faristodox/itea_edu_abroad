@@ -270,10 +270,12 @@
         </div>
 
         @if(session('enquiry_success'))
-        <div style="background:var(--paper); border:1px solid var(--rule-soft); padding:32px; text-align:center;">
+        <div style="background:var(--paper); border:1px solid var(--rule-soft); padding:40px 32px; text-align:center;">
+            <div style="width:56px; height:56px; border-radius:50%; background:#2a8a6a; display:flex; align-items:center; justify-content:center; margin:0 auto 18px; font-size:24px; color:#fff;">✓</div>
             <div class="eyebrow" style="color:#2a8a6a; margin-bottom:10px;">Received · 收到</div>
-            <h3 style="font-family:'Instrument Serif',serif; font-size:28px; font-weight:400; margin:0 0 12px; color:var(--ink);">Thanks, <em style="color:#78aae6;">we'll be in touch.</em></h3>
-            <p style="font-size:15px; color:var(--muted); margin:0;">A {{ session('destination', 'destination') }} desk counsellor will WhatsApp you within 48 hours. Keep an eye out for a message from <strong>+60 3 7890 0000</strong>.</p>
+            <h3 style="font-family:'Instrument Serif',serif; font-size:28px; font-weight:400; margin:0 0 12px; color:var(--ink);">Thanks <em style="color:#78aae6;">{{ session('enquiry_name') }},<br>we'll be in touch.</em></h3>
+            <p style="font-size:15px; color:var(--muted); margin:0 0 8px;">Your <strong>{{ session('enquiry_destination') }}</strong> application has been received.</p>
+            <p style="font-size:14px; color:var(--muted); margin:0;">A counsellor will WhatsApp you within <strong>48 hours</strong>. Look out for a message from <strong>+60 3 7890 0000</strong>.</p>
         </div>
         @else
         <div style="background:var(--paper); border:1px solid var(--rule-soft);">
