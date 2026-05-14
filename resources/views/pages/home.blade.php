@@ -279,27 +279,7 @@ $unis = [
 ];
 @endphp
 
-<style>
-    /* Universities filter chips */
-    .uni-chip {
-        padding: 7px 16px;
-        border-radius: 999px;
-        border: 1px solid var(--rule-soft);
-        background: transparent;
-        color: var(--ink-2);
-        cursor: pointer;
-        font-family: 'JetBrains Mono', monospace;
-        font-size: 10px;
-        letter-spacing: 0.1em;
-        transition: all 0.15s ease;
-    }
-    .uni-chip:hover { border-color: var(--ink-2); }
-    .uni-chip.is-on {
-        background: var(--ink);
-        color: var(--paper);
-        border-color: var(--ink);
-    }
-</style>
+{{-- .uni-chip styles moved to app.css --}}
 
 <section class="section" style="background:var(--paper); padding-top:48px;" x-data="{ filter: 'ALL' }">
     <div class="wrap">

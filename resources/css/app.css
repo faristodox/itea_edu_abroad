@@ -143,6 +143,26 @@ h1 em, h2 em, h3 em, h4 em { color: var(--accent); font-style: italic; }
     z-index: 100;
 }
 
+/* Filter chips — used on Home (universities) and Programmes page */
+.uni-chip {
+    padding: 7px 16px;
+    border-radius: 999px;
+    border: 1px solid var(--rule-soft);
+    background: transparent;
+    color: var(--ink-2);
+    cursor: pointer;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    transition: all 0.15s ease;
+}
+.uni-chip:hover { border-color: var(--ink); color: var(--ink); }
+.uni-chip.is-on {
+    background: var(--ink);
+    color: var(--paper);
+    border-color: var(--ink);
+}
+
 /* Logo: blend out the white JPEG background against the cream nav */
 .nav-logo-img {
     height: 44px;
