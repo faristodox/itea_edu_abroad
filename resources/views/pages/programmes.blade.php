@@ -119,19 +119,21 @@
         @endphp
 
         <div x-data="{ level: 'ALL', country: 'ALL' }" id="prog-grid">
-            <div style="display:flex; gap:6px; flex-wrap:wrap; margin-bottom:20px;">
-                <span class="eyebrow" style="align-self:center; margin-right:4px;">Level</span>
+            <div style="display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin-bottom:24px;">
+                <span class="eyebrow" style="margin-right:4px;">Level</span>
                 @foreach(['ALL'=>'All','DIPLOMA'=>'Diploma','UG'=>'Undergraduate','PG'=>'Postgraduate','MANDARIN'=>'Mandarin','SHORT'=>'Short-term'] as $val => $lbl)
                 <button @click="level = '{{ $val }}'"
-                        :style="level === '{{ $val }}' ? 'background:var(--ink);color:#fff;border-color:var(--ink)' : 'color:var(--ink-2)'"
-                        style="padding:5px 14px; border-radius:999px; border:1px solid var(--rule-soft); background:transparent; cursor:pointer; font-family:'JetBrains Mono',monospace; font-size:10px; transition:all 0.15s; letter-spacing:0.08em;">{{ $lbl }}</button>
+                        class="uni-chip"
+                        :class="level === '{{ $val }}' ? 'is-on' : ''">{{ $lbl }}</button>
                 @endforeach
-                <span style="width:1px; height:20px; background:var(--rule-soft); margin:0 4px; align-self:center;"></span>
-                <span class="eyebrow" style="align-self:center; margin-right:4px;">Country</span>
+
+                <span style="width:1px; height:20px; background:var(--rule-soft); margin:0 4px;"></span>
+
+                <span class="eyebrow" style="margin-right:4px;">Country</span>
                 @foreach(['ALL'=>'All','CHINA'=>'China','MALAYSIA'=>'Malaysia','INDONESIA'=>'Indonesia'] as $val => $lbl)
                 <button @click="country = '{{ $val }}'"
-                        :style="country === '{{ $val }}' ? 'background:var(--ink);color:#fff;border-color:var(--ink)' : 'color:var(--ink-2)'"
-                        style="padding:5px 14px; border-radius:999px; border:1px solid var(--rule-soft); background:transparent; cursor:pointer; font-family:'JetBrains Mono',monospace; font-size:10px; transition:all 0.15s; letter-spacing:0.08em;">{{ $lbl }}</button>
+                        class="uni-chip"
+                        :class="country === '{{ $val }}' ? 'is-on' : ''">{{ $lbl }}</button>
                 @endforeach
             </div>
 
