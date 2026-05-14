@@ -94,31 +94,8 @@
     </div>
 </section>
 
-{{-- ── Filter bar ──────────────────────────────────────────── --}}
-<div id="programme-filter" x-data="{ level: 'ALL', country: 'ALL' }"
-     style="position:sticky; top:71px; z-index:50; background:var(--bg); border-bottom:1px solid var(--rule-soft); padding:12px 0;">
-    <div class="wrap" style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
-        <span class="eyebrow" style="margin-right:4px;">Level</span>
-        @foreach(['ALL','DIPLOMA','UG','PG','MANDARIN','SHORT'] as $f)
-        <button @click="level = '{{ $f }}'" class="filter-chip"
-                :class="level === '{{ $f }}' ? 'chip-on' : ''"
-                style="padding:5px 12px; border-radius:999px; border:1px solid var(--rule-soft); background:transparent; cursor:pointer; font-family:'JetBrains Mono',monospace; font-size:10px; transition:all 0.15s;"
-                :style="level === '{{ $f }}' ? 'background:var(--ink);color:#fff;border-color:var(--ink)' : 'color:var(--ink-2)'">{{ $f }}</button>
-        @endforeach
-        <span style="width:1px; height:20px; background:var(--rule-soft); margin:0 4px;"></span>
-        <span class="eyebrow" style="margin-right:4px;">Country</span>
-        @foreach(['ALL','CHINA','MALAYSIA','INDONESIA'] as $f)
-        <button @click="country = '{{ $f }}'" class="filter-chip"
-                :style="country === '{{ $f }}' ? 'background:var(--ink);color:#fff;border-color:var(--ink)' : 'color:var(--ink-2)'"
-                style="padding:5px 12px; border-radius:999px; border:1px solid var(--rule-soft); background:transparent; cursor:pointer; font-family:'JetBrains Mono',monospace; font-size:10px; transition:all 0.15s;">{{ $f }}</button>
-        @endforeach
-        <span x-text="'Showing ' + document.querySelectorAll('[data-prog]:not([style*=\'none\'])').length + ' programmes'" style="margin-left:auto; font-size:12px; color:var(--muted);"></span>
-    </div>
-
-    {{-- Programme grid --}}
-    <div class="wrap" style="position:static;">
-    </div>
-</div>
+{{-- Filter bar anchor for scroll --}}
+<div id="programme-filter"></div>
 
 {{-- Programmes section --}}
 <section class="section" style="background:var(--bg-2);">
@@ -158,7 +135,7 @@
                 @endforeach
             </div>
 
-            <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:2px;">
+            <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:24px;">
                 @foreach($programmes as $p)
                 <div class="card" style="overflow:hidden;"
                      x-show="(level === 'ALL' || level === '{{ $p['level'] }}') && (country === 'ALL' || country === '{{ $p['country'] }}')">
