@@ -268,14 +268,14 @@
 {{-- ── Universities grid ──────────────────────────────────── --}}
 @php
 $unis = [
-    ['country'=>'CHINA','name'=>'Zhejiang Univ. of Science & Technology','city'=>'Hangzhou · Zhejiang','rank'=>'ZUST','progs'=>6,'intake'=>'Sep / Mar','phA'=>'#1c3d5a','phB'=>'#0a1f3a'],
-    ['country'=>'CHINA','name'=>'Shandong University of Technology','city'=>'Zibo · Shandong','rank'=>'SDUT','progs'=>4,'intake'=>'Sep / Mar','phA'=>'#34526e','phB'=>'#1a2a3e'],
-    ['country'=>'CHINA','name'=>'Jiangxi Univ. of Finance & Economics','city'=>'Nanchang · Jiangxi','rank'=>'JUFE','progs'=>5,'intake'=>'Sep / Feb','phA'=>'#a51717','phB'=>'#3d0808'],
-    ['country'=>'CHINA','name'=>'Hainan Medical University','city'=>'Haikou · Hainan','rank'=>'HMU','progs'=>4,'intake'=>'Sep / Mar','phA'=>'#2a8a6a','phB'=>'#0e3527'],
-    ['country'=>'MALAYSIA','name'=>'Universiti Malaya','city'=>'Kuala Lumpur','rank'=>'QS #60','progs'=>31,'intake'=>'Sep / Feb','phA'=>'#0a1f5e','phB'=>'#061240'],
-    ['country'=>'MALAYSIA','name'=>'Taylor\'s University','city'=>'Subang Jaya','rank'=>'QS #251','progs'=>27,'intake'=>'Aug / Jan / May','phA'=>'#142a6e','phB'=>'#08164a'],
-    ['country'=>'MALAYSIA','name'=>'Monash University Malaysia','city'=>'Bandar Sunway','rank'=>'QS #44 Asia','progs'=>22,'intake'=>'Feb / Jul','phA'=>'#0c2670','phB'=>'#061240'],
-    ['country'=>'INDONESIA','name'=>'Universitas Indonesia','city'=>'Depok','rank'=>'QS #237','progs'=>18,'intake'=>'Sep / Feb','phA'=>'#c98a1d','phB'=>'#5e3f10'],
+    ['country'=>'CHINA','name'=>'Zhejiang Univ. of Science & Technology','city'=>'Hangzhou · Zhejiang','rank'=>'ZUST','progs'=>6,'intake'=>'Sep / Mar','phA'=>'#1c3d5a','phB'=>'#0a1f3a','image'=>'uni-zust.png'],
+    ['country'=>'CHINA','name'=>'Shandong University of Technology','city'=>'Zibo · Shandong','rank'=>'SDUT','progs'=>4,'intake'=>'Sep / Mar','phA'=>'#34526e','phB'=>'#1a2a3e','image'=>'sdut.jpg'],
+    ['country'=>'CHINA','name'=>'Jiangxi Univ. of Finance & Economics','city'=>'Nanchang · Jiangxi','rank'=>'JUFE','progs'=>5,'intake'=>'Sep / Feb','phA'=>'#a51717','phB'=>'#3d0808','image'=>'jufe.jpg'],
+    ['country'=>'CHINA','name'=>'Hainan Medical University','city'=>'Haikou · Hainan','rank'=>'HMU','progs'=>4,'intake'=>'Sep / Mar','phA'=>'#2a8a6a','phB'=>'#0e3527','image'=>'hmu.jpg'],
+    ['country'=>'MALAYSIA','name'=>'Universiti Malaya','city'=>'Kuala Lumpur','rank'=>'QS #60','progs'=>31,'intake'=>'Sep / Feb','phA'=>'#0a1f5e','phB'=>'#061240','image'=>null],
+    ['country'=>'MALAYSIA','name'=>'Taylor\'s University','city'=>'Subang Jaya','rank'=>'QS #251','progs'=>27,'intake'=>'Aug / Jan / May','phA'=>'#142a6e','phB'=>'#08164a','image'=>null],
+    ['country'=>'MALAYSIA','name'=>'Monash University Malaysia','city'=>'Bandar Sunway','rank'=>'QS #44 Asia','progs'=>22,'intake'=>'Feb / Jul','phA'=>'#0c2670','phB'=>'#061240','image'=>null],
+    ['country'=>'INDONESIA','name'=>'Universitas Indonesia','city'=>'Depok','rank'=>'QS #237','progs'=>18,'intake'=>'Sep / Feb','phA'=>'#c98a1d','phB'=>'#5e3f10','image'=>null],
 ];
 @endphp
 
@@ -304,8 +304,13 @@ $unis = [
             @foreach($unis as $u)
             <div class="card" style="overflow:hidden;" x-show="filter === 'ALL' || filter === '{{ $u['country'] }}'">
                 <div style="height:180px; background:linear-gradient(135deg,{{ $u['phA'] }},{{ $u['phB'] }}); position:relative;">
-                    <span style="position:absolute; top:10px; right:10px; background:rgba(0,0,0,0.4); color:rgba(255,255,255,0.85); font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:0.1em; padding:3px 8px; text-transform:uppercase;">{{ $u['rank'] }}</span>
-                    <span style="position:absolute; bottom:10px; left:10px; font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.4);">{{ strtoupper($u['city']) }}</span>
+                    @if($u['image'])
+                    <img src="{{ asset('assets/'.$u['image']) }}" alt="{{ $u['name'] }}"
+                         style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;">
+                    <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 55%);"></div>
+                    @endif
+                    <span style="position:absolute; top:10px; right:10px; background:rgba(0,0,0,0.45); color:rgba(255,255,255,0.9); font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:0.1em; padding:3px 8px; text-transform:uppercase;">{{ $u['rank'] }}</span>
+                    <span style="position:absolute; bottom:10px; left:10px; font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.55);">{{ strtoupper($u['city']) }}</span>
                 </div>
                 <div style="padding:18px 20px;">
                     <div class="eyebrow" style="margin-bottom:4px;">{{ $u['country'] }}</div>
