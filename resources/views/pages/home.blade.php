@@ -466,21 +466,21 @@ $unis = [
             <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:14px;">
                 <div>
                     <label style="display:block; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.12em; color:rgba(255,255,255,0.45); margin-bottom:6px; text-transform:uppercase;">Destination</label>
-                    <select name="destination" style="width:100%; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); padding:10px 12px; color:#fff; font-size:14px; box-sizing:border-box; outline:none;">
-                        <option value="China">China</option>
-                        <option value="Malaysia">Malaysia</option>
-                        <option value="Indonesia">Indonesia</option>
-                        <option value="Undecided">Undecided</option>
+                    <select name="destination" style="width:100%; background:#1c2c5e; border:1px solid rgba(255,255,255,0.15); padding:10px 12px; color:#fff; font-size:14px; box-sizing:border-box; outline:none;">
+                        <option value="China" style="background:#1c2c5e; color:#fff;">China</option>
+                        <option value="Malaysia" style="background:#1c2c5e; color:#fff;">Malaysia</option>
+                        <option value="Indonesia" style="background:#1c2c5e; color:#fff;">Indonesia</option>
+                        <option value="Undecided" style="background:#1c2c5e; color:#fff;">Undecided</option>
                     </select>
                 </div>
                 <div>
                     <label style="display:block; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.12em; color:rgba(255,255,255,0.45); margin-bottom:6px; text-transform:uppercase;">Level</label>
-                    <select name="level" style="width:100%; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); padding:10px 12px; color:#fff; font-size:14px; box-sizing:border-box; outline:none;">
-                        <option>Diploma</option>
-                        <option selected>Undergraduate</option>
-                        <option>Postgraduate</option>
-                        <option>Mandarin</option>
-                        <option>Short-term</option>
+                    <select name="level" style="width:100%; background:#1c2c5e; border:1px solid rgba(255,255,255,0.15); padding:10px 12px; color:#fff; font-size:14px; box-sizing:border-box; outline:none;">
+                        <option style="background:#1c2c5e; color:#fff;">Diploma</option>
+                        <option selected style="background:#1c2c5e; color:#fff;">Undergraduate</option>
+                        <option style="background:#1c2c5e; color:#fff;">Postgraduate</option>
+                        <option style="background:#1c2c5e; color:#fff;">Mandarin</option>
+                        <option style="background:#1c2c5e; color:#fff;">Short-term</option>
                     </select>
                 </div>
             </div>
