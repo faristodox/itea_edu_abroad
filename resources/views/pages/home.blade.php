@@ -268,13 +268,13 @@
 {{-- ── Universities grid ──────────────────────────────────── --}}
 @php
 $unis = [
-    ['country'=>'CHINA','name'=>'Tsinghua University','city'=>'Beijing','rank'=>'QS #20','progs'=>48,'intake'=>'Sep / Mar','phA'=>'#a51717','phB'=>'#3d0808'],
-    ['country'=>'CHINA','name'=>'Peking University','city'=>'Beijing','rank'=>'QS #14','progs'=>52,'intake'=>'Sep / Mar','phA'=>'#891414','phB'=>'#330606'],
-    ['country'=>'CHINA','name'=>'Fudan University','city'=>'Shanghai','rank'=>'QS #39','progs'=>36,'intake'=>'Sep / Feb','phA'=>'#bb2424','phB'=>'#420c0c'],
-    ['country'=>'CHINA','name'=>'Zhejiang University','city'=>'Hangzhou','rank'=>'QS #47','progs'=>42,'intake'=>'Sep / Mar','phA'=>'#a01a1a','phB'=>'#3c0a0a'],
+    ['country'=>'CHINA','name'=>'Zhejiang Univ. of Science & Technology','city'=>'Hangzhou · Zhejiang','rank'=>'ZUST','progs'=>6,'intake'=>'Sep / Mar','phA'=>'#1c3d5a','phB'=>'#0a1f3a'],
+    ['country'=>'CHINA','name'=>'Shandong University of Technology','city'=>'Zibo · Shandong','rank'=>'SDUT','progs'=>4,'intake'=>'Sep / Mar','phA'=>'#34526e','phB'=>'#1a2a3e'],
+    ['country'=>'CHINA','name'=>'Jiangxi Univ. of Finance & Economics','city'=>'Nanchang · Jiangxi','rank'=>'JUFE','progs'=>5,'intake'=>'Sep / Feb','phA'=>'#a51717','phB'=>'#3d0808'],
+    ['country'=>'CHINA','name'=>'Hainan Medical University','city'=>'Haikou · Hainan','rank'=>'HMU','progs'=>4,'intake'=>'Sep / Mar','phA'=>'#2a8a6a','phB'=>'#0e3527'],
     ['country'=>'MALAYSIA','name'=>'Universiti Malaya','city'=>'Kuala Lumpur','rank'=>'QS #60','progs'=>31,'intake'=>'Sep / Feb','phA'=>'#0a1f5e','phB'=>'#061240'],
     ['country'=>'MALAYSIA','name'=>'Taylor\'s University','city'=>'Subang Jaya','rank'=>'QS #251','progs'=>27,'intake'=>'Aug / Jan / May','phA'=>'#142a6e','phB'=>'#08164a'],
-    ['country'=>'MALAYSIA','name'=>'Monash University','city'=>'Bandar Sunway','rank'=>'QS #44 Asia','progs'=>22,'intake'=>'Feb / Jul','phA'=>'#0c2670','phB'=>'#061240'],
+    ['country'=>'MALAYSIA','name'=>'Monash University Malaysia','city'=>'Bandar Sunway','rank'=>'QS #44 Asia','progs'=>22,'intake'=>'Feb / Jul','phA'=>'#0c2670','phB'=>'#061240'],
     ['country'=>'INDONESIA','name'=>'Universitas Indonesia','city'=>'Depok','rank'=>'QS #237','progs'=>18,'intake'=>'Sep / Feb','phA'=>'#c98a1d','phB'=>'#5e3f10'],
 ];
 @endphp
