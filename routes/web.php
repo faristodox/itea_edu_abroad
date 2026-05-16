@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EnquiryController;
+use App\Http\Controllers\AuthController;
 
 Route::view('/', 'pages.home')->name('home');
 Route::view('/programmes', 'pages.programmes')->name('programmes');
@@ -14,3 +15,11 @@ Route::view('/events/virtual-fair', 'pages.virtual-fair')->name('virtual-fair');
 
 Route::post('/enquiry', [EnquiryController::class, 'store'])->name('enquiry.store');
 Route::post('/contact', [EnquiryController::class, 'contact'])->name('contact.store');
+
+// Auth
+Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
+Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/portal', [AuthController::class, 'portal'])->name('portal')->middleware('auth');
