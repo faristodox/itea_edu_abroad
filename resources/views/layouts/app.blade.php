@@ -71,7 +71,19 @@
 
                 <div class="mega-menu">
                     <div style="display:grid; grid-template-columns:60% 40%;">
-                        <!-- Featured panel -->
+                        <!-- Featured panel — dynamic based on current page -->
+                        @if(request()->routeIs('malaysia'))
+                        <div style="background:#7a4f10; padding:28px; color:#fff;">
+                            <div class="eyebrow" style="color:rgba(255,255,255,0.5); margin-bottom:12px;">Current destination</div>
+                            <div style="font-family:'Instrument Serif',serif; font-size:32px; line-height:1; margin-bottom:6px;">Study in <em style="color:#f5c842;">Malaysia</em></div>
+                            <div class="zh" style="font-size:18px; color:rgba(255,255,255,0.5); margin-bottom:16px;">马来西亚留学</div>
+                            <div style="display:flex; gap:24px; font-size:13px; color:rgba(255,255,255,0.7);">
+                                <div><div style="font-family:'Instrument Serif',serif; font-size:22px; color:#fff;">90+</div><div>Partner unis</div></div>
+                                <div><div style="font-family:'Instrument Serif',serif; font-size:22px; color:#fff;">88%</div><div>Scholarship match</div></div>
+                                <div><div style="font-family:'Instrument Serif',serif; font-size:22px; color:#fff;">5</div><div>QS Top-200</div></div>
+                            </div>
+                        </div>
+                        @else
                         <div style="background:var(--ink-deep); padding:28px; color:#fff;">
                             <div class="eyebrow" style="color:rgba(255,255,255,0.5); margin-bottom:12px;">Featured destination</div>
                             <div style="font-family:'Instrument Serif',serif; font-size:32px; line-height:1; margin-bottom:6px;">Study in <em style="color:var(--accent);">China</em></div>
@@ -82,6 +94,7 @@
                                 <div><div style="font-family:'Instrument Serif',serif; font-size:22px; color:#fff;">11</div><div>QS Top-100</div></div>
                             </div>
                         </div>
+                        @endif
                         <!-- Destinations list -->
                         <div style="padding:20px;">
                             <div class="eyebrow" style="margin-bottom:12px;">All destinations</div>
