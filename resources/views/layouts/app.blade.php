@@ -28,7 +28,8 @@
             <span>Kuala Lumpur · Beijing · Jakarta</span>
         </div>
         <div style="display:flex; gap:12px; align-items:center;">
-            <a href="#" style="color:rgba(255,255,255,0.7); text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.1em;">Partner Portal</a>
+            <a href="#" style="color:rgba(255,255,255,0.7); text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.1em;">Admin Portal</a>
+            <span style="opacity:0.25; color:#fff;">|</span>
             @auth
             <a href="{{ route('portal') }}" style="color:rgba(255,255,255,0.7); text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.1em;">My Portal</a>
             @else
