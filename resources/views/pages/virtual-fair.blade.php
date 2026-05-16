@@ -144,7 +144,7 @@
                 <h2 style="font-family:'Instrument Serif',serif; font-size:clamp(24px,3vw,38px); font-weight:400; margin:0;">20+ universities, <em style="color:var(--accent);">one platform.</em></h2>
             </div>
         </div>
-        <div class="fair-unis-grid" style="display:grid; grid-template-columns:repeat(4,1fr); gap:2px;">
+        <div class="fair-unis-grid" style="display:grid; grid-template-columns:repeat(4,1fr); gap:20px;">
             @php $unis = [
                 ['abbr'=>'ZUST','name'=>'Zhejiang Univ. of Sci. & Tech.','location'=>'Hangzhou · China','tag'=>'Engineering · CS · Architecture','phA'=>'#1c3d5a','phB'=>'#0a1f3a','slots'=>8],
                 ['abbr'=>'SDUT','name'=>'Shandong University of Technology','location'=>'Zibo · China','tag'=>'Mechanical · Electrical · CS','phA'=>'#34526e','phB'=>'#1a2a3e','slots'=>6],
