@@ -137,6 +137,12 @@
                 </div>
             </div>
 
+            <a href="{{ route('virtual-fair') }}"
+               class="nav-link {{ request()->routeIs('virtual-fair') ? 'active' : '' }}" style="position:relative;">
+                Events
+                <span style="position:absolute; top:-4px; right:2px; font-family:'JetBrains Mono',monospace; font-size:8px; letter-spacing:0.05em; background:var(--accent); color:#fff; padding:1px 5px; border-radius:999px; text-transform:uppercase;">New</span>
+            </a>
+
             <a href="https://iteajobs.com/" target="_blank" rel="noopener"
                class="nav-link">Career Pathway</a>
 
@@ -192,6 +198,7 @@
             </div>
         </div>
 
+        <a href="{{ route('virtual-fair') }}" class="mob-link {{ request()->routeIs('virtual-fair') ? 'mob-active' : '' }}">Events <span style="font-family:'JetBrains Mono',monospace; font-size:8px; background:var(--accent); color:#fff; padding:1px 6px; border-radius:999px; vertical-align:middle; margin-left:4px;">New</span></a>
         <a href="https://iteajobs.com/" target="_blank" rel="noopener" class="mob-link">Career Pathway ↗</a>
         <a href="{{ route('contact') }}" class="mob-link {{ request()->routeIs('contact') ? 'mob-active' : '' }}">Contact</a>
 

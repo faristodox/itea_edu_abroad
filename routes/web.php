@@ -10,6 +10,7 @@ Route::view('/destinations/malaysia', 'pages.study-in-malaysia')->name('malaysia
 Route::view('/scholarship', 'pages.scholarship')->name('scholarship');
 Route::view('/application', 'pages.application')->name('application');
 Route::view('/contact', 'pages.contact')->name('contact');
+Route::view('/events/virtual-fair', 'pages.virtual-fair')->name('virtual-fair');
 
 Route::post('/enquiry', [EnquiryController::class, 'store'])->name('enquiry.store');
 Route::post('/contact', [EnquiryController::class, 'contact'])->name('contact.store');
