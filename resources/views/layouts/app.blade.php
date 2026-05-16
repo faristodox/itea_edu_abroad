@@ -137,8 +137,24 @@
                 </div>
             </div>
 
-            <a href="{{ route('virtual-fair') }}"
-               class="nav-link {{ request()->routeIs('virtual-fair') ? 'active' : '' }}">Events</a>
+            <!-- Events dropdown -->
+            <div class="nav-item" style="position:relative;">
+                <button class="nav-link {{ request()->routeIs('virtual-fair') ? 'active' : '' }}" style="background:none; border:none; cursor:pointer; display:flex; align-items:center; gap:4px;">
+                    Events
+                    <span class="nav-caret" style="font-size:10px;">▾</span>
+                </button>
+                <div class="mega-menu" style="width:280px; left:0; transform:translateY(6px);">
+                    <div style="padding:16px;">
+                        <a href="{{ route('virtual-fair') }}" style="display:flex; justify-content:space-between; align-items:center; padding:10px 0; text-decoration:none; color:var(--ink-2);">
+                            <div>
+                                <div style="font-weight:500; font-size:14px;">Virtual Education Fair</div>
+                                <div style="font-size:11px; color:var(--muted);">7 Jun 2026 · Free · Online</div>
+                            </div>
+                            <span style="color:var(--accent);">→</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
 
             <a href="https://iteajobs.com/" target="_blank" rel="noopener"
                class="nav-link">Career Pathway</a>
@@ -195,7 +211,16 @@
             </div>
         </div>
 
-        <a href="{{ route('virtual-fair') }}" class="mob-link {{ request()->routeIs('virtual-fair') ? 'mob-active' : '' }}">Events</a>
+        {{-- Events collapsible --}}
+        <div x-data="{ open: {{ request()->routeIs('virtual-fair') ? 'true' : 'false' }} }">
+            <button @click="open = !open" class="mob-link mob-toggle" style="width:100%; display:flex; justify-content:space-between; align-items:center; background:none; border:none; cursor:pointer; text-align:left;">
+                <span>Events</span>
+                <span style="font-size:16px; transition:transform 0.2s ease;" :style="open ? 'transform:rotate(180deg)' : ''">⌄</span>
+            </button>
+            <div x-show="open" x-collapse>
+                <a href="{{ route('virtual-fair') }}" class="mob-link mob-sub {{ request()->routeIs('virtual-fair') ? 'mob-active' : '' }}">Virtual Education Fair</a>
+            </div>
+        </div>
         <a href="https://iteajobs.com/" target="_blank" rel="noopener" class="mob-link">Career Pathway ↗</a>
         <a href="{{ route('contact') }}" class="mob-link {{ request()->routeIs('contact') ? 'mob-active' : '' }}">Contact</a>
 
