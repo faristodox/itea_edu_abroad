@@ -122,11 +122,13 @@
                     <div x-data="{ ptype: 'ug_en' }">
                         <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:32px;">
                             @php $ptypes = [
-                                ['id'=>'ug_en',  'label'=>'Undergrad · English (12)'],
-                                ['id'=>'ug_zh',  'label'=>'Undergrad · Chinese (22)'],
-                                ['id'=>'pg_en',  'label'=>'Postgrad · English (12)'],
-                                ['id'=>'pg_zh',  'label'=>'Postgrad · Chinese (7)'],
-                                ['id'=>'nondeg', 'label'=>'Non-degree'],
+                                ['id'=>'ug_en',      'label'=>'Undergrad · English (12)'],
+                                ['id'=>'ug_zh',      'label'=>'Undergrad · Chinese (22)'],
+                                ['id'=>'ug_mobility','label'=>'Undergrad · Mobility (13)'],
+                                ['id'=>'pg_en',      'label'=>'Postgrad · English (12)'],
+                                ['id'=>'pg_zh',      'label'=>'Postgrad · Chinese (7)'],
+                                ['id'=>'pg_mobility','label'=>'Postgrad · Mobility (14)'],
+                                ['id'=>'nondeg',     'label'=>'Non-degree'],
                             ]; @endphp
                             @foreach($ptypes as $pt)
                             <button @click="ptype = '{{ $pt['id'] }}'"
@@ -220,6 +222,67 @@
                                 <div class="card" style="padding:16px;">
                                     <div style="font-size:14px; color:var(--ink); margin-bottom:4px;">{{ $prog }}</div>
                                     <span style="font-family:'JetBrains Mono',monospace; font-size:9px; color:var(--muted); text-transform:uppercase; letter-spacing:0.08em;">Mandarin</span>
+                                </div>
+                                @endforeach
+                            </div>
+                        </div>
+
+                        {{-- Undergrad Mobility --}}
+                        <div x-show="ptype === 'ug_mobility'">
+                            <div style="background:var(--paper); border:1px solid var(--rule-soft); padding:16px 20px; margin-bottom:16px; font-size:13px; color:var(--muted);">
+                                <strong style="color:var(--ink);">Undergraduate Mobility Programme</strong> — semester or full-year exchange. Open to students enrolled at a partner institution. Credits transferable upon return.
+                            </div>
+                            <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:2px;" class="zust-prog-grid">
+                                @php $ug_mob = [
+                                    'Robotics Engineering',
+                                    'Computer Science and Technology',
+                                    'Digital Media Technology',
+                                    'Artificial Intelligence',
+                                    'Data Science and Big Data Technology',
+                                    'Civil Engineering',
+                                    'Architecture',
+                                    'Food Science and Engineering',
+                                    'Bioengineering',
+                                    'Visual Communication Design',
+                                    'International Economics and Trade',
+                                    'International Business',
+                                    'Chinese Language and Literature (Business Chinese)',
+                                ]; @endphp
+                                @foreach($ug_mob as $prog)
+                                <div class="card" style="padding:16px;">
+                                    <div style="font-size:14px; color:var(--ink); margin-bottom:6px;">{{ $prog }}</div>
+                                    <span style="font-family:'JetBrains Mono',monospace; font-size:9px; color:var(--accent); text-transform:uppercase; letter-spacing:0.08em;">Mobility · Exchange</span>
+                                </div>
+                                @endforeach
+                            </div>
+                        </div>
+
+                        {{-- Postgrad Mobility --}}
+                        <div x-show="ptype === 'pg_mobility'">
+                            <div style="background:var(--paper); border:1px solid var(--rule-soft); padding:16px 20px; margin-bottom:16px; font-size:13px; color:var(--muted);">
+                                <strong style="color:var(--ink);">Postgraduate Mobility Programme (Non-degree)</strong> — semester or full-year research/study exchange for postgraduate students. Open to all listed disciplines.
+                            </div>
+                            <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:2px;" class="zust-prog-grid">
+                                @php $pg_mob = [
+                                    'Mechanical Engineering',
+                                    'Intelligent Manufacturing and Control Engineering',
+                                    'Computer Technology',
+                                    'Artificial Intelligence',
+                                    'Civil Engineering',
+                                    'Chemical Engineering and Technology',
+                                    'Resource and Environment',
+                                    'International Business',
+                                    'International Business (Globalization of Business Operation and Management)',
+                                    'Applied Statistics',
+                                    'Mathematics',
+                                    'Physics',
+                                    'OptoElectronic and Information Engineering',
+                                    'International Chinese Language Education',
+                                ]; @endphp
+                                @foreach($pg_mob as $prog)
+                                <div class="card" style="padding:16px;">
+                                    <div style="font-size:14px; color:var(--ink); margin-bottom:6px;">{{ $prog }}</div>
+                                    <span style="font-family:'JetBrains Mono',monospace; font-size:9px; color:var(--accent); text-transform:uppercase; letter-spacing:0.08em;">Mobility · Non-degree</span>
                                 </div>
                                 @endforeach
                             </div>
