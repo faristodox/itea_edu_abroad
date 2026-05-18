@@ -5,7 +5,7 @@
 @section('content')
 
 {{-- ── Hero ─────────────────────────────────────────────────── --}}
-<section style="background:var(--ink-deep); color:#fff; padding:80px 0 60px; position:relative; overflow:hidden;">
+<section class="fair-hero-section" style="background:var(--ink-deep); color:#fff; padding:80px 0 60px; position:relative; overflow:hidden;">
     {{-- subtle grid bg --}}
     <div style="position:absolute; inset:0; background-image:linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px); background-size:48px 48px; pointer-events:none;"></div>
 
@@ -17,7 +17,7 @@
             <span style="color:rgba(255,255,255,0.7);">Virtual Education Fair</span>
         </div>
 
-        <div style="display:grid; grid-template-columns:1fr 380px; gap:60px; align-items:center;">
+        <div class="fair-hero-grid" style="display:grid; grid-template-columns:1fr 380px; gap:60px; align-items:center;">
             {{-- left --}}
             <div>
                 <div style="display:inline-flex; align-items:center; gap:8px; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.5); border:1px solid rgba(255,255,255,0.12); padding:5px 12px; border-radius:999px; margin-bottom:24px;">
@@ -79,7 +79,7 @@
         </div>
 
         {{-- stat strip --}}
-        <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:2px; margin-top:48px;">
+        <div class="fair-stats-grid" style="display:grid; grid-template-columns:repeat(4,1fr); gap:2px; margin-top:48px;">
             @php $stats = [
                 ['val'=>'20+','label'=>'Universities attending'],
                 ['val'=>'500','label'=>'Seats available'],
@@ -98,15 +98,27 @@
 
 <style>
 @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+/* Tablet */
 @media (max-width:900px) {
     .fair-hero-grid { grid-template-columns:1fr !important; }
-    .fair-hero-grid > div:last-child { display:none; }
-}
-@media (max-width:640px) {
-    .fair-stats-grid { grid-template-columns:1fr 1fr !important; }
+    .fair-hero-grid > div:last-child { display:none !important; }
+    .fair-register-grid { grid-template-columns:1fr !important; }
     .fair-what-grid  { grid-template-columns:1fr 1fr !important; }
     .fair-unis-grid  { grid-template-columns:1fr 1fr !important; }
     .fair-steps-grid { grid-template-columns:1fr !important; }
+    .fair-stats-grid { grid-template-columns:1fr 1fr !important; }
+    .fair-schedule-row { grid-template-columns:70px 1fr !important; }
+    .fair-schedule-label { display:none !important; }
+}
+
+/* Mobile */
+@media (max-width:640px) {
+    .fair-hero-section { padding:48px 0 36px !important; }
+    .fair-what-grid  { grid-template-columns:1fr !important; }
+    .fair-unis-grid  { grid-template-columns:1fr 1fr !important; }
+    .fair-cta-strip  { flex-direction:column !important; align-items:flex-start !important; }
+    .fair-stats-grid { grid-template-columns:1fr 1fr !important; }
 }
 </style>
 
@@ -196,9 +208,9 @@
                 ['time'=>'5:00 PM',  'type'=>'close',    'label'=>'Close',        'title'=>'Closing & next steps',                  'meta'=>'Recording link sent within 24 hours', 'color'=>'var(--muted)'],
             ]; @endphp
             @foreach($agenda as $i => $item)
-            <div style="display:grid; grid-template-columns:110px 80px 1fr; gap:0; border-bottom:{{ $i < count($agenda)-1 ? '1px solid var(--rule-soft)' : 'none' }};">
+            <div class="fair-schedule-row" style="display:grid; grid-template-columns:110px 80px 1fr; gap:0; border-bottom:{{ $i < count($agenda)-1 ? '1px solid var(--rule-soft)' : 'none' }};">
                 <div style="padding:16px; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--muted); border-right:1px solid var(--rule-soft); display:flex; align-items:center;">{{ $item['time'] }}</div>
-                <div style="padding:16px; border-right:1px solid var(--rule-soft); display:flex; align-items:center;">
+                <div class="fair-schedule-label" style="padding:16px; border-right:1px solid var(--rule-soft); display:flex; align-items:center;">
                     <span style="font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.08em; text-transform:uppercase; color:{{ $item['color'] }}; white-space:nowrap;">{{ $item['label'] }}</span>
                 </div>
                 <div style="padding:16px;">
@@ -241,7 +253,7 @@
 
 {{-- ── Registration form ────────────────────────────────────── --}}
 <section id="register" class="section" style="background:var(--ink-deep); color:#fff;">
-    <div class="wrap" style="display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start;">
+    <div class="wrap fair-register-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start;">
         {{-- left copy --}}
         <div>
             <div class="eyebrow" style="color:rgba(255,255,255,0.4); margin-bottom:12px;">Secure your seat</div>
@@ -348,7 +360,7 @@
 
 {{-- ── CTA strip ────────────────────────────────────────────── --}}
 <section style="background:var(--accent); color:#fff; padding:48px 0;">
-    <div class="wrap" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:24px;">
+    <div class="wrap fair-cta-strip" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:24px;">
         <div>
             <h2 style="font-family:'Instrument Serif',serif; font-size:clamp(24px,3vw,38px); font-weight:400; margin:0 0 6px;">500 seats. Free. One day.</h2>
             <p style="margin:0; font-size:15px; color:rgba(255,255,255,0.8);">Don't miss the June 7 Virtual Education Fair — seats fill fast.</p>
