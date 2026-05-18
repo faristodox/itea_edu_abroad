@@ -90,7 +90,7 @@
 
         @php
         $partners = [
-            ['abbr'=>'ZUST','uni'=>'Zhejiang University of Science and Technology','zh'=>'浙江科技大学','crest'=>'浙','type'=>'Public','location'=>'Hangzhou · Zhejiang','founded'=>'1980','students'=>'22k','intl'=>'1,600','popular'=>'Computer Science · Robotics · Artificial Intelligence · Civil Engineering','tuition'=>'CNY 18 – 25k','tag'=>'Sino-German','website'=>'https://www.zust.edu.cn/','logo'=>'uni-zust.png','phA'=>'#1c3d5a','phB'=>'#0a1f3a'],
+            ['abbr'=>'ZUST','uni'=>'Zhejiang University of Science and Technology','zh'=>'浙江科技大学','crest'=>'浙','type'=>'Public','location'=>'Hangzhou · Zhejiang','founded'=>'1980','students'=>'22k','intl'=>'1,600','popular'=>'Computer Science · Robotics · Artificial Intelligence · Civil Engineering','tuition'=>'CNY 18 – 25k','tag'=>'Sino-German','website'=>route('china.zust'),'target'=>'_self','logo'=>'uni-zust.png','phA'=>'#1c3d5a','phB'=>'#0a1f3a'],
             ['abbr'=>'SDUT','uni'=>'Shandong University of Technology','zh'=>'山东理工大学','crest'=>'山理','type'=>'Public','location'=>'Zibo · Shandong','founded'=>'1956','students'=>'34k','intl'=>'1,000','popular'=>'Mechanical Engineering · Electrical · Computer Science · Chemical Engineering','tuition'=>'USD 2.5 – 4.5k','tag'=>'Engineering','website'=>'https://www.sdut.edu.cn/','logo'=>'sdut.jpg','phA'=>'#34526e','phB'=>'#1a2a3e'],
             ['abbr'=>'JUFE','uni'=>'Jiangxi University of Finance and Economics','zh'=>'江西财经大学','crest'=>'江财','type'=>'Public','location'=>'Nanchang · Jiangxi','founded'=>'1923','students'=>'40k','intl'=>'1,500','popular'=>'Finance · Accounting · International Business · Economics','tuition'=>'USD 3 – 6k','tag'=>'Finance · Business','website'=>'https://www.jxufe.edu.cn/','logo'=>'jufe.jpg','phA'=>'#a51717','phB'=>'#3d0808'],
             ['abbr'=>'HMU','uni'=>'Hainan Medical University','zh'=>'海南医科大学','crest'=>'海医','type'=>'Public','location'=>'Haikou · Hainan','founded'=>'1947','students'=>'15k','intl'=>'1,200','popular'=>'MBBS (English) · Clinical Medicine · Nursing · Pharmacy','tuition'=>'USD 3 – 6k','tag'=>'Medical · MBBS','website'=>'https://www.hainmc.edu.cn/','logo'=>'hmu.jpg','phA'=>'#2a8a6a','phB'=>'#0e3527'],
@@ -99,7 +99,7 @@
 
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:2px;">
             @foreach($partners as $u)
-            <a href="{{ $u['website'] }}" target="_blank" rel="noopener" class="card" style="display:grid; grid-template-columns:180px 1fr; overflow:hidden; text-decoration:none; color:inherit;">
+            <a href="{{ $u['website'] }}" target="{{ $u['target'] ?? '_blank' }}" rel="noopener" class="card" style="display:grid; grid-template-columns:180px 1fr; overflow:hidden; text-decoration:none; color:inherit;">
                 {{-- Crest panel --}}
                 <div style="background:linear-gradient(160deg, {{ $u['phA'] }}, {{ $u['phB'] }}); position:relative; display:flex; align-items:center; justify-content:center;">
                     <span style="position:absolute; top:10px; left:10px; font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.1em; padding:3px 8px; border:1px solid rgba(255,255,255,0.25); color:rgba(255,255,255,0.7); text-transform:uppercase;">{{ $u['tag'] }}</span>
@@ -133,7 +133,7 @@
                     </div>
                     <div style="display:flex; justify-content:space-between; align-items:center;">
                         <span style="font-family:'Instrument Serif',serif; font-size:20px; color:var(--ink);">{{ $u['tuition'] }}<small style="font-family:'Geist',sans-serif; font-size:11px; color:var(--muted);">/ year</small></span>
-                        <span style="font-size:12px; color:var(--accent); font-weight:500;">View university →</span>
+                        <span style="font-size:12px; color:var(--accent); font-weight:500;">{{ isset($u['target']) && $u['target']==='_self' ? 'View full profile →' : 'Visit website →' }}</span>
                     </div>
                 </div>
             </a>
