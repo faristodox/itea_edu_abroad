@@ -118,7 +118,7 @@
         $levelNames = ['DIPLOMA'=>'Diploma','UG'=>'Undergraduate','PG'=>'Postgraduate','MANDARIN'=>'Mandarin','SHORT'=>'Short-term'];
         @endphp
 
-        <div x-data="{
+        <div style="scroll-margin-top:90px;" x-data="{
             level: 'ALL',
             country: 'ALL',
             init() {
