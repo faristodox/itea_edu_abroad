@@ -10,7 +10,7 @@
             <div style="text-align:center; margin-bottom:36px;">
                 <div class="eyebrow" style="margin-bottom:10px;">Applicant Portal</div>
                 <h1 style="font-family:'Instrument Serif',serif; font-size:clamp(28px,4vw,40px); font-weight:400; margin:0 0 8px;">Welcome <em style="color:var(--accent);">back.</em></h1>
-                <p style="font-size:14px; color:var(--muted); margin:0;">Log in to track your application, upload documents and chat with your counsellor.</p>
+                <p style="font-size:14px; color:var(--muted); margin:0;">Log in to track your application and upload any required documents.</p>
             </div>
 
             {{-- Card --}}
