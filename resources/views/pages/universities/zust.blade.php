@@ -42,7 +42,7 @@
                 @php $facts = [
                     ['label'=>'Founded',           'val'=>'1980'],
                     ['label'=>'Total students',    'val'=>'22,000'],
-                    ['label'=>'Int\'l students',   'val'=>'1,600'],
+                    ['label'=>'International students', 'val'=>'1,600'],
                     ['label'=>'English programmes','val'=>'12'],
                     ['label'=>'Campus size',       'val'=>'2,900+ acres'],
                     ['label'=>'Application fee',   'val'=>'¥400'],
