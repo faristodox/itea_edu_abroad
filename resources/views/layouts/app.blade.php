@@ -79,7 +79,7 @@
                             ['label'=>'Short-term',     'val'=>'SHORT'],
                         ]; @endphp
                         @foreach($progLevels as $i => $pl)
-                        <a href="{{ route('programmes') }}?level={{ $pl['val'] }}"
+                        <a href="{{ route('programmes') }}?level={{ $pl['val'] }}#prog-grid"
                            style="display:flex; justify-content:space-between; align-items:center; padding:10px 0; {{ $i < count($progLevels)-1 ? 'border-bottom:1px solid var(--rule-soft);' : '' }} text-decoration:none; color:var(--ink-2); font-size:14px;">
                             {{ $pl['label'] }}
                             <span style="color:var(--accent);">→</span>
