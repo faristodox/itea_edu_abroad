@@ -15,6 +15,9 @@ Route::view('/events/virtual-fair', 'pages.virtual-fair')->name('virtual-fair');
 
 // University pages
 Route::view('/destinations/china/zust', 'pages.universities.zust')->name('china.zust');
+Route::view('/destinations/china/sdut', 'pages.universities.sdut')->name('china.sdut');
+Route::view('/destinations/china/jufe', 'pages.universities.jufe')->name('china.jufe');
+Route::view('/destinations/china/hmu',  'pages.universities.hmu')->name('china.hmu');
 
 Route::post('/enquiry', [EnquiryController::class, 'store'])->name('enquiry.store');
 Route::post('/contact', [EnquiryController::class, 'contact'])->name('contact.store');
