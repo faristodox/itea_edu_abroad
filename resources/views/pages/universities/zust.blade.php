@@ -1,11 +1,11 @@
-@extends('layouts.app')
-@section('title', 'ZUST — Zhejiang University of Science & Technology | ITEA EduAbroad')
+﻿@extends('layouts.app')
+@section('title', 'ZUST â€” Zhejiang University of Science & Technology | ITEA EduAbroad')
 @section('description', 'Study at Zhejiang University of Science and Technology (ZUST) in Hangzhou, China. 12 English-taught programmes, CSC scholarships up to 100% tuition, 1,600+ international students.')
 @section('nav_logo', 'assets/logo-china.png')
 
 @section('content')
 
-{{-- ── Hero ─────────────────────────────────────────────────── --}}
+{{-- â”€â”€ Hero â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ --}}
 <section style="background:var(--ink-deep); color:#fff; padding:72px 0 0; position:relative; overflow:hidden;">
     <div style="position:absolute; inset:0; background:linear-gradient(135deg,#1c3d5a,#0a1f3a); opacity:0.95;"></div>
     @if(file_exists(public_path('assets/uni-zust.png')))
@@ -16,23 +16,23 @@
         {{-- Breadcrumb --}}
         <div style="display:flex; align-items:center; gap:8px; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:28px; flex-wrap:wrap;">
             <a href="{{ route('home') }}" style="color:inherit; text-decoration:none;">Home</a>
-            <span>·</span>
+            <span>Â·</span>
             <a href="{{ route('china') }}" style="color:inherit; text-decoration:none;">Study in China</a>
-            <span>·</span>
+            <span>Â·</span>
             <span style="color:rgba(255,255,255,0.7);">ZUST</span>
         </div>
 
         <div style="display:grid; grid-template-columns:1fr 300px; gap:48px; align-items:end; padding-bottom:48px;" class="zust-hero-grid">
             <div>
                 <div style="display:inline-flex; align-items:center; gap:8px; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.5); border:1px solid rgba(255,255,255,0.15); padding:4px 12px; border-radius:999px; margin-bottom:20px;">
-                    Public University · Hangzhou, Zhejiang
+                    Public University Â· Hangzhou, Zhejiang
                 </div>
                 <h1 style="font-family:'Instrument Serif',serif; font-size:clamp(28px,4vw,56px); font-weight:400; margin:0 0 6px; line-height:1.05;">Zhejiang University of<br><em style="color:#7eb8e8;">Science & Technology</em></h1>
-                <div class="zh" style="font-size:20px; color:rgba(255,255,255,0.25); margin-bottom:20px;">浙江科技大学 · ZUST</div>
-                <p style="font-size:15px; line-height:1.65; color:rgba(255,255,255,0.65); max-width:560px; margin:0 0 28px;">A Sino-German cooperative university in Hangzhou — blending German engineering rigour with Chinese academic scale. 22,000 students, 1,600 international, two campuses across Hangzhou and Anji.</p>
+                <div class="zh" style="font-size:20px; color:rgba(255,255,255,0.25); margin-bottom:20px;">æµ™æ±Ÿç§‘æŠ€å¤§å­¦ Â· ZUST</div>
+                <p style="font-size:15px; line-height:1.65; color:rgba(255,255,255,0.65); max-width:560px; margin:0 0 28px;">A Sino-German cooperative university in Hangzhou â€” blending German engineering rigour with Chinese academic scale. 22,000 students, 1,600 international, two campuses across Hangzhou and Anji.</p>
                 <div style="display:flex; gap:12px; flex-wrap:wrap;">
-                    <a href="#apply" class="btn-primary">Apply to ZUST →</a>
-                    <a href="#programmes" style="color:rgba(255,255,255,0.7); font-size:13px; font-family:'JetBrains Mono',monospace; letter-spacing:0.06em; text-decoration:underline; text-underline-offset:4px; align-self:center;">View programmes ↓</a>
+                    <a href="#apply" class="btn-primary">Apply to ZUST â†’</a>
+                    <a href="#programmes" style="color:rgba(255,255,255,0.7); font-size:13px; font-family:'JetBrains Mono',monospace; letter-spacing:0.06em; text-decoration:underline; text-underline-offset:4px; align-self:center;">View programmes â†“</a>
                 </div>
             </div>
 
@@ -45,7 +45,7 @@
                     ['label'=>'Int\'l students',   'val'=>'1,600'],
                     ['label'=>'English programmes','val'=>'12'],
                     ['label'=>'Campus size',       'val'=>'2,900+ acres'],
-                    ['label'=>'Application fee',   'val'=>'¥400'],
+                    ['label'=>'Application fee',   'val'=>'Â¥400'],
                 ]; @endphp
                 @foreach($facts as $i => $f)
                 <div style="display:flex; justify-content:space-between; padding:8px 0; {{ $i < count($facts)-1 ? 'border-bottom:1px solid rgba(255,255,255,0.07);' : '' }}">
@@ -77,17 +77,17 @@
                 @endforeach
             </div>
 
-            {{-- ── OVERVIEW ── --}}
+            {{-- â”€â”€ OVERVIEW â”€â”€ --}}
             <div x-show="tab === 'overview'" style="background:var(--paper); color:var(--ink);">
-                <div class="wrap" style="display:grid; grid-template-columns:1fr 1fr; gap:48px; padding:48px 0;" class="zust-2col">
+                <div class="wrap" style="display:grid; grid-template-columns:1fr 1fr; gap:48px; padding-top:48px; padding-bottom:48px;" class="zust-2col">
                     <div>
                         <div class="eyebrow" style="margin-bottom:12px;">About ZUST</div>
                         <h2 style="font-family:'Instrument Serif',serif; font-size:clamp(22px,2.5vw,32px); font-weight:400; margin:0 0 16px;">Engineering excellence,<br><em style="color:var(--accent);">Sino-German style.</em></h2>
                         <p style="font-size:14px; line-height:1.75; color:var(--muted); margin:0 0 16px;">Zhejiang University of Science and Technology was established in 1980 with a unique Sino-German cooperative model. The university maintains strong academic ties with German institutions, blending European engineering rigour with China's world-class research infrastructure.</p>
-                        <p style="font-size:14px; line-height:1.75; color:var(--muted); margin:0 0 24px;">Located in Hangzhou — one of China's most liveable cities and home to Alibaba headquarters — ZUST offers students an unmatched combination of academic quality, career opportunity and cultural immersion.</p>
+                        <p style="font-size:14px; line-height:1.75; color:var(--muted); margin:0 0 24px;">Located in Hangzhou â€” one of China's most liveable cities and home to Alibaba headquarters â€” ZUST offers students an unmatched combination of academic quality, career opportunity and cultural immersion.</p>
                         <div style="background:var(--bg); padding:20px; border-left:3px solid var(--accent);">
                             <div style="font-size:13px; font-weight:500; color:var(--ink); margin-bottom:6px;">"Strong engineering programs and international focus"</div>
-                            <div style="font-size:12px; color:var(--muted);">Two campuses — Hangzhou (main) and Anji — across 2,900+ acres of modern facilities.</div>
+                            <div style="font-size:12px; color:var(--muted);">Two campuses â€” Hangzhou (main) and Anji â€” across 2,900+ acres of modern facilities.</div>
                         </div>
                     </div>
                     <div>
@@ -116,16 +116,16 @@
                 </div>
             </div>
 
-            {{-- ── PROGRAMMES ── --}}
+            {{-- â”€â”€ PROGRAMMES â”€â”€ --}}
             <div x-show="tab === 'programmes'" id="programmes" style="background:var(--bg); color:var(--ink);">
-                <div class="wrap" style="padding:48px 0;">
+                <div class="wrap" style="padding-top:48px; padding-bottom:48px;">
                     <div x-data="{ ptype: 'ug_en' }">
                         <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:32px;">
                             @php $ptypes = [
-                                ['id'=>'ug_en',  'label'=>'Undergrad · English (12)'],
-                                ['id'=>'ug_zh',  'label'=>'Undergrad · Chinese (22)'],
-                                ['id'=>'pg_en',  'label'=>'Postgrad · English (12)'],
-                                ['id'=>'pg_zh',  'label'=>'Postgrad · Chinese (7)'],
+                                ['id'=>'ug_en',  'label'=>'Undergrad Â· English (12)'],
+                                ['id'=>'ug_zh',  'label'=>'Undergrad Â· Chinese (22)'],
+                                ['id'=>'pg_en',  'label'=>'Postgrad Â· English (12)'],
+                                ['id'=>'pg_zh',  'label'=>'Postgrad Â· Chinese (7)'],
                                 ['id'=>'nondeg', 'label'=>'Non-degree'],
                             ]; @endphp
                             @foreach($ptypes as $pt)
@@ -139,18 +139,18 @@
                         <div x-show="ptype === 'ug_en'">
                             <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:2px;" class="zust-prog-grid">
                                 @php $ug_en = [
-                                    ['name'=>'Computer Science','dur'=>'4 yrs','lang'=>'English','fee'=>'CNY 18–25k/yr'],
-                                    ['name'=>'Artificial Intelligence','dur'=>'4 yrs','lang'=>'English','fee'=>'CNY 18–25k/yr'],
-                                    ['name'=>'Data Science','dur'=>'4 yrs','lang'=>'English','fee'=>'CNY 18–25k/yr'],
-                                    ['name'=>'Robotics & Automation','dur'=>'4 yrs','lang'=>'English','fee'=>'CNY 18–25k/yr'],
-                                    ['name'=>'Mechanical Engineering','dur'=>'4 yrs','lang'=>'English','fee'=>'CNY 18–25k/yr'],
-                                    ['name'=>'Civil Engineering','dur'=>'4 yrs','lang'=>'English','fee'=>'CNY 18–25k/yr'],
-                                    ['name'=>'Architecture','dur'=>'5 yrs','lang'=>'English','fee'=>'CNY 18–25k/yr'],
-                                    ['name'=>'Electrical Engineering','dur'=>'4 yrs','lang'=>'English','fee'=>'CNY 18–25k/yr'],
-                                    ['name'=>'Chemical Engineering','dur'=>'4 yrs','lang'=>'English','fee'=>'CNY 18–25k/yr'],
-                                    ['name'=>'International Business','dur'=>'4 yrs','lang'=>'English','fee'=>'CNY 18–25k/yr'],
-                                    ['name'=>'Design','dur'=>'4 yrs','lang'=>'English','fee'=>'CNY 18–25k/yr'],
-                                    ['name'=>'Logistics Management','dur'=>'4 yrs','lang'=>'English','fee'=>'CNY 18–25k/yr'],
+                                    ['name'=>'Computer Science','dur'=>'4 yrs','lang'=>'English','fee'=>'CNY 18â€“25k/yr'],
+                                    ['name'=>'Artificial Intelligence','dur'=>'4 yrs','lang'=>'English','fee'=>'CNY 18â€“25k/yr'],
+                                    ['name'=>'Data Science','dur'=>'4 yrs','lang'=>'English','fee'=>'CNY 18â€“25k/yr'],
+                                    ['name'=>'Robotics & Automation','dur'=>'4 yrs','lang'=>'English','fee'=>'CNY 18â€“25k/yr'],
+                                    ['name'=>'Mechanical Engineering','dur'=>'4 yrs','lang'=>'English','fee'=>'CNY 18â€“25k/yr'],
+                                    ['name'=>'Civil Engineering','dur'=>'4 yrs','lang'=>'English','fee'=>'CNY 18â€“25k/yr'],
+                                    ['name'=>'Architecture','dur'=>'5 yrs','lang'=>'English','fee'=>'CNY 18â€“25k/yr'],
+                                    ['name'=>'Electrical Engineering','dur'=>'4 yrs','lang'=>'English','fee'=>'CNY 18â€“25k/yr'],
+                                    ['name'=>'Chemical Engineering','dur'=>'4 yrs','lang'=>'English','fee'=>'CNY 18â€“25k/yr'],
+                                    ['name'=>'International Business','dur'=>'4 yrs','lang'=>'English','fee'=>'CNY 18â€“25k/yr'],
+                                    ['name'=>'Design','dur'=>'4 yrs','lang'=>'English','fee'=>'CNY 18â€“25k/yr'],
+                                    ['name'=>'Logistics Management','dur'=>'4 yrs','lang'=>'English','fee'=>'CNY 18â€“25k/yr'],
                                 ]; @endphp
                                 @foreach($ug_en as $prog)
                                 <div class="card" style="padding:20px;">
@@ -169,14 +169,14 @@
                         <div x-show="ptype === 'ug_zh'">
                             <div style="background:var(--paper); border:1px solid var(--rule-soft); padding:24px; margin-bottom:16px;">
                                 <div style="font-size:14px; color:var(--muted); margin-bottom:4px;"><strong style="color:var(--ink);">22 programmes</strong> taught in Mandarin Chinese.</div>
-                                <div style="font-size:13px; color:var(--muted);">Prerequisite: HSK Level 4 (score ≥ 180). Covers engineering, design, arts, economics and management disciplines.</div>
+                                <div style="font-size:13px; color:var(--muted);">Prerequisite: HSK Level 4 (score â‰¥ 180). Covers engineering, design, arts, economics and management disciplines.</div>
                             </div>
                             <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:2px;" class="zust-prog-grid">
                                 @php $ug_zh = ['Mechanical Engineering','Electrical Engineering','Civil Engineering','Architecture','Computer Science','Software Engineering','Chemical Engineering','Environmental Engineering','Industrial Design','Visual Communication','Business Administration','Accounting','Finance','Marketing','International Economics & Trade','Law','Chinese Language & Literature','Logistics Management','Materials Science','Food Science','Landscape Architecture','Urban Planning']; @endphp
                                 @foreach($ug_zh as $prog)
                                 <div class="card" style="padding:16px;">
                                     <div style="font-size:14px; color:var(--ink); margin-bottom:4px;">{{ $prog }}</div>
-                                    <span style="font-family:'JetBrains Mono',monospace; font-size:9px; color:var(--muted); text-transform:uppercase; letter-spacing:0.08em;">Mandarin · 4 yrs</span>
+                                    <span style="font-family:'JetBrains Mono',monospace; font-size:9px; color:var(--muted); text-transform:uppercase; letter-spacing:0.08em;">Mandarin Â· 4 yrs</span>
                                 </div>
                                 @endforeach
                             </div>
@@ -186,23 +186,23 @@
                         <div x-show="ptype === 'pg_en'">
                             <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:2px;" class="zust-prog-grid">
                                 @php $pg_en = [
-                                    ['name'=>'Mechanical Engineering (MSc)','dur'=>'2–3 yrs','fee'=>'CNY 21–25k/yr'],
-                                    ['name'=>'Artificial Intelligence (MSc)','dur'=>'2–3 yrs','fee'=>'CNY 21–25k/yr'],
-                                    ['name'=>'Civil Engineering (MSc)','dur'=>'2–3 yrs','fee'=>'CNY 21–25k/yr'],
-                                    ['name'=>'Computer Science (MSc)','dur'=>'2–3 yrs','fee'=>'CNY 21–25k/yr'],
-                                    ['name'=>'Architecture (MSc)','dur'=>'2–3 yrs','fee'=>'CNY 21–25k/yr'],
-                                    ['name'=>'Electrical Engineering (MSc)','dur'=>'2–3 yrs','fee'=>'CNY 21–25k/yr'],
-                                    ['name'=>'Chemical Engineering (MSc)','dur'=>'2–3 yrs','fee'=>'CNY 21–25k/yr'],
-                                    ['name'=>'Data Science (MSc)','dur'=>'2–3 yrs','fee'=>'CNY 21–25k/yr'],
-                                    ['name'=>'Business Administration (MBA)','dur'=>'2 yrs','fee'=>'CNY 21–25k/yr'],
-                                    ['name'=>'International Business (MSc)','dur'=>'2 yrs','fee'=>'CNY 21–25k/yr'],
-                                    ['name'=>'Environmental Engineering (MSc)','dur'=>'2–3 yrs','fee'=>'CNY 21–25k/yr'],
-                                    ['name'=>'Industrial Design (MSc)','dur'=>'2–3 yrs','fee'=>'CNY 21–25k/yr'],
+                                    ['name'=>'Mechanical Engineering (MSc)','dur'=>'2â€“3 yrs','fee'=>'CNY 21â€“25k/yr'],
+                                    ['name'=>'Artificial Intelligence (MSc)','dur'=>'2â€“3 yrs','fee'=>'CNY 21â€“25k/yr'],
+                                    ['name'=>'Civil Engineering (MSc)','dur'=>'2â€“3 yrs','fee'=>'CNY 21â€“25k/yr'],
+                                    ['name'=>'Computer Science (MSc)','dur'=>'2â€“3 yrs','fee'=>'CNY 21â€“25k/yr'],
+                                    ['name'=>'Architecture (MSc)','dur'=>'2â€“3 yrs','fee'=>'CNY 21â€“25k/yr'],
+                                    ['name'=>'Electrical Engineering (MSc)','dur'=>'2â€“3 yrs','fee'=>'CNY 21â€“25k/yr'],
+                                    ['name'=>'Chemical Engineering (MSc)','dur'=>'2â€“3 yrs','fee'=>'CNY 21â€“25k/yr'],
+                                    ['name'=>'Data Science (MSc)','dur'=>'2â€“3 yrs','fee'=>'CNY 21â€“25k/yr'],
+                                    ['name'=>'Business Administration (MBA)','dur'=>'2 yrs','fee'=>'CNY 21â€“25k/yr'],
+                                    ['name'=>'International Business (MSc)','dur'=>'2 yrs','fee'=>'CNY 21â€“25k/yr'],
+                                    ['name'=>'Environmental Engineering (MSc)','dur'=>'2â€“3 yrs','fee'=>'CNY 21â€“25k/yr'],
+                                    ['name'=>'Industrial Design (MSc)','dur'=>'2â€“3 yrs','fee'=>'CNY 21â€“25k/yr'],
                                 ]; @endphp
                                 @foreach($pg_en as $prog)
                                 <div class="card" style="padding:20px;">
                                     <div style="font-size:15px; font-weight:500; color:var(--ink); margin-bottom:8px;">{{ $prog['name'] }}</div>
-                                    <div style="font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--accent);">English · {{ $prog['dur'] }}</div>
+                                    <div style="font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--accent);">English Â· {{ $prog['dur'] }}</div>
                                     <div style="margin-top:6px; font-size:12px; color:var(--muted);">{{ $prog['fee'] }}</div>
                                 </div>
                                 @endforeach
@@ -232,7 +232,7 @@
                                     <div class="eyebrow" style="margin-bottom:8px;">Chinese Language Programme</div>
                                     <h3 style="font-family:'Instrument Serif',serif; font-size:20px; font-weight:400; margin:0 0 10px;">Mandarin Intensive</h3>
                                     <p style="font-size:13px; line-height:1.6; color:var(--muted); margin:0 0 12px;">Full-year or semester Chinese language immersion. Suitable for beginners to advanced learners. HSK exam preparation included.</p>
-                                    <div style="font-size:13px; color:var(--muted);">Fee: CNY 7,500–15,000 / year</div>
+                                    <div style="font-size:13px; color:var(--muted);">Fee: CNY 7,500â€“15,000 / year</div>
                                 </div>
                                 <div class="card" style="padding:24px;">
                                     <div class="eyebrow" style="margin-bottom:8px;">Student Mobility</div>
@@ -246,9 +246,9 @@
                 </div>
             </div>
 
-            {{-- ── ADMISSION ── --}}
+            {{-- â”€â”€ ADMISSION â”€â”€ --}}
             <div x-show="tab === 'admission'" style="background:var(--paper); color:var(--ink);">
-                <div class="wrap" style="padding:48px 0;">
+                <div class="wrap" style="padding-top:48px; padding-bottom:48px;">
                     <div style="display:grid; grid-template-columns:1fr 1fr; gap:32px;" class="zust-2col">
                         {{-- Academic requirements --}}
                         <div>
@@ -275,11 +275,11 @@
                             <div style="display:flex; flex-direction:column; gap:2px; margin-bottom:24px;">
                                 <div style="padding:16px; background:var(--bg);">
                                     <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.08em; color:var(--accent); text-transform:uppercase; margin-bottom:6px;">English-taught programmes</div>
-                                    <div style="font-size:13px; color:var(--ink);">IELTS ≥ 5.5 &nbsp;·&nbsp; TOEFL ≥ 80 &nbsp;·&nbsp; or equivalent</div>
+                                    <div style="font-size:13px; color:var(--ink);">IELTS â‰¥ 5.5 &nbsp;Â·&nbsp; TOEFL â‰¥ 80 &nbsp;Â·&nbsp; or equivalent</div>
                                 </div>
                                 <div style="padding:16px; background:var(--bg);">
                                     <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.08em; color:var(--accent); text-transform:uppercase; margin-bottom:6px;">Chinese-taught programmes</div>
-                                    <div style="font-size:13px; color:var(--ink);">HSK Level 4 &nbsp;·&nbsp; score ≥ 180 points</div>
+                                    <div style="font-size:13px; color:var(--ink);">HSK Level 4 &nbsp;Â·&nbsp; score â‰¥ 180 points</div>
                                 </div>
                                 <div style="padding:16px; background:var(--bg);">
                                     <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.08em; color:var(--accent); text-transform:uppercase; margin-bottom:6px;">Language programme</div>
@@ -292,7 +292,7 @@
                                 @php $docs = ['Valid passport (18+ months)','Academic transcripts (all levels)','Highest qualification certificate','Language test certificate (IELTS/TOEFL/HSK)','Personal statement / motivation letter','Passport-size photos (2)','Physical examination report','No criminal record certificate']; @endphp
                                 @foreach($docs as $doc)
                                 <div style="display:flex; align-items:center; gap:10px; font-size:13px; color:var(--ink);">
-                                    <span style="color:#2fa86e; flex-shrink:0;">✓</span> {{ $doc }}
+                                    <span style="color:#2fa86e; flex-shrink:0;">âœ“</span> {{ $doc }}
                                 </div>
                                 @endforeach
                             </div>
@@ -315,9 +315,9 @@
                 </div>
             </div>
 
-            {{-- ── TUITION & FEES ── --}}
+            {{-- â”€â”€ TUITION & FEES â”€â”€ --}}
             <div x-show="tab === 'fees'" style="background:var(--bg); color:var(--ink);">
-                <div class="wrap" style="padding:48px 0;">
+                <div class="wrap" style="padding-top:48px; padding-bottom:48px;">
                     <div style="display:grid; grid-template-columns:2fr 1fr; gap:32px; align-items:start;" class="zust-2col">
                         <div>
                             <div class="eyebrow" style="margin-bottom:16px;">Annual tuition fees (USD)</div>
@@ -328,12 +328,12 @@
                                     <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.08em; text-transform:uppercase;">Fee / Year</div>
                                 </div>
                                 @php $fees = [
-                                    ['prog'=>'Undergraduate','lang'=>'English','fee'=>'USD 18,000 – 25,000'],
-                                    ['prog'=>'Undergraduate','lang'=>'Chinese','fee'=>'USD 17,000 – 20,000'],
-                                    ['prog'=>'Postgraduate (MSc)','lang'=>'English','fee'=>'USD 21,000 – 25,000'],
-                                    ['prog'=>'Postgraduate (MSc)','lang'=>'Chinese','fee'=>'USD 18,000 – 22,000'],
-                                    ['prog'=>'Chinese Language','lang'=>'Mandarin','fee'=>'USD 7,500 – 15,000'],
-                                    ['prog'=>'Application fee','lang'=>'One-time','fee'=>'CNY 400 (≈ USD 55)'],
+                                    ['prog'=>'Undergraduate','lang'=>'English','fee'=>'USD 18,000 â€“ 25,000'],
+                                    ['prog'=>'Undergraduate','lang'=>'Chinese','fee'=>'USD 17,000 â€“ 20,000'],
+                                    ['prog'=>'Postgraduate (MSc)','lang'=>'English','fee'=>'USD 21,000 â€“ 25,000'],
+                                    ['prog'=>'Postgraduate (MSc)','lang'=>'Chinese','fee'=>'USD 18,000 â€“ 22,000'],
+                                    ['prog'=>'Chinese Language','lang'=>'Mandarin','fee'=>'USD 7,500 â€“ 15,000'],
+                                    ['prog'=>'Application fee','lang'=>'One-time','fee'=>'CNY 400 (â‰ˆ USD 55)'],
                                 ]; @endphp
                                 @foreach($fees as $i => $f)
                                 <div style="display:grid; grid-template-columns:1fr 1fr 1fr; padding:12px 16px; {{ $i % 2 === 0 ? 'background:var(--paper);' : 'background:var(--bg);' }} border-top:1px solid var(--rule-soft);">
@@ -347,15 +347,15 @@
                         </div>
 
                         <div>
-                            <div class="eyebrow" style="margin-bottom:14px;">Cost of living · Hangzhou</div>
+                            <div class="eyebrow" style="margin-bottom:14px;">Cost of living Â· Hangzhou</div>
                             <div style="display:flex; flex-direction:column; gap:2px;">
                                 @php $living = [
-                                    ['item'=>'Accommodation','cost'=>'CNY 600–1,200/mo'],
-                                    ['item'=>'Meals (campus)','cost'=>'CNY 600–800/mo'],
-                                    ['item'=>'Transport','cost'=>'CNY 100–200/mo'],
-                                    ['item'=>'Books & materials','cost'=>'CNY 200–400/mo'],
-                                    ['item'=>'Personal expenses','cost'=>'CNY 500–800/mo'],
-                                    ['item'=>'Total estimate','cost'=>'CNY 2,000–3,400/mo'],
+                                    ['item'=>'Accommodation','cost'=>'CNY 600â€“1,200/mo'],
+                                    ['item'=>'Meals (campus)','cost'=>'CNY 600â€“800/mo'],
+                                    ['item'=>'Transport','cost'=>'CNY 100â€“200/mo'],
+                                    ['item'=>'Books & materials','cost'=>'CNY 200â€“400/mo'],
+                                    ['item'=>'Personal expenses','cost'=>'CNY 500â€“800/mo'],
+                                    ['item'=>'Total estimate','cost'=>'CNY 2,000â€“3,400/mo'],
                                 ]; @endphp
                                 @foreach($living as $i => $l)
                                 <div style="display:flex; justify-content:space-between; padding:10px 14px; {{ $i === count($living)-1 ? 'background:var(--ink-deep); color:#fff;' : 'background:var(--paper);' }}">
@@ -369,13 +369,13 @@
                 </div>
             </div>
 
-            {{-- ── ACCOMMODATION ── --}}
+            {{-- â”€â”€ ACCOMMODATION â”€â”€ --}}
             <div x-show="tab === 'accommodation'" style="background:var(--paper); color:var(--ink);">
-                <div class="wrap" style="padding:48px 0;">
+                <div class="wrap" style="padding-top:48px; padding-bottom:48px;">
                     <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:2px; margin-bottom:32px;" class="zust-prog-grid">
                         @php $rooms = [
                             ['type'=>'Double Room','price'=>'CNY 600/mo per person','note'=>'Shared with one roommate. En-suite or shared bathroom options available.','tag'=>'Most popular'],
-                            ['type'=>'Single Room','price'=>'CNY 1,200/mo','note'=>'Private room. Limited availability — apply early to secure.','tag'=>'Limited'],
+                            ['type'=>'Single Room','price'=>'CNY 1,200/mo','note'=>'Private room. Limited availability â€” apply early to secure.','tag'=>'Limited'],
                             ['type'=>'Deposit','price'=>'CNY 1,000','note'=>'One-time refundable deposit payable upon check-in.','tag'=>'Refundable'],
                         ]; @endphp
                         @foreach($rooms as $r)
@@ -393,12 +393,12 @@
                 </div>
             </div>
 
-            {{-- ── SCHOLARSHIPS ── --}}
+            {{-- â”€â”€ SCHOLARSHIPS â”€â”€ --}}
             <div x-show="tab === 'scholarships'" style="background:var(--bg); color:var(--ink);">
-                <div class="wrap" style="padding:48px 0;">
+                <div class="wrap" style="padding-top:48px; padding-bottom:48px;">
                     <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:2px; margin-bottom:32px;" class="zust-prog-grid">
                         @php $schols = [
-                            ['name'=>'Chinese Government Scholarship (CSC)','coverage'=>'Full-ride','detail'=>'Covers tuition, accommodation, monthly stipend (CNY 2,500) and comprehensive medical insurance. Highly competitive — apply through ITEA for guidance.','tag'=>'Full-ride'],
+                            ['name'=>'Chinese Government Scholarship (CSC)','coverage'=>'Full-ride','detail'=>'Covers tuition, accommodation, monthly stipend (CNY 2,500) and comprehensive medical insurance. Highly competitive â€” apply through ITEA for guidance.','tag'=>'Full-ride'],
                             ['name'=>'Zhejiang Provincial Scholarship','coverage'=>'Partial','detail'=>'Provincial government award covering partial tuition. Available to students with strong academic records. Awarded upon enrolment.','tag'=>'Partial'],
                             ['name'=>'ZUST Outstanding Student Award','coverage'=>'Up to 100%','detail'=>'University-level merit award. Available from year 2 onwards based on GPA performance. Renewable annually.','tag'=>'Merit'],
                         ]; @endphp
@@ -414,29 +414,30 @@
                     <div style="background:var(--ink-deep); color:#fff; padding:28px; display:grid; grid-template-columns:1fr auto; gap:24px; align-items:center;" class="zust-2col">
                         <div>
                             <div class="eyebrow" style="color:rgba(255,255,255,0.4); margin-bottom:8px;">ITEA scholarship support</div>
-                            <div style="font-family:'Instrument Serif',serif; font-size:22px; margin-bottom:8px;">We submit you for every scholarship you qualify for — free of charge.</div>
+                            <div style="font-family:'Instrument Serif',serif; font-size:22px; margin-bottom:8px;">We submit you for every scholarship you qualify for â€” free of charge.</div>
                             <div style="font-size:13px; color:rgba(255,255,255,0.6);">73% of ITEA candidates receive at least one funded offer. Our China desk manages the full CSC application process.</div>
                         </div>
-                        <a href="{{ route('scholarship') }}" style="white-space:nowrap; background:#fff; color:var(--ink); padding:12px 24px; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; text-decoration:none; flex-shrink:0;">View all scholarships →</a>
+                        <a href="{{ route('scholarship') }}" style="white-space:nowrap; background:#fff; color:var(--ink); padding:12px 24px; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; text-decoration:none; flex-shrink:0;">View all scholarships â†’</a>
                     </div>
                 </div>
             </div>
 
         </div>{{-- end x-data tabs --}}
+        <div style="height:48px;"></div>
     </div>{{-- end wrap --}}
 </section>
 
-{{-- ── Apply CTA ─────────────────────────────────────────────── --}}
+{{-- â”€â”€ Apply CTA â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ --}}
 <section id="apply" style="background:var(--accent); color:#fff; padding:56px 0;">
-    <div class="wrap" style="display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center;" class="zust-2col">
+    <div class="wrap zust-2col" style="display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center;">
         <div>
             <div class="eyebrow" style="color:rgba(255,255,255,0.6); margin-bottom:10px;">Ready to apply to ZUST?</div>
             <h2 style="font-family:'Instrument Serif',serif; font-size:clamp(26px,3vw,40px); font-weight:400; margin:0;">Let ITEA handle your<br><em>full application.</em></h2>
         </div>
         <div>
-            <p style="font-size:15px; line-height:1.65; color:rgba(255,255,255,0.85); margin:0 0 24px;">From document prep to scholarship submission — our China desk manages every step. Intake: September 2026 (deadline 30 June).</p>
+            <p style="font-size:15px; line-height:1.65; color:rgba(255,255,255,0.85); margin:0 0 24px;">From document prep to scholarship submission â€” our China desk manages every step. Intake: September 2026 (deadline 30 June).</p>
             <div style="display:flex; gap:14px; flex-wrap:wrap;">
-                <a href="{{ route('application') }}#apply" style="background:#fff; color:var(--accent); padding:12px 28px; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; text-decoration:none; font-weight:500;">Start my application →</a>
+                <a href="{{ route('application') }}#apply" style="background:#fff; color:var(--accent); padding:12px 28px; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; text-decoration:none; font-weight:500;">Start my application â†’</a>
                 <a href="{{ route('contact') }}" style="color:rgba(255,255,255,0.8); font-size:13px; text-decoration:underline; text-underline-offset:4px; align-self:center;">Or speak to a counsellor</a>
             </div>
         </div>
@@ -474,3 +475,4 @@
 </style>
 
 @endsection
+
