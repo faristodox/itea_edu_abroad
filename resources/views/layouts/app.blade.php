@@ -121,7 +121,7 @@
                             </div>
                             <div style="display:flex; justify-content:space-between; align-items:center; padding:10px 0; color:var(--muted);">
                                 <div>
-                                    <div style="font-size:14px;">UK · Australia</div>
+                                    <div style="font-size:14px;">Future Destinations</div>
                                     <div style="font-size:11px;">Coming · 2027</div>
                                 </div>
                                 <span style="font-size:10px; background:var(--bg-2); padding:2px 8px; border-radius:999px;">Soon</span>
