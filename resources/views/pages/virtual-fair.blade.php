@@ -50,28 +50,29 @@
                     },
                     pad(n) { return String(n).padStart(2,'0'); }
                 }"
+                class="fair-countdown-box"
                 style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); padding:32px; text-align:center;"
             >
-                <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:20px;">Starts in</div>
-                <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-bottom:24px;">
+                <div class="countdown-label" style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:20px;">Starts in</div>
+                <div class="fair-countdown-nums" style="display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-bottom:24px;">
                     <div>
-                        <div x-text="pad(days)" style="font-family:'Instrument Serif',serif; font-size:clamp(28px,3vw,44px); color:#fff; line-height:1;"></div>
+                        <div x-text="pad(days)" class="fair-countdown-num" style="font-family:'Instrument Serif',serif; font-size:clamp(28px,3vw,44px); color:#fff; line-height:1;"></div>
                         <div style="font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.1em; color:rgba(255,255,255,0.35); margin-top:4px; text-transform:uppercase;">Days</div>
                     </div>
                     <div>
-                        <div x-text="pad(hours)" style="font-family:'Instrument Serif',serif; font-size:clamp(28px,3vw,44px); color:#fff; line-height:1;"></div>
+                        <div x-text="pad(hours)" class="fair-countdown-num" style="font-family:'Instrument Serif',serif; font-size:clamp(28px,3vw,44px); color:#fff; line-height:1;"></div>
                         <div style="font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.1em; color:rgba(255,255,255,0.35); margin-top:4px; text-transform:uppercase;">Hours</div>
                     </div>
                     <div>
-                        <div x-text="pad(mins)" style="font-family:'Instrument Serif',serif; font-size:clamp(28px,3vw,44px); color:#fff; line-height:1;"></div>
+                        <div x-text="pad(mins)" class="fair-countdown-num" style="font-family:'Instrument Serif',serif; font-size:clamp(28px,3vw,44px); color:#fff; line-height:1;"></div>
                         <div style="font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.1em; color:rgba(255,255,255,0.35); margin-top:4px; text-transform:uppercase;">Mins</div>
                     </div>
                     <div>
-                        <div x-text="pad(secs)" style="font-family:'Instrument Serif',serif; font-size:clamp(28px,3vw,44px); color:var(--accent); line-height:1;"></div>
+                        <div x-text="pad(secs)" class="fair-countdown-num" style="font-family:'Instrument Serif',serif; font-size:clamp(28px,3vw,44px); color:var(--accent); line-height:1;"></div>
                         <div style="font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.1em; color:rgba(255,255,255,0.35); margin-top:4px; text-transform:uppercase;">Secs</div>
                     </div>
                 </div>
-                <div style="border-top:1px solid rgba(255,255,255,0.08); padding-top:16px; font-size:12px; color:rgba(255,255,255,0.4);">
+                <div class="fair-countdown-detail" style="border-top:1px solid rgba(255,255,255,0.08); padding-top:16px; font-size:12px; color:rgba(255,255,255,0.4);">
                     Sun 7 Jun 2026 · 10:00 AM – 5:00 PM (MYT)<br>
                     Platform: Zoom + Live Chat
                 </div>
@@ -101,8 +102,7 @@
 
 /* Tablet */
 @media (max-width:900px) {
-    .fair-hero-grid { grid-template-columns:1fr !important; }
-    .fair-hero-grid > div:last-child { display:none !important; }
+    .fair-hero-grid { grid-template-columns:1fr !important; gap:32px !important; }
     .fair-register-grid { grid-template-columns:1fr !important; }
     .fair-what-grid  { grid-template-columns:1fr 1fr !important; }
     .fair-unis-grid  { grid-template-columns:1fr 1fr !important; }
@@ -110,6 +110,23 @@
     .fair-stats-grid { grid-template-columns:1fr 1fr !important; }
     .fair-schedule-row { grid-template-columns:70px 1fr !important; }
     .fair-schedule-label { display:none !important; }
+    .fair-countdown-box {
+        background: none !important;
+        border: none !important;
+        padding: 0 !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 24px !important;
+        flex-wrap: wrap !important;
+    }
+    .fair-countdown-box .countdown-label { display:none !important; }
+    .fair-countdown-nums {
+        display: flex !important;
+        gap: 20px !important;
+        align-items: center;
+    }
+    .fair-countdown-num { font-size: 36px !important; }
+    .fair-countdown-detail { margin-top: 0 !important; border-top: none !important; padding-top: 0 !important; font-size: 12px; color:rgba(255,255,255,0.5); }
 }
 
 /* Mobile */
