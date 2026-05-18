@@ -126,7 +126,7 @@
         align-items: center;
     }
     .fair-countdown-num { font-size: 36px !important; }
-    .fair-countdown-detail { margin-top: 0 !important; border-top: none !important; padding-top: 0 !important; font-size: 12px; color:rgba(255,255,255,0.5); }
+    .fair-countdown-detail { margin-top: 0 !important; border-top: none !important; padding-top: 0 !important; font-size: 12px; color:rgba(255,255,255,0.5); text-align:left !important; width:100%; }
 }
 
 /* Mobile */
