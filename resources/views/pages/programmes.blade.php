@@ -118,7 +118,15 @@
         $levelNames = ['DIPLOMA'=>'Diploma','UG'=>'Undergraduate','PG'=>'Postgraduate','MANDARIN'=>'Mandarin','SHORT'=>'Short-term'];
         @endphp
 
-        <div x-data="{ level: 'ALL', country: 'ALL' }" id="prog-grid">
+        <div x-data="{
+            level: 'ALL',
+            country: 'ALL',
+            init() {
+                const params = new URLSearchParams(window.location.search);
+                const l = params.get('level');
+                if (l) this.level = l;
+            }
+        }" id="prog-grid">
             <div style="display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin-bottom:24px;">
                 <span class="eyebrow" style="margin-right:4px;">Level</span>
                 @foreach(['ALL'=>'All','DIPLOMA'=>'Diploma','UG'=>'Undergraduate','PG'=>'Postgraduate','MANDARIN'=>'Mandarin','SHORT'=>'Short-term'] as $val => $lbl)

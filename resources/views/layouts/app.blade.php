@@ -63,8 +63,31 @@
             <a href="{{ route('home') }}"
                class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}">Home</a>
 
-            <a href="{{ route('programmes') }}"
-               class="nav-link {{ request()->routeIs('programmes') ? 'active' : '' }}">Programmes</a>
+            <!-- Programmes dropdown -->
+            <div class="nav-item" style="position:relative;">
+                <button class="nav-link {{ request()->routeIs('programmes') ? 'active' : '' }}" style="background:none; border:none; cursor:pointer; display:flex; align-items:center; gap:4px;">
+                    Programmes
+                    <span class="nav-caret" style="font-size:10px;">▾</span>
+                </button>
+                <div class="mega-menu" style="width:220px; left:0; transform:translateY(6px);">
+                    <div style="padding:16px;">
+                        @php $progLevels = [
+                            ['label'=>'Diploma',        'val'=>'DIPLOMA'],
+                            ['label'=>'Undergraduate',  'val'=>'UG'],
+                            ['label'=>'Postgraduate',   'val'=>'PG'],
+                            ['label'=>'Mandarin',       'val'=>'MANDARIN'],
+                            ['label'=>'Short-term',     'val'=>'SHORT'],
+                        ]; @endphp
+                        @foreach($progLevels as $i => $pl)
+                        <a href="{{ route('programmes') }}?level={{ $pl['val'] }}"
+                           style="display:flex; justify-content:space-between; align-items:center; padding:10px 0; {{ $i < count($progLevels)-1 ? 'border-bottom:1px solid var(--rule-soft);' : '' }} text-decoration:none; color:var(--ink-2); font-size:14px;">
+                            {{ $pl['label'] }}
+                            <span style="color:var(--accent);">→</span>
+                        </a>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
 
             <!-- Destinations dropdown -->
             <div class="nav-item" style="position:relative;">
@@ -201,7 +224,20 @@
     <div x-show="mobileOpen" x-transition class="mobile-menu">
 
         <a href="{{ route('home') }}" class="mob-link {{ request()->routeIs('home') ? 'mob-active' : '' }}">Home</a>
-        <a href="{{ route('programmes') }}" class="mob-link {{ request()->routeIs('programmes') ? 'mob-active' : '' }}">Programmes</a>
+        {{-- Programmes collapsible --}}
+        <div x-data="{ open: {{ request()->routeIs('programmes') ? 'true' : 'false' }} }">
+            <button @click="open = !open" class="mob-link mob-toggle" style="width:100%; display:flex; justify-content:space-between; align-items:center; background:none; border:none; cursor:pointer; text-align:left;">
+                <span>Programmes</span>
+                <span style="font-size:16px; transition:transform 0.2s ease;" :style="open ? 'transform:rotate(180deg)' : ''">⌄</span>
+            </button>
+            <div x-show="open" x-collapse>
+                <a href="{{ route('programmes') }}?level=DIPLOMA"    class="mob-link mob-sub">Diploma</a>
+                <a href="{{ route('programmes') }}?level=UG"         class="mob-link mob-sub">Undergraduate</a>
+                <a href="{{ route('programmes') }}?level=PG"         class="mob-link mob-sub">Postgraduate</a>
+                <a href="{{ route('programmes') }}?level=MANDARIN"   class="mob-link mob-sub">Mandarin</a>
+                <a href="{{ route('programmes') }}?level=SHORT"      class="mob-link mob-sub">Short-term</a>
+            </div>
+        </div>
 
         {{-- Destinations collapsible --}}
         <div x-data="{ open: {{ request()->routeIs('china') || request()->routeIs('malaysia') ? 'true' : 'false' }} }">
