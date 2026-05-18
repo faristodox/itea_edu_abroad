@@ -33,7 +33,11 @@
             @auth
             <a href="{{ route('portal') }}" style="color:rgba(255,255,255,0.7); text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.1em;">My Portal</a>
             @else
-            <a href="{{ route('login') }}" style="color:rgba(255,255,255,0.7); text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.1em;">Student Login</a>
+                @if(app()->environment('local'))
+                <a href="{{ route('login') }}" style="color:rgba(255,255,255,0.7); text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.1em;">Student Login</a>
+                @else
+                <span style="color:rgba(255,255,255,0.7); font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.1em;">Student Login</span>
+                @endif
             @endauth
             <span class="lang-pill" style="color:rgba(255,255,255,0.75);">EN / 中文 / BM</span>
         </div>
