@@ -112,7 +112,7 @@
             ['level'=>'PG','country'=>'CHINA','title'=>'Ph.D. in Artificial Intelligence','uni'=>'Fudan University','city'=>'Shanghai','duration'=>'4 years','lang'=>'English','intake'=>'September','tuition'=>'Full scholarship','phA'=>'#bb2424','phB'=>'#420c0c'],
             ['level'=>'UG','country'=>'MALAYSIA','title'=>'Bachelor of Architecture','uni'=>'Universiti Putra Malaysia','city'=>'Selangor','duration'=>'4 years','lang'=>'English','intake'=>'September','tuition'=>'RM 18,200 / yr','phA'=>'#0c2670','phB'=>'#061240'],
             ['level'=>'SHORT','country'=>'CHINA','title'=>'4-week Summer Cultural Camp','uni'=>'Tsinghua + Beijing Tours','city'=>'Beijing','duration'=>'4 weeks','lang'=>'English / 中文','intake'=>'July / Aug','tuition'=>'USD 2,400','phA'=>'#e8a93b','phB'=>'#7a5a16'],
-            ['level'=>'MANDARIN','country'=>'CHINA','title'=>'Intensive 8-Week Mandarin Immersion','uni'=>'Shanghai Jiao Tong University','city'=>'Shanghai','duration'=>'8 weeks','lang'=>'中文','intake'=>'Rolling','tuition'=>'USD 1,800','phA'=>'#d18a2a','phB'=>'#5e3f10'],
+            ['level'=>'MANDARIN','country'=>'CHINA','title'=>'ITEA Learning Platform','uni'=>'Free online Mandarin','city'=>'Online · itealearning.com','duration'=>'Self-paced','lang'=>'中文 · English','intake'=>'Enrol anytime','tuition'=>'Free','phA'=>'#d18a2a','phB'=>'#5e3f10','url'=>'https://itealearning.com/'],
             ['level'=>'SHORT','country'=>'MALAYSIA','title'=>'2-week Customised University Sit-in','uni'=>'Sunway / Monash / Taylor\'s','city'=>'Selangor','duration'=>'2 weeks','lang'=>'English','intake'=>'Custom','tuition'=>'On request','phA'=>'#1d4e3f','phB'=>'#0a2520'],
         ];
         $levelNames = ['DIPLOMA'=>'Diploma','UG'=>'Undergraduate','PG'=>'Postgraduate','MANDARIN'=>'Mandarin','SHORT'=>'Short-term'];
@@ -162,7 +162,7 @@
                             <div><span style="display:block; font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:2px;">Intake</span>{{ $p['intake'] }}</div>
                             <div><span style="display:block; font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:2px;">Tuition</span>{{ $p['tuition'] }}</div>
                         </div>
-                        <a href="#" style="font-size:12px; color:var(--accent); font-weight:500; text-decoration:none;">View details →</a>
+                        <a href="{{ $p['url'] ?? '#' }}" {{ isset($p['url']) ? 'target="_blank" rel="noopener"' : '' }} style="font-size:12px; color:var(--accent); font-weight:500; text-decoration:none;">View details →</a>
                     </div>
                 </div>
                 @endforeach
