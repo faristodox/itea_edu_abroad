@@ -202,7 +202,7 @@
             </div>
 
             <a href="https://iteajobs.com/" target="_blank" rel="noopener"
-               class="nav-link">Career Pathway</a>
+               class="nav-link">Find Your Career</a>
 
             <a href="{{ route('contact') }}"
                class="nav-link {{ request()->routeIs('contact') ? 'active' : '' }}">Contact</a>
@@ -279,7 +279,7 @@
                 <a href="{{ route('virtual-fair') }}" class="mob-link mob-sub {{ request()->routeIs('virtual-fair') ? 'mob-active' : '' }}">Virtual Education Fair</a>
             </div>
         </div>
-        <a href="https://iteajobs.com/" target="_blank" rel="noopener" class="mob-link">Career Pathway ↗</a>
+        <a href="https://iteajobs.com/" target="_blank" rel="noopener" class="mob-link">Find Your Career ↗</a>
         <a href="{{ route('contact') }}" class="mob-link {{ request()->routeIs('contact') ? 'mob-active' : '' }}">Contact</a>
 
         <div style="padding:16px;">
