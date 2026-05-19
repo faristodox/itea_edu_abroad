@@ -75,7 +75,7 @@
                             ['label'=>'Diploma',        'val'=>'DIPLOMA'],
                             ['label'=>'Undergraduate',  'val'=>'UG'],
                             ['label'=>'Postgraduate',   'val'=>'PG'],
-                            ['label'=>'Mandarin',       'val'=>'MANDARIN'],
+                            ['label'=>'Mandarin Learning','val'=>'MANDARIN'],
                             ['label'=>'Short-term',     'val'=>'SHORT'],
                         ]; @endphp
                         @foreach($progLevels as $i => $pl)
@@ -234,7 +234,7 @@
                 <a href="{{ route('programmes') }}?level=DIPLOMA"    class="mob-link mob-sub">Diploma</a>
                 <a href="{{ route('programmes') }}?level=UG"         class="mob-link mob-sub">Undergraduate</a>
                 <a href="{{ route('programmes') }}?level=PG"         class="mob-link mob-sub">Postgraduate</a>
-                <a href="{{ route('programmes') }}?level=MANDARIN"   class="mob-link mob-sub">Mandarin</a>
+                <a href="{{ route('programmes') }}?level=MANDARIN"   class="mob-link mob-sub">Mandarin Learning</a>
                 <a href="{{ route('programmes') }}?level=SHORT"      class="mob-link mob-sub">Short-term</a>
             </div>
         </div>
