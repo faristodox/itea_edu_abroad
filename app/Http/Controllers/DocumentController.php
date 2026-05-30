@@ -26,8 +26,9 @@ class DocumentController extends Controller
             'file'          => 'required|file|max:5120|mimes:pdf,jpg,jpeg,png',
         ]);
 
-        $file = $request->file('file');
-        $path = $file->store("documents/user-" . Auth::id(), 'local');
+        $file     = $request->file('file');
+        $filename = time() . '_' . preg_replace('/[^a-zA-Z0-9._-]/', '_', $file->getClientOriginalName());
+        $path     = $file->storeAs('documents/user-' . Auth::id(), $filename, 'local');
 
         ApplicationDocument::create([
             'application_id' => $application->id,
