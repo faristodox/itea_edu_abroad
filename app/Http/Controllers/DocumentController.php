@@ -27,7 +27,7 @@ class DocumentController extends Controller
         ]);
 
         $file = $request->file('file');
-        $path = $file->store("documents/user-" . Auth::id(), 'private');
+        $path = $file->store("documents/user-" . Auth::id(), 'local');
 
         ApplicationDocument::create([
             'application_id' => $application->id,
@@ -45,7 +45,7 @@ class DocumentController extends Controller
     public function destroy(ApplicationDocument $document)
     {
         abort_unless($document->user_id === Auth::id(), 403);
-        Storage::disk('private')->delete($document->file_path);
+        Storage::disk('local')->delete($document->file_path);
         $document->delete();
         return back()->with('success', 'Document removed.');
     }
