@@ -97,8 +97,8 @@
         .adm-table-header { display:flex; justify-content:space-between; align-items:center; padding:16px 20px; border-bottom:1px solid var(--rule-soft); }
         .adm-table-header h2 { font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink); margin:0; }
         table { width:100%; border-collapse:collapse; }
-        thead tr { background:var(--bg); }
-        th { font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); padding:10px 16px; border-bottom:1px solid var(--rule-soft); text-align:left; white-space:nowrap; }
+        thead tr { background:var(--ink-deep); }
+        th { font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.6); padding:11px 16px; border-bottom:none; text-align:left; white-space:nowrap; }
         td { padding:13px 16px; border-bottom:1px solid var(--rule-soft); font-size:13px; color:var(--ink); vertical-align:middle; }
         tbody tr:last-child td { border-bottom:none; }
         tbody tr:hover td { background:#fafafa; }

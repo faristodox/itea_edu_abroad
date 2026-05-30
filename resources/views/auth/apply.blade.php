@@ -45,7 +45,7 @@
                 x-data="{
                     programs: {{ $programsJson }},
                     destination: '{{ $existingDest }}',
-                    selectedId: '',
+                    programName: '{{ addslashes($existingProgram ?? '') }}',
                     isOther: {{ $existingProgram && !$programs->pluck('name')->contains($existingProgram) ? 'true' : 'false' }},
                     otherName: '{{ addslashes($existingProgram ?? '') }}',
                     get filtered() {
@@ -55,14 +55,18 @@
                     selectProgram(e) {
                         if (e.target.value === '__other__') {
                             this.isOther = true;
-                            this.selectedId = '';
+                            this.programName = '';
+                        } else if (e.target.value === '') {
+                            this.isOther = false;
+                            this.programName = '';
                         } else {
                             this.isOther = false;
                             this.otherName = '';
                             const p = this.programs.find(x => String(x.id) === e.target.value);
                             if (p) {
+                                this.programName = p.name;
                                 this.destination = p.destination;
-                                document.querySelector('[name=level]').value = p.level;
+                                document.querySelector('[name=level]').value = p.level || '';
                                 document.querySelector('[name=university]').value = p.university || '';
                                 document.querySelector('[name=intake]').value = p.intake || '';
                             }
@@ -113,10 +117,10 @@
                                 <option value="__other__">Other — specify below</option>
                             </select>
                             {{-- Hidden field carries the actual value --}}
-                            <input type="hidden" name="program_name" :value="isOther ? otherName : (filtered.find(p => String(p.id) === selectedId)?.name ?? '')">
+                            <input type="hidden" name="program_name" :value="isOther ? otherName : programName">
                             {{-- "Other" text input --}}
                             <div x-show="isOther" style="margin-top:10px;">
-                                <input type="text" x-model="otherName" placeholder="Type your programme name"
+                                <input type="text" x-model="otherName" @input="programName = otherName" placeholder="Type your programme name"
                                     style="width:100%; padding:10px 12px; border:1px solid var(--rule-soft); background:var(--paper); color:var(--ink); font-size:14px; box-sizing:border-box;">
                             </div>
                             <p style="font-size:11px; color:var(--muted); margin:6px 0 0;">
