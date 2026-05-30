@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Application;
+use App\Models\ApplicationDocument;
 use App\Models\User;
 use App\Models\Program;
 
@@ -51,5 +52,16 @@ class AdminController extends Controller
         ]);
 
         return back()->with('success', 'Application status updated.');
+    }
+
+    public function downloadDocument(ApplicationDocument $document)
+    {
+        $fullPath = storage_path('app/' . $document->file_path);
+
+        if (!file_exists($fullPath)) {
+            abort(404, 'File not found.');
+        }
+
+        return response()->download($fullPath, $document->original_name);
     }
 }

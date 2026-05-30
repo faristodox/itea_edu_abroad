@@ -59,6 +59,8 @@ Route::middleware(['auth','admin'])->prefix('admin')->name('admin.')->group(func
     Route::get('/applications/{application}',        [AdminController::class, 'showApplication'])->name('application.show');
     Route::patch('/applications/{application}/status',[AdminController::class, 'updateStatus'])->name('application.status');
 
+    Route::get('/documents/{document}/download', [AdminController::class, 'downloadDocument'])->name('document.download');
+
     Route::get('/programs',                 [ProgramController::class, 'index'])->name('programs');
     Route::get('/programs/create',          [ProgramController::class, 'create'])->name('programs.create');
     Route::post('/programs',                [ProgramController::class, 'store'])->name('programs.store');

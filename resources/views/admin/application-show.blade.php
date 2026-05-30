@@ -89,9 +89,15 @@
                             <div style="font-size:11px; color:var(--muted);">{{ $doc->original_name }}</div>
                         </div>
                     </div>
-                    <div style="text-align:right; font-size:11px; color:var(--muted);">
-                        <div>{{ round($doc->file_size/1024) }} KB</div>
-                        <div>{{ $doc->created_at->format('d M Y') }}</div>
+                    <div style="display:flex; align-items:center; gap:16px;">
+                        <div style="text-align:right; font-size:11px; color:var(--muted);">
+                            <div>{{ round($doc->file_size/1024) }} KB</div>
+                            <div>{{ $doc->created_at->format('d M Y') }}</div>
+                        </div>
+                        <a href="{{ route('admin.document.download', $doc->id) }}"
+                           style="font-size:11px; font-family:'JetBrains Mono',monospace; letter-spacing:0.06em; text-transform:uppercase; color:var(--accent); text-decoration:none; white-space:nowrap; border:1px solid var(--accent); padding:4px 10px;">
+                            ↓ Download
+                        </a>
                     </div>
                 </div>
                 @endforeach
