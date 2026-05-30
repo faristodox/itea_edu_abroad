@@ -27,13 +27,14 @@ class DocumentController extends Controller
         ]);
 
         $file      = $request->file('file');
-        $extension = $file->getClientOriginalExtension() ?: $file->guessExtension() ?: 'pdf';
+        $extension = $file->getClientOriginalExtension() ?: 'pdf';
         $filename  = time() . '_' . uniqid() . '.' . strtolower($extension);
-        $path      = Storage::disk('local')->putFileAs(
-            'documents/user-' . Auth::id(),
-            $file,
-            $filename
-        );
+        $dir       = storage_path('app/documents/user-' . Auth::id());
+        if (!is_dir($dir)) {
+            mkdir($dir, 0755, true);
+        }
+        $file->move($dir, $filename);
+        $path = 'documents/user-' . Auth::id() . '/' . $filename;
 
         ApplicationDocument::create([
             'application_id' => $application->id,
@@ -51,7 +52,10 @@ class DocumentController extends Controller
     public function destroy(ApplicationDocument $document)
     {
         abort_unless($document->user_id === Auth::id(), 403);
-        Storage::disk('local')->delete($document->file_path);
+        $fullPath = storage_path('app/' . $document->file_path);
+        if (file_exists($fullPath)) {
+            unlink($fullPath);
+        }
         $document->delete();
         return back()->with('success', 'Document removed.');
     }
