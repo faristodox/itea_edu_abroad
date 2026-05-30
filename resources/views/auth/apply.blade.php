@@ -22,8 +22,9 @@
         </div>
         @endif
 
-        <form action="{{ route('portal.apply.store') }}" method="POST">
+        <form action="{{ $existing ? route('portal.apply.update', $existing->id) : route('portal.apply.store') }}" method="POST">
             @csrf
+            @if($existing) @method('PUT') @endif
 
             {{-- Section 1: Select Programme --}}
             {{-- Pass programs data to Alpine --}}

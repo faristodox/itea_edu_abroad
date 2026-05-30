@@ -44,6 +44,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/portal/apply', [ApplicationController::class, 'create'])->name('portal.apply');
     Route::post('/portal/apply', [ApplicationController::class, 'store'])->name('portal.apply.store');
     Route::get('/portal/application/{application}', [ApplicationController::class, 'show'])->name('portal.application');
+    Route::get('/portal/application/{application}/edit', [ApplicationController::class, 'edit'])->name('portal.apply.edit');
+    Route::put('/portal/application/{application}', [ApplicationController::class, 'update'])->name('portal.apply.update');
     Route::post('/portal/application/{application}/submit', [ApplicationController::class, 'submit'])->name('portal.application.submit');
 
     // Documents

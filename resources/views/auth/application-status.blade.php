@@ -123,7 +123,7 @@
                             Submit Application →
                         </button>
                     </form>
-                    <a href="{{ route('portal.apply') }}" style="display:block; text-align:center; margin-top:10px; font-size:12px; color:var(--muted); text-decoration:none;">Edit application ↗</a>
+                    <a href="{{ route('portal.apply.edit', $application->id) }}" style="display:block; text-align:center; margin-top:10px; font-size:12px; color:var(--muted); text-decoration:none;">Edit application ↗</a>
                 </div>
                 @else
                 <div class="card" style="padding:24px; text-align:center;">

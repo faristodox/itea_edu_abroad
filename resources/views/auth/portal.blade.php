@@ -28,61 +28,82 @@
         <div style="background:#f0fdf4; border:1px solid #86efac; padding:12px 16px; margin-bottom:24px; font-size:13px; color:#166534;">{{ session('success') }}</div>
         @endif
 
-        {{-- Status cards --}}
-        @php $app = Auth::user()->latestApplication; @endphp
+        {{-- Summary stats --}}
+        @php
+        $profileComplete = Auth::user()->phone && Auth::user()->nationality && Auth::user()->education_level;
+        $totalDocs = $applications->sum(fn($a) => $a->documents->count());
+        @endphp
         <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:2px; margin-bottom:32px;">
             <div class="card" style="padding:24px;">
-                <div class="eyebrow" style="color:var(--muted); margin-bottom:8px;">Application Status</div>
-                @if($app)
-                <div style="font-family:'Instrument Serif',serif; font-size:22px; color:{{ $app->statusColor() }}; margin-bottom:6px;">{{ $app->statusLabel() }}</div>
-                <div style="font-size:12px; color:var(--muted); margin-bottom:8px;">{{ $app->program_name }}</div>
-                <a href="{{ route('portal.application', $app->id) }}" style="font-size:13px; color:var(--accent); text-decoration:none;">View application →</a>
-                @else
-                <div style="font-family:'Instrument Serif',serif; font-size:22px; color:var(--ink); margin-bottom:6px;">Not started</div>
-                <a href="{{ route('portal.apply') }}" style="font-size:13px; color:var(--accent); text-decoration:none;">Start application →</a>
-                @endif
+                <div class="eyebrow" style="color:var(--muted); margin-bottom:8px;">Applications</div>
+                <div style="font-family:'Instrument Serif',serif; font-size:36px; color:var(--ink); margin-bottom:6px;">{{ $applications->count() }}</div>
+                <a href="{{ route('portal.apply') }}" style="font-size:13px; color:var(--accent); text-decoration:none;">+ Start new application</a>
             </div>
             <div class="card" style="padding:24px;">
-                <div class="eyebrow" style="color:var(--muted); margin-bottom:8px;">Documents</div>
-                @if($app)
-                <div style="font-family:'Instrument Serif',serif; font-size:28px; color:var(--ink); margin-bottom:6px;">{{ $app->documents->count() }} uploaded</div>
-                <a href="{{ route('portal.documents', $app->id) }}" style="font-size:13px; color:var(--accent); text-decoration:none;">Manage documents →</a>
-                @else
-                <div style="font-family:'Instrument Serif',serif; font-size:28px; color:var(--ink); margin-bottom:6px;">0 uploaded</div>
-                <span style="font-size:13px; color:var(--muted);">Start application first</span>
-                @endif
+                <div class="eyebrow" style="color:var(--muted); margin-bottom:8px;">Documents uploaded</div>
+                <div style="font-family:'Instrument Serif',serif; font-size:36px; color:var(--ink); margin-bottom:6px;">{{ $totalDocs }}</div>
+                <span style="font-size:13px; color:var(--muted);">Across all applications</span>
             </div>
             <div class="card" style="padding:24px;">
                 <div class="eyebrow" style="color:var(--muted); margin-bottom:8px;">Profile</div>
-                @php $profileComplete = Auth::user()->phone && Auth::user()->nationality && Auth::user()->education_level; @endphp
                 <div style="font-family:'Instrument Serif',serif; font-size:22px; color:var(--ink); margin-bottom:6px;">{{ $profileComplete ? 'Complete' : 'Incomplete' }}</div>
                 <a href="{{ route('portal.profile') }}" style="font-size:13px; color:var(--accent); text-decoration:none;">{{ $profileComplete ? 'Update profile →' : 'Complete profile →' }}</a>
             </div>
         </div>
 
-        {{-- Application checklist --}}
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:2px; margin-bottom:32px;">
-            <div class="card" style="padding:24px;">
-                <div class="eyebrow" style="margin-bottom:16px;">Application checklist</div>
-                @php
-                $checks = [
-                    ['done' => (bool)Auth::user()->phone,                              'label' => 'Complete your profile',       'href' => route('portal.profile')],
-                    ['done' => (bool)$app,                                             'label' => 'Fill in application form',    'href' => route('portal.apply')],
-                    ['done' => $app && $app->documents->count() > 0,                  'label' => 'Upload passport',             'href' => $app ? route('portal.documents', $app->id) : route('portal.apply')],
-                    ['done' => $app && $app->documents->whereIn('document_type',['transcript'])->count() > 0, 'label' => 'Upload academic transcript', 'href' => $app ? route('portal.documents', $app->id) : route('portal.apply')],
-                    ['done' => $app && in_array($app->status,['submitted','reviewing','result']), 'label' => 'Submit application', 'href' => $app ? route('portal.application', $app->id) : route('portal.apply')],
-                ];
-                @endphp
-                <div style="display:flex; flex-direction:column; gap:12px;">
-                    @foreach($checks as $c)
-                    <a href="{{ $c['href'] }}" style="display:flex; align-items:center; gap:12px; font-size:14px; color:{{ $c['done'] ? 'var(--muted)' : 'var(--ink)' }}; text-decoration:none;">
-                        <span style="width:20px; height:20px; border-radius:50%; border:1.5px solid {{ $c['done'] ? 'var(--accent)' : 'var(--rule-soft)' }}; background:{{ $c['done'] ? 'var(--accent)' : 'transparent' }}; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:10px; color:#fff; flex-shrink:0;">{{ $c['done'] ? '✓' : '' }}</span>
-                        <span style="{{ $c['done'] ? 'text-decoration:line-through; opacity:0.5;' : '' }}">{{ $c['label'] }}</span>
-                    </a>
-                    @endforeach
+        {{-- Applications list --}}
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+            <div class="eyebrow">My Applications</div>
+            <a href="{{ route('portal.apply') }}" class="btn-primary" style="padding:8px 20px; font-size:11px;">+ New Application</a>
+        </div>
+
+        @if($applications->isEmpty())
+        <div class="card" style="padding:40px; text-align:center;">
+            <div style="font-size:36px; margin-bottom:12px;">📋</div>
+            <h3 style="font-family:'Instrument Serif',serif; font-size:22px; font-weight:400; margin:0 0 8px;">No applications yet</h3>
+            <p style="font-size:14px; color:var(--muted); margin:0 0 20px;">Start your first application to study abroad with ITEA.</p>
+            <a href="{{ route('portal.apply') }}" class="btn-primary">Start application →</a>
+        </div>
+        @else
+        <div style="display:flex; flex-direction:column; gap:2px; margin-bottom:32px;">
+            @foreach($applications as $app)
+            @php $badge = match($app->status) { 'draft'=>['#f3f4f6','#6b7280'],'submitted'=>['#dbeafe','#1d4ed8'],'reviewing'=>['#fef3c7','#92400e'],'result'=>($app->result==='accepted'?['#d1fae5','#065f46']:['#fee2e2','#991b1b']),default=>['#f3f4f6','#6b7280']}; @endphp
+            <div class="card" style="padding:20px; display:grid; grid-template-columns:1fr auto; gap:16px; align-items:center;">
+                <div style="display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:12px; align-items:center;">
+                    <div>
+                        <div style="font-size:11px; color:var(--muted); font-family:'JetBrains Mono',monospace; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:3px;">#{{ str_pad($app->id,5,'0',STR_PAD_LEFT) }}</div>
+                        <div style="font-size:15px; font-weight:500; color:var(--ink);">{{ Str::limit($app->program_name, 30) }}</div>
+                        <div style="font-size:12px; color:var(--muted);">{{ $app->destination }} · {{ $app->level }}</div>
+                    </div>
+                    <div>
+                        <div style="font-size:11px; color:var(--muted); margin-bottom:3px;">University</div>
+                        <div style="font-size:13px; color:var(--ink);">{{ $app->university ?: '—' }}</div>
+                    </div>
+                    <div>
+                        <div style="font-size:11px; color:var(--muted); margin-bottom:3px;">Documents</div>
+                        <div style="font-size:13px; color:var(--ink);">{{ $app->documents->count() }} uploaded</div>
+                    </div>
+                    <div>
+                        <span style="display:inline-flex; align-items:center; gap:5px; padding:4px 10px; border-radius:999px; background:{{ $badge[0] }}; color:{{ $badge[1] }}; font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.08em; text-transform:uppercase;">
+                            <span style="width:5px;height:5px;border-radius:50%;background:currentColor;flex-shrink:0;"></span>
+                            {{ $app->statusLabel() }}{{ $app->result ? ' · '.ucfirst($app->result) : '' }}
+                        </span>
+                        <div style="font-size:11px; color:var(--muted); margin-top:4px;">{{ $app->created_at->format('d M Y') }}</div>
+                    </div>
+                </div>
+                <div style="display:flex; flex-direction:column; gap:6px; align-items:flex-end;">
+                    <a href="{{ route('portal.application', $app->id) }}" style="font-size:12px; color:var(--accent); text-decoration:none; font-family:'JetBrains Mono',monospace; letter-spacing:0.06em; white-space:nowrap;">View →</a>
+                    @if($app->status === 'draft')
+                    <a href="{{ route('portal.apply.edit', $app->id) }}" style="font-size:12px; color:var(--muted); text-decoration:none; font-family:'JetBrains Mono',monospace; letter-spacing:0.06em; white-space:nowrap;">Edit</a>
+                    @endif
                 </div>
             </div>
+            @endforeach
+        </div>
+        @endif
 
+        {{-- Account details + Quick actions --}}
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:2px; margin-bottom:32px;">
             <div class="card" style="padding:24px;">
                 <div class="eyebrow" style="margin-bottom:14px;">Account details</div>
                 <div style="display:flex; flex-direction:column; gap:8px;">
@@ -94,25 +115,25 @@
                     @endforeach
                 </div>
             </div>
+            <div class="card" style="padding:24px;">
+                <div class="eyebrow" style="margin-bottom:16px;">Quick actions</div>
+                <div style="display:flex; flex-direction:column; gap:10px;">
+                    @php $actions = [
+                        ['label'=>'Start new application','href'=>route('portal.apply'),'icon'=>'📝'],
+                        ['label'=>'Browse programmes','href'=>route('programmes'),'icon'=>'📚'],
+                        ['label'=>'Check scholarships','href'=>route('scholarship'),'icon'=>'🎓'],
+                        ['label'=>'Register for Virtual Fair','href'=>route('virtual-fair').'#register','icon'=>'🎪'],
+                    ]; @endphp
+                    @foreach($actions as $a)
+                    <a href="{{ $a['href'] }}" style="display:flex; align-items:center; gap:12px; font-size:13px; color:var(--ink-2); text-decoration:none; padding:8px 0; border-bottom:1px solid var(--rule-soft);">
+                        <span style="font-size:18px;">{{ $a['icon'] }}</span>
+                        {{ $a['label'] }}
+                    </a>
+                    @endforeach
+                </div>
+            </div>
         </div>
 
-        {{-- Quick actions --}}
-        <div class="eyebrow" style="margin-bottom:16px;">Quick actions</div>
-        <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:12px;">
-            @php $actions = [
-                ['label'=>'Start / Edit Application','href'=>route('portal.apply'),'icon'=>'📝'],
-                ['label'=>'Browse Programmes','href'=>route('programmes'),'icon'=>'📚'],
-                ['label'=>'Check Scholarships','href'=>route('scholarship'),'icon'=>'🎓'],
-                ['label'=>'Register for Fair','href'=>route('virtual-fair').'#register','icon'=>'🎪'],
-            ]; @endphp
-            @foreach($actions as $a)
-            <a href="{{ $a['href'] }}" style="display:flex; flex-direction:column; align-items:center; gap:10px; padding:20px; border:1px solid var(--rule-soft); background:var(--paper); text-decoration:none; color:var(--ink); text-align:center;"
-                onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--rule-soft)'">
-                <span style="font-size:28px;">{{ $a['icon'] }}</span>
-                <span style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color:var(--muted);">{{ $a['label'] }}</span>
-            </a>
-            @endforeach
-        </div>
     </div>
 </section>
 @endsection

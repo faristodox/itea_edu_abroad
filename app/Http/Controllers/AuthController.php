@@ -72,6 +72,7 @@ class AuthController extends Controller
 
     public function portal()
     {
-        return view('auth.portal');
+        $applications = Auth::user()->applications()->latest()->get();
+        return view('auth.portal', compact('applications'));
     }
 }
