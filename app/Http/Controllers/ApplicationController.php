@@ -6,14 +6,16 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Models\Application;
+use App\Models\Program;
 use App\Mail\ApplicationSubmitted;
 
 class ApplicationController extends Controller
 {
     public function create()
     {
-        $existing = Auth::user()->latestApplication;
-        return view('auth.apply', compact('existing'));
+        $existing  = Auth::user()->latestApplication;
+        $programs  = Program::where('status','active')->orderBy('destination')->orderBy('name')->get();
+        return view('auth.apply', compact('existing','programs'));
     }
 
     public function store(Request $request)

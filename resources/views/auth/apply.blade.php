@@ -26,35 +26,110 @@
             @csrf
 
             {{-- Section 1: Select Programme --}}
-            <div class="card" style="padding:28px; margin-bottom:2px;">
+            {{-- Pass programs data to Alpine --}}
+            @php
+            $programsJson = $programs->map(fn($p) => [
+                'id'          => $p->id,
+                'name'        => $p->name,
+                'destination' => $p->destination,
+                'level'       => $p->level,
+                'university'  => $p->university,
+                'intake'      => $p->intake,
+            ])->values()->toJson();
+            $existingProgram = old('program_name', $existing?->program_name);
+            $existingDest    = old('destination',  $existing?->destination);
+            $existingLevel   = old('level',        $existing?->level);
+            @endphp
+
+            <div class="card" style="padding:28px; margin-bottom:2px;"
+                x-data="{
+                    programs: {{ $programsJson }},
+                    destination: '{{ $existingDest }}',
+                    selectedId: '',
+                    isOther: {{ $existingProgram && !$programs->pluck('name')->contains($existingProgram) ? 'true' : 'false' }},
+                    otherName: '{{ addslashes($existingProgram ?? '') }}',
+                    get filtered() {
+                        if (!this.destination) return this.programs;
+                        return this.programs.filter(p => p.destination === this.destination);
+                    },
+                    selectProgram(e) {
+                        if (e.target.value === '__other__') {
+                            this.isOther = true;
+                            this.selectedId = '';
+                        } else {
+                            this.isOther = false;
+                            this.otherName = '';
+                            const p = this.programs.find(x => String(x.id) === e.target.value);
+                            if (p) {
+                                this.destination = p.destination;
+                                document.querySelector('[name=level]').value = p.level;
+                                document.querySelector('[name=university]').value = p.university || '';
+                                document.querySelector('[name=intake]').value = p.intake || '';
+                            }
+                        }
+                    }
+                }">
                 <div class="eyebrow" style="margin-bottom:4px; color:var(--accent);">Step 01</div>
                 <h2 style="font-family:'Instrument Serif',serif; font-size:22px; font-weight:400; margin:0 0 20px;">Select Programme</h2>
                 <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
-                    <div style="grid-column:span 2;">
-                        <label style="display:block; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:6px;">Programme Name *</label>
-                        <input type="text" name="program_name" value="{{ old('program_name', $existing?->program_name) }}" required placeholder="e.g. Bachelor of Computer Science" style="width:100%; padding:10px 12px; border:1px solid var(--rule-soft); background:var(--paper); color:var(--ink); font-size:14px; box-sizing:border-box;">
-                    </div>
+
+                    {{-- Destination filter --}}
                     <div>
                         <label style="display:block; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:6px;">Destination *</label>
-                        <select name="destination" required style="width:100%; padding:10px 12px; border:1px solid var(--rule-soft); background:var(--paper); color:var(--ink); font-size:14px; box-sizing:border-box;">
+                        <select name="destination" required x-model="destination" style="width:100%; padding:10px 12px; border:1px solid var(--rule-soft); background:var(--paper); color:var(--ink); font-size:14px; box-sizing:border-box;">
                             <option value="">Select destination</option>
                             @foreach(['China','Malaysia','Indonesia'] as $dest)
-                            <option value="{{ $dest }}" {{ old('destination', $existing?->destination) === $dest ? 'selected' : '' }}>{{ $dest }}</option>
+                            <option value="{{ $dest }}">{{ $dest }}</option>
                             @endforeach
                         </select>
                     </div>
+
+                    {{-- Level filter --}}
                     <div>
                         <label style="display:block; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:6px;">Level *</label>
                         <select name="level" required style="width:100%; padding:10px 12px; border:1px solid var(--rule-soft); background:var(--paper); color:var(--ink); font-size:14px; box-sizing:border-box;">
                             <option value="">Select level</option>
                             @foreach(['Diploma','Undergraduate','Postgraduate','Mandarin Learning','Short-term'] as $level)
-                            <option value="{{ $level }}" {{ old('level', $existing?->level) === $level ? 'selected' : '' }}>{{ $level }}</option>
+                            <option value="{{ $level }}" {{ $existingLevel === $level ? 'selected' : '' }}>{{ $level }}</option>
                             @endforeach
                         </select>
                     </div>
+
+                    {{-- Programme dropdown --}}
+                    <div style="grid-column:span 2;">
+                        <label style="display:block; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:6px;">Programme Name *</label>
+                        @if($programs->isEmpty())
+                            {{-- No programmes in DB yet, fall back to free text --}}
+                            <input type="text" name="program_name" value="{{ $existingProgram }}" required
+                                placeholder="e.g. Bachelor of Computer Science"
+                                style="width:100%; padding:10px 12px; border:1px solid var(--rule-soft); background:var(--paper); color:var(--ink); font-size:14px; box-sizing:border-box;">
+                            <p style="font-size:11px; color:var(--muted); margin:6px 0 0;">No programmes have been added by admin yet. Please type your programme name.</p>
+                        @else
+                            <select @change="selectProgram($event)" style="width:100%; padding:10px 12px; border:1px solid var(--rule-soft); background:var(--paper); color:var(--ink); font-size:14px; box-sizing:border-box;">
+                                <option value="">— Select a programme —</option>
+                                <template x-for="p in filtered" :key="p.id">
+                                    <option :value="p.id" x-text="p.name + (p.university ? ' · ' + p.university : '')"></option>
+                                </template>
+                                <option value="__other__">Other — specify below</option>
+                            </select>
+                            {{-- Hidden field carries the actual value --}}
+                            <input type="hidden" name="program_name" :value="isOther ? otherName : (filtered.find(p => String(p.id) === selectedId)?.name ?? '')">
+                            {{-- "Other" text input --}}
+                            <div x-show="isOther" style="margin-top:10px;">
+                                <input type="text" x-model="otherName" placeholder="Type your programme name"
+                                    style="width:100%; padding:10px 12px; border:1px solid var(--rule-soft); background:var(--paper); color:var(--ink); font-size:14px; box-sizing:border-box;">
+                            </div>
+                            <p style="font-size:11px; color:var(--muted); margin:6px 0 0;">
+                                Showing <span x-text="filtered.length"></span> programme(s)
+                                <span x-show="destination"> for <span x-text="destination"></span></span>.
+                                Select destination to filter.
+                            </p>
+                        @endif
+                    </div>
+
                     <div>
-                        <label style="display:block; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:6px;">University (optional)</label>
-                        <input type="text" name="university" value="{{ old('university', $existing?->university) }}" placeholder="e.g. ZUST, Taylor's University" style="width:100%; padding:10px 12px; border:1px solid var(--rule-soft); background:var(--paper); color:var(--ink); font-size:14px; box-sizing:border-box;">
+                        <label style="display:block; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:6px;">University (auto-filled)</label>
+                        <input type="text" name="university" value="{{ old('university', $existing?->university) }}" placeholder="Auto-filled on selection" style="width:100%; padding:10px 12px; border:1px solid var(--rule-soft); background:var(--paper); color:var(--ink); font-size:14px; box-sizing:border-box;">
                     </div>
                     <div>
                         <label style="display:block; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:6px;">Preferred Intake</label>
