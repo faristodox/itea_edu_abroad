@@ -26,9 +26,14 @@ class DocumentController extends Controller
             'file'          => 'required|file|max:5120|mimes:pdf,jpg,jpeg,png',
         ]);
 
-        $file     = $request->file('file');
-        $filename = time() . '_' . preg_replace('/[^a-zA-Z0-9._-]/', '_', $file->getClientOriginalName());
-        $path     = $file->storeAs('documents/user-' . Auth::id(), $filename, 'local');
+        $file      = $request->file('file');
+        $extension = $file->getClientOriginalExtension() ?: $file->guessExtension() ?: 'pdf';
+        $filename  = time() . '_' . uniqid() . '.' . strtolower($extension);
+        $path      = Storage::disk('local')->putFileAs(
+            'documents/user-' . Auth::id(),
+            $file,
+            $filename
+        );
 
         ApplicationDocument::create([
             'application_id' => $application->id,
