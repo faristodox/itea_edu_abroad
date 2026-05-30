@@ -29,6 +29,9 @@ class DocumentController extends Controller
         $file      = $request->file('file');
         $extension = $file->getClientOriginalExtension() ?: 'pdf';
         $filename  = time() . '_' . uniqid() . '.' . strtolower($extension);
+        $mimeType  = $file->getMimeType();
+        $fileSize  = $file->getSize();
+        $origName  = $file->getClientOriginalName();
         $dir       = storage_path('app/documents/user-' . Auth::id());
         if (!is_dir($dir)) {
             mkdir($dir, 0755, true);
@@ -40,10 +43,10 @@ class DocumentController extends Controller
             'application_id' => $application->id,
             'user_id'        => Auth::id(),
             'document_type'  => $request->document_type,
-            'original_name'  => $file->getClientOriginalName(),
+            'original_name'  => $origName,
             'file_path'      => $path,
-            'mime_type'      => $file->getMimeType(),
-            'file_size'      => $file->getSize(),
+            'mime_type'      => $mimeType,
+            'file_size'      => $fileSize,
         ]);
 
         return back()->with('success', 'Document uploaded successfully.');
