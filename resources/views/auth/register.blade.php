@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('title', 'Create Account — ITEA EduAbroad')
+@section('nav_logo', 'assets/logo.png')
 
 @section('content')
 <section style="min-height:calc(100vh - 120px); background:var(--bg); display:flex; align-items:center; padding:60px 0;">

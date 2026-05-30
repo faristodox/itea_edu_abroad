@@ -17,10 +17,20 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+        'name','email','password','is_admin',
+        'phone','nationality','date_of_birth','address',
+        'education_level','institution','graduation_year','gpa',
     ];
+
+    public function applications()
+    {
+        return $this->hasMany(Application::class);
+    }
+
+    public function latestApplication()
+    {
+        return $this->hasOne(Application::class)->latestOfMany();
+    }
 
     /**
      * The attributes that should be hidden for serialization.
@@ -41,7 +51,8 @@ class User extends Authenticatable
     {
         return [
             'email_verified_at' => 'datetime',
-            'password' => 'hashed',
+            'password'          => 'hashed',
+            'date_of_birth'     => 'date',
         ];
     }
 }

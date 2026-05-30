@@ -11,7 +11,11 @@ class AuthController extends Controller
 {
     public function showLogin()
     {
-        if (Auth::check()) return redirect()->route('portal');
+        if (Auth::check()) {
+            return Auth::user()->is_admin
+                ? redirect()->route('admin.dashboard')
+                : redirect()->route('portal');
+        }
         return view('auth.login');
     }
 
@@ -24,7 +28,9 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials, $request->boolean('remember'))) {
             $request->session()->regenerate();
-            return redirect()->intended(route('portal'));
+            return Auth::user()->is_admin
+                ? redirect()->route('admin.dashboard')
+                : redirect()->intended(route('portal'));
         }
 
         return back()->withErrors(['email' => 'Invalid email or password.'])->onlyInput('email');
