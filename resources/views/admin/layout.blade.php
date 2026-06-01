@@ -171,6 +171,11 @@
             <span class="nav-icon">+</span> Add Programme
         </a>
 
+        <div class="adm-nav-section">Configuration</div>
+        <a href="{{ route('admin.settings') }}" class="{{ request()->routeIs('admin.settings') ? 'active' : '' }}">
+            <span class="nav-icon">⚙</span> Settings
+        </a>
+
         <div class="adm-nav-section">Website</div>
         <a href="{{ route('home') }}" target="_blank">
             <span class="nav-icon">↗</span> View Website

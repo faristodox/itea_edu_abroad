@@ -8,6 +8,7 @@ use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ProgramController;
+use App\Http\Controllers\PaymentController;
 
 Route::view('/', 'pages.home')->name('home');
 Route::view('/programmes', 'pages.programmes')->name('programmes');
@@ -52,7 +53,23 @@ Route::middleware('auth')->group(function () {
     Route::get('/portal/application/{application}/documents', [DocumentController::class, 'index'])->name('portal.documents');
     Route::post('/portal/application/{application}/documents', [DocumentController::class, 'store'])->name('portal.documents.store');
     Route::delete('/portal/documents/{document}', [DocumentController::class, 'destroy'])->name('portal.documents.destroy');
+
+    // Offer letter download (student)
+    Route::get('/portal/application/{application}/offer-letter', function(\App\Models\Application $application) {
+        abort_unless($application->user_id === auth()->id(), 403);
+        abort_unless($application->offer_letter_path, 404);
+        $path = storage_path('app/' . $application->offer_letter_path);
+        abort_unless(file_exists($path), 404);
+        return response()->download($path, 'offer-letter.pdf');
+    })->name('portal.offer-letter');
+
+    // Payment
+    Route::get('/portal/application/{application}/checkout', [PaymentController::class, 'checkout'])->name('payment.checkout');
+    Route::get('/payment/success', [PaymentController::class, 'success'])->name('payment.success');
 });
+
+// Stripe webhook (no auth — Stripe POSTs here)
+Route::post('/stripe/webhook', [PaymentController::class, 'webhook'])->name('stripe.webhook');
 
 // Admin routes
 Route::middleware(['auth','admin'])->prefix('admin')->name('admin.')->group(function () {
@@ -61,7 +78,16 @@ Route::middleware(['auth','admin'])->prefix('admin')->name('admin.')->group(func
     Route::get('/applications/{application}',        [AdminController::class, 'showApplication'])->name('application.show');
     Route::patch('/applications/{application}/status',[AdminController::class, 'updateStatus'])->name('application.status');
 
-    Route::get('/documents/{document}/download', [AdminController::class, 'downloadDocument'])->name('document.download');
+    Route::get('/documents/{document}/download',           [AdminController::class, 'downloadDocument'])->name('document.download');
+    Route::post('/applications/{application}/offer-letter', [AdminController::class, 'uploadOfferLetter'])->name('admin.offer-letter.upload');
+    Route::get('/offer-letter/{application}/download', function(\App\Models\Application $application) {
+        abort_unless($application->offer_letter_path, 404);
+        $path = storage_path('app/' . $application->offer_letter_path);
+        abort_unless(file_exists($path), 404);
+        return response()->download($path, 'offer-letter-' . $application->id . '.pdf');
+    })->name('admin.offer-letter.download');
+    Route::get('/settings',                                 [\App\Http\Controllers\Admin\SettingController::class, 'index'])->name('admin.settings');
+    Route::post('/settings',                                [\App\Http\Controllers\Admin\SettingController::class, 'update'])->name('admin.settings.update');
 
     Route::get('/programs',                 [ProgramController::class, 'index'])->name('programs');
     Route::get('/programs/create',          [ProgramController::class, 'create'])->name('programs.create');

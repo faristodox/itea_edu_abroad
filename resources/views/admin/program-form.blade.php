@@ -77,6 +77,13 @@
             </div>
 
             <div class="adm-form-group">
+                <label>Programme-specific application fee (USD) — leave blank to use default</label>
+                <input type="number" name="application_fee" step="0.01" min="0"
+                    value="{{ old('application_fee', $program?->application_fee) }}"
+                    placeholder="e.g. 200 — overrides default fee if set">
+            </div>
+
+            <div class="adm-form-group">
                 <label>Status *</label>
                 <select name="status" required>
                     <option value="active"   {{ old('status', $program?->status ?? 'active') === 'active'   ? 'selected' : '' }}>Active</option>

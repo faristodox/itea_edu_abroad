@@ -125,6 +125,42 @@
                     </form>
                     <a href="{{ route('portal.apply.edit', $application->id) }}" style="display:block; text-align:center; margin-top:10px; font-size:12px; color:var(--muted); text-decoration:none;">Edit application ↗</a>
                 </div>
+                @elseif($application->requiresPayment())
+                {{-- Payment required --}}
+                <div class="card" style="padding:24px; border:2px solid var(--accent);">
+                    <div style="text-align:center; margin-bottom:16px;">
+                        <div style="font-size:32px; margin-bottom:8px;">🎉</div>
+                        <div style="font-family:'Instrument Serif',serif; font-size:20px; color:var(--ink); margin-bottom:4px;">Congratulations!</div>
+                        <div style="font-size:13px; color:var(--muted);">Your application has been accepted.</div>
+                    </div>
+                    <div style="background:var(--bg); padding:14px; margin-bottom:16px; text-align:center;">
+                        <div style="font-size:12px; color:var(--muted); margin-bottom:4px;">Application fee</div>
+                        <div style="font-family:'Instrument Serif',serif; font-size:32px; color:var(--ink);">
+                            USD {{ number_format($application->payment_amount ?? 150, 2) }}
+                        </div>
+                    </div>
+                    <a href="{{ route('payment.checkout', $application->id) }}" class="btn-primary" style="display:block; text-align:center; padding:13px; width:100%; box-sizing:border-box;">
+                        Pay Now →
+                    </a>
+                    <p style="font-size:11px; color:var(--muted); text-align:center; margin:10px 0 0;">Secure payment via Stripe. Card / FPX accepted.</p>
+                </div>
+
+                @elseif($application->isPaid())
+                {{-- Paid — show offer letter --}}
+                <div class="card" style="padding:24px; text-align:center;">
+                    <div style="font-size:28px; margin-bottom:8px;">✅</div>
+                    <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:#16a34a; margin-bottom:4px;">Payment Confirmed</div>
+                    <div style="font-size:12px; color:var(--muted); margin-bottom:16px;">{{ $application->paid_at?->format('d M Y') }}</div>
+                    @if($application->offer_letter_path)
+                    <a href="{{ route('portal.offer-letter', $application->id) }}"
+                       style="display:block; background:var(--ink-deep); color:#fff; padding:11px; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; text-decoration:none; margin-bottom:8px;">
+                        ↓ Download Offer Letter
+                    </a>
+                    @else
+                    <div style="font-size:13px; color:var(--muted);">Offer letter will be uploaded shortly by your counsellor.</div>
+                    @endif
+                </div>
+
                 @else
                 <div class="card" style="padding:24px; text-align:center;">
                     <div style="font-size:24px; margin-bottom:8px;">{{ $application->status === 'result' && $application->result === 'accepted' ? '🎉' : '📋' }}</div>

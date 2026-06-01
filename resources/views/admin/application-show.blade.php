@@ -147,6 +147,57 @@
             </form>
         </div>
 
+        {{-- Payment --}}
+        <div class="adm-card">
+            <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:16px;">Payment</div>
+            <form action="{{ route('admin.application.status', $application->id) }}" method="POST" style="display:flex; flex-direction:column; gap:12px;">
+                @csrf @method('PATCH')
+                <input type="hidden" name="status"  value="{{ $application->status }}">
+                <input type="hidden" name="result"  value="{{ $application->result }}">
+                <div class="adm-form-group" style="margin:0;">
+                    <label>Application fee (USD)</label>
+                    <input type="number" name="payment_amount" step="0.01" min="0"
+                        value="{{ $application->payment_amount ?? $defaultFee }}"
+                        placeholder="{{ $defaultFee }}">
+                    <div style="font-size:11px; color:var(--muted); margin-top:4px;">Default: USD {{ $defaultFee }}</div>
+                </div>
+                <div class="adm-form-group" style="margin:0;">
+                    <label>Payment status</label>
+                    <select name="payment_status">
+                        <option value="unpaid" {{ $application->payment_status === 'unpaid' ? 'selected' : '' }}>Unpaid</option>
+                        <option value="paid"   {{ $application->payment_status === 'paid'   ? 'selected' : '' }}>Paid</option>
+                        <option value="waived" {{ $application->payment_status === 'waived' ? 'selected' : '' }}>Waived</option>
+                    </select>
+                </div>
+                @if($application->paid_at)
+                <div style="font-size:12px; color:#16a34a;">✓ Paid on {{ $application->paid_at->format('d M Y, g:i A') }}</div>
+                @if($application->stripe_payment_id)
+                <div style="font-size:11px; color:var(--muted);">Stripe ID: {{ $application->stripe_payment_id }}</div>
+                @endif
+                @endif
+                <button type="submit" style="border:1px solid var(--rule-soft); background:var(--paper); padding:8px; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.08em; text-transform:uppercase; cursor:pointer;">Update payment →</button>
+            </form>
+        </div>
+
+        {{-- Offer letter --}}
+        <div class="adm-card">
+            <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:16px;">Offer Letter</div>
+            @if($application->offer_letter_path)
+            <div style="background:#f0fdf4; border:1px solid #86efac; padding:10px 14px; margin-bottom:12px; font-size:13px; color:#166534; display:flex; justify-content:space-between; align-items:center;">
+                <span>✓ Uploaded</span>
+                <a href="{{ route('admin.offer-letter.download', $application->id) }}" style="font-size:11px; color:#16a34a; text-decoration:none;">Download</a>
+            </div>
+            @endif
+            <form action="{{ route('admin.offer-letter.upload', $application->id) }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="adm-form-group" style="margin:0 0 10px;">
+                    <label>Upload offer letter (PDF)</label>
+                    <input type="file" name="offer_letter" accept=".pdf">
+                </div>
+                <button type="submit" style="border:1px solid var(--rule-soft); background:var(--paper); padding:8px; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.08em; text-transform:uppercase; cursor:pointer; width:100%;">Upload →</button>
+            </form>
+        </div>
+
         {{-- Account info --}}
         <div class="adm-card">
             <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:12px;">Account</div>

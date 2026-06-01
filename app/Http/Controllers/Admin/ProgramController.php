@@ -55,8 +55,9 @@ class ProgramController extends Controller
             'language'    => 'nullable|string|max:60',
             'intake'      => 'nullable|string|max:100',
             'tuition'     => 'nullable|string|max:100',
-            'description' => 'nullable|string|max:1000',
-            'status'      => 'required|in:active,inactive',
+            'description'     => 'nullable|string|max:1000',
+            'status'          => 'required|in:active,inactive',
+            'application_fee' => 'nullable|numeric|min:0',
         ]);
     }
 }
