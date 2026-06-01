@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Application;
 use App\Models\Setting;
-use App\Models\Setting;
 use Stripe\Stripe;
 use Stripe\Checkout\Session as StripeSession;
 use Stripe\Webhook;
@@ -69,8 +68,7 @@ class PaymentController extends Controller
             // Session retrieval failed — webhook will handle it
         }
 
-        return redirect()->route('portal.application', $request->app)
-            ->with('success', 'Payment successful! Your offer letter is now available.');
+        return redirect()->route('payment.thankyou', $request->app);
     }
 
     public function webhook(Request $request)

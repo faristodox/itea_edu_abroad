@@ -66,6 +66,16 @@ Route::middleware('auth')->group(function () {
     // Payment
     Route::get('/portal/application/{application}/checkout', [PaymentController::class, 'checkout'])->name('payment.checkout');
     Route::get('/payment/success', [PaymentController::class, 'success'])->name('payment.success');
+    Route::get('/payment/thankyou/{application}', function(\App\Models\Application $application) {
+        abort_unless($application->user_id === auth()->id(), 403);
+        return view('auth.payment-success', compact('application'));
+    })->name('payment.thankyou');
+    Route::get('/portal/application/{application}/receipt', function(\App\Models\Application $application) {
+        abort_unless($application->user_id === auth()->id(), 403);
+        abort_unless($application->isPaid(), 403);
+        $application->load('user');
+        return view('auth.receipt', compact('application'));
+    })->name('portal.receipt');
 });
 
 // Stripe webhook (no auth — Stripe POSTs here)
