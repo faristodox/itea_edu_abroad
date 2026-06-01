@@ -41,7 +41,7 @@
                 <span style="color:rgba(255,255,255,0.7); font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.1em;">Sign In</span>
                 @endif
             @endauth
-            {{-- <span class="lang-pill" style="color:rgba(255,255,255,0.75);">EN / 中文 / BM</span> --}}
+            <!-- <span class="lang-pill" style="color:rgba(255,255,255,0.75);">EN / 中文 / BM</span> -->
         </div>
     </div>
 </div>
