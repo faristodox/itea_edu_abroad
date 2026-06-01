@@ -86,8 +86,8 @@ Route::middleware(['auth','admin'])->prefix('admin')->name('admin.')->group(func
         abort_unless(file_exists($path), 404);
         return response()->download($path, 'offer-letter-' . $application->id . '.pdf');
     })->name('admin.offer-letter.download');
-    Route::get('/settings',                                 [\App\Http\Controllers\Admin\SettingController::class, 'index'])->name('admin.settings');
-    Route::post('/settings',                                [\App\Http\Controllers\Admin\SettingController::class, 'update'])->name('admin.settings.update');
+    Route::get('/settings',  [\App\Http\Controllers\Admin\SettingController::class, 'index'])->name('settings');
+    Route::post('/settings', [\App\Http\Controllers\Admin\SettingController::class, 'update'])->name('settings.update');
 
     Route::get('/programs',                 [ProgramController::class, 'index'])->name('programs');
     Route::get('/programs/create',          [ProgramController::class, 'create'])->name('programs.create');

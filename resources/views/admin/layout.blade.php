@@ -172,7 +172,7 @@
         </a>
 
         <div class="adm-nav-section">Configuration</div>
-        <a href="{{ route('admin.settings') }}" class="{{ request()->routeIs('admin.settings') ? 'active' : '' }}">
+        <a href="{{ route('admin.settings') }}" class="{{ request()->routeIs('admin.settings*') ? 'active' : '' }}">
             <span class="nav-icon">⚙</span> Settings
         </a>
 
