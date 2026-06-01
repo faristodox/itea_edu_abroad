@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Application;
 use App\Models\Setting;
+use App\Models\Setting;
 use Stripe\Stripe;
 use Stripe\Checkout\Session as StripeSession;
 use Stripe\Webhook;
@@ -17,7 +18,7 @@ class PaymentController extends Controller
         abort_unless($application->user_id === Auth::id(), 403);
         abort_unless($application->requiresPayment(), 403);
 
-        Stripe::setApiKey(config('services.stripe.secret'));
+        Stripe::setApiKey(Setting::get('stripe_secret', config('services.stripe.secret')));
 
         $amount = $application->payment_amount
             ?? Setting::get('default_application_fee', 150);
@@ -51,7 +52,7 @@ class PaymentController extends Controller
 
     public function success(Request $request)
     {
-        Stripe::setApiKey(config('services.stripe.secret'));
+        Stripe::setApiKey(Setting::get('stripe_secret', config('services.stripe.secret')));
 
         try {
             $session     = StripeSession::retrieve($request->session_id);

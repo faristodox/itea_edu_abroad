@@ -8,45 +8,67 @@
 <div class="adm-alert-success">{{ session('success') }}</div>
 @endif
 
-<div style="max-width:560px;">
-    <div class="adm-card" style="margin-bottom:16px;">
-        <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:16px;">Payment Settings</div>
-        <form action="{{ route('admin.settings.update') }}" method="POST" style="display:flex; flex-direction:column; gap:16px;">
-            @csrf
+@if($errors->any())
+<div class="adm-alert-error">
+    <ul style="margin:0; padding-left:16px;">@foreach($errors->all() as $e)<li>{{ $e }}</li>@endforeach</ul>
+</div>
+@endif
+
+<div style="max-width:600px;">
+    <form action="{{ route('admin.settings.update') }}" method="POST" style="display:flex; flex-direction:column; gap:16px;">
+        @csrf
+
+        {{-- Payment settings --}}
+        <div class="adm-card">
+            <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:16px;">Payment Settings</div>
             <div class="adm-form-group" style="margin:0;">
                 <label>Default Application Fee (USD)</label>
                 <input type="number" name="default_application_fee" step="0.01" min="0"
-                    value="{{ $settings['default_application_fee'] }}" required>
+                    value="{{ old('default_application_fee', $settings['default_application_fee']) }}" required>
                 <div style="font-size:12px; color:var(--muted); margin-top:6px;">
-                    This fee applies to all applications unless a programme-specific fee is set.
+                    Applies to all applications unless a programme-specific fee is set.
                 </div>
             </div>
-            <button type="submit" class="btn-primary" style="padding:10px 28px;">Save settings →</button>
-        </form>
-    </div>
+        </div>
 
-    <div class="adm-card">
-        <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:12px;">Stripe Configuration</div>
-        <div style="display:flex; flex-direction:column; gap:10px;">
-            <div style="display:flex; justify-content:space-between; padding:10px 14px; background:var(--bg); font-size:13px;">
-                <span style="color:var(--muted);">Mode</span>
-                <span style="color:{{ str_contains(config('services.stripe.key',''), 'test') ? '#d97706' : '#16a34a' }}; font-weight:500;">
-                    {{ str_contains(config('services.stripe.key',''), 'test') ? '⚠ Test mode' : '✓ Live mode' }}
-                </span>
+        {{-- Stripe configuration --}}
+        <div class="adm-card">
+            <div style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:16px;">Stripe Configuration</div>
+
+            <div class="adm-form-group">
+                <label>Mode</label>
+                <select name="stripe_mode">
+                    <option value="test" {{ old('stripe_mode', $settings['stripe_mode']) === 'test' ? 'selected' : '' }}>
+                        Test Mode (sandbox)
+                    </option>
+                    <option value="live" {{ old('stripe_mode', $settings['stripe_mode']) === 'live' ? 'selected' : '' }}>
+                        Live Mode (production)
+                    </option>
+                </select>
+                <div style="font-size:12px; color:{{ $settings['stripe_mode'] === 'live' ? '#16a34a' : '#d97706' }}; margin-top:6px;">
+                    Currently: <strong>{{ $settings['stripe_mode'] === 'live' ? '✓ Live mode — real payments active' : '⚠ Test mode — no real charges' }}</strong>
+                </div>
             </div>
-            <div style="display:flex; justify-content:space-between; padding:10px 14px; background:var(--bg); font-size:13px;">
-                <span style="color:var(--muted);">Currency</span>
-                <span style="font-weight:500; text-transform:uppercase;">{{ config('services.stripe.currency','usd') }}</span>
+
+            <div class="adm-form-group">
+                <label>Publishable Key</label>
+                <input type="text" name="stripe_key"
+                    value="{{ old('stripe_key', $settings['stripe_key']) }}"
+                    placeholder="pk_test_... or pk_live_..." required>
+                <div style="font-size:11px; color:var(--muted); margin-top:4px;">Starts with <code>pk_test_</code> (test) or <code>pk_live_</code> (live)</div>
             </div>
-            <div style="display:flex; justify-content:space-between; padding:10px 14px; background:var(--bg); font-size:13px;">
-                <span style="color:var(--muted);">Publishable key</span>
-                <span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--muted);">{{ substr(config('services.stripe.key','—'),0,20) }}...</span>
+
+            <div class="adm-form-group" style="margin:0;">
+                <label>Secret Key</label>
+                <input type="password" name="stripe_secret"
+                    value="{{ old('stripe_secret', $settings['stripe_secret']) }}"
+                    placeholder="sk_test_... or sk_live_..." required>
+                <div style="font-size:11px; color:var(--muted); margin-top:4px;">Starts with <code>sk_test_</code> (test) or <code>sk_live_</code> (live). Keep this secret.</div>
             </div>
         </div>
-        <div style="margin-top:12px; font-size:12px; color:var(--muted);">
-            To change Stripe keys, update <code>STRIPE_KEY</code> and <code>STRIPE_SECRET</code> in your <code>.env</code> file.
-        </div>
-    </div>
+
+        <button type="submit" class="btn-primary" style="padding:12px 32px; align-self:flex-start;">Save all settings →</button>
+    </form>
 </div>
 
 @endsection
