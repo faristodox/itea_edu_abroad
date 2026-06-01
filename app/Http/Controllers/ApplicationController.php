@@ -58,6 +58,16 @@ class ApplicationController extends Controller
         abort_unless($application->user_id === Auth::id(), 403);
         abort_unless($application->status === 'draft', 403);
 
+        $required  = ['passport', 'transcript', 'photo', 'certificate'];
+        $uploaded  = $application->documents->pluck('document_type')->toArray();
+        $missing   = array_filter($required, fn($r) => !in_array($r, $uploaded));
+
+        if (!empty($missing)) {
+            $labels = ['passport'=>'Passport','transcript'=>'Academic Transcript','photo'=>'Passport Photo','certificate'=>'Qualification Certificate'];
+            $list   = implode(', ', array_map(fn($m) => $labels[$m], $missing));
+            return back()->withErrors(['documents' => "Please upload the following required documents before submitting: {$list}."]);
+        }
+
         $application->update([
             'status'       => 'submitted',
             'submitted_at' => now(),

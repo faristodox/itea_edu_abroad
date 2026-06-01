@@ -113,13 +113,44 @@
 
                 {{-- Submit action --}}
                 @if($application->status === 'draft')
+                @php
+                    $requiredDocs  = ['passport'=>'Passport','transcript'=>'Academic Transcript','photo'=>'Passport Photo','certificate'=>'Qualification Certificate'];
+                    $uploadedTypes = $application->documents->pluck('document_type')->toArray();
+                    $missingDocs   = array_filter($requiredDocs, fn($v, $k) => !in_array($k, $uploadedTypes), ARRAY_FILTER_USE_BOTH);
+                    $canSubmit     = empty($missingDocs);
+                @endphp
                 <div class="card" style="padding:24px;">
                     <div class="eyebrow" style="margin-bottom:10px;">Ready to submit?</div>
-                    <p style="font-size:13px; line-height:1.6; color:var(--muted); margin:0 0 16px;">Make sure you've uploaded your passport and transcript before submitting.</p>
+
+                    @if($errors->has('documents'))
+                    <div style="background:#fff0f0; border:1px solid #fca5a5; padding:10px 14px; margin-bottom:14px; font-size:13px; color:#b91c1c; line-height:1.5;">
+                        {{ $errors->first('documents') }}
+                    </div>
+                    @endif
+
+                    @if(!$canSubmit)
+                    <div style="margin-bottom:14px;">
+                        <div style="font-size:12px; color:var(--muted); margin-bottom:8px;">Upload these required documents first:</div>
+                        <div style="display:flex; flex-direction:column; gap:6px;">
+                            @foreach($requiredDocs as $type => $label)
+                            @php $done = in_array($type, $uploadedTypes); @endphp
+                            <div style="display:flex; align-items:center; gap:8px; font-size:13px; color:{{ $done ? 'var(--muted)' : 'var(--ink)' }};">
+                                <span style="width:16px; height:16px; border-radius:50%; border:1.5px solid {{ $done ? '#16a34a' : '#dc2626' }}; background:{{ $done ? '#16a34a' : 'transparent' }}; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:9px; color:#fff;">{{ $done ? '✓' : '' }}</span>
+                                <span style="{{ $done ? 'text-decoration:line-through; opacity:0.5;' : '' }}">{{ $label }}</span>
+                            </div>
+                            @endforeach
+                        </div>
+                        <a href="{{ route('portal.documents', $application->id) }}" style="display:block; margin-top:12px; font-size:12px; color:var(--accent); text-decoration:none;">Upload documents →</a>
+                    </div>
+                    @endif
+
                     <form action="{{ route('portal.application.submit', $application->id) }}" method="POST">
                         @csrf
-                        <button type="submit" class="btn-primary" style="width:100%; justify-content:center; padding:11px;"
-                            onclick="return confirm('Submit your application? You cannot edit it after submission.')">
+                        <button type="submit"
+                            {{ !$canSubmit ? 'disabled' : '' }}
+                            style="width:100%; justify-content:center; padding:11px; {{ $canSubmit ? '' : 'opacity:0.4; cursor:not-allowed;' }}"
+                            class="btn-primary"
+                            {{ $canSubmit ? 'onclick="return confirm(\'Submit your application? You cannot edit it after submission.\')"' : '' }}>
                             Submit Application →
                         </button>
                     </form>
