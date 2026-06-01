@@ -8,6 +8,7 @@ use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ProgramController;
+use App\Http\Controllers\Admin\DocumentTypeController;
 use App\Http\Controllers\PaymentController;
 
 Route::view('/', 'pages.home')->name('home');
@@ -96,6 +97,11 @@ Route::middleware(['auth','admin'])->prefix('admin')->name('admin.')->group(func
         abort_unless(file_exists($path), 404);
         return response()->download($path, 'offer-letter-' . $application->id . '.pdf');
     })->name('admin.offer-letter.download');
+    Route::get('/document-types',                  [DocumentTypeController::class, 'index'])->name('document-types');
+    Route::post('/document-types',                 [DocumentTypeController::class, 'store'])->name('document-types.store');
+    Route::put('/document-types/{documentType}',   [DocumentTypeController::class, 'update'])->name('document-types.update');
+    Route::delete('/document-types/{documentType}',[DocumentTypeController::class, 'destroy'])->name('document-types.destroy');
+
     Route::get('/settings',  [\App\Http\Controllers\Admin\SettingController::class, 'index'])->name('settings');
     Route::post('/settings', [\App\Http\Controllers\Admin\SettingController::class, 'update'])->name('settings.update');
 

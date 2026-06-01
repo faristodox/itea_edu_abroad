@@ -7,14 +7,16 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Application;
 use App\Models\ApplicationDocument;
+use App\Models\DocumentType;
 
 class DocumentController extends Controller
 {
     public function index(Application $application)
     {
         abort_unless($application->user_id === Auth::id(), 403);
-        $documents = $application->documents;
-        return view('auth.documents', compact('application', 'documents'));
+        $documents     = $application->documents;
+        $documentTypes = DocumentType::active()->get();
+        return view('auth.documents', compact('application', 'documents', 'documentTypes'));
     }
 
     public function store(Request $request, Application $application)

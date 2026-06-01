@@ -37,13 +37,11 @@
                             <label style="display:block; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:6px;">Document Type *</label>
                             <select name="document_type" required style="width:100%; padding:10px 12px; border:1px solid var(--rule-soft); background:var(--paper); color:var(--ink); font-size:14px; box-sizing:border-box;">
                                 <option value="">Select type</option>
-                                <option value="passport">Passport</option>
-                                <option value="transcript">Academic Transcript</option>
-                                <option value="photo">Passport Photo</option>
-                                <option value="certificate">Qualification Certificate</option>
-                                <option value="language_cert">Language Certificate (IELTS/HSK/TOEFL)</option>
-                                <option value="medical">Medical Examination Report</option>
-                                <option value="other">Other Document</option>
+                                @foreach($documentTypes as $type)
+                                <option value="{{ $type->name }}">
+                                    {{ $type->label }}{{ $type->required ? ' *' : '' }}
+                                </option>
+                                @endforeach
                             </select>
                         </div>
                         <div>
@@ -82,22 +80,16 @@
         {{-- Sidebar: required docs checklist --}}
         <div class="card" style="padding:24px;">
             <div class="eyebrow" style="margin-bottom:14px;">Required documents</div>
-            @php $required = [
-                ['type'=>'passport',      'label'=>'Passport (valid 18+ months)','required'=>true],
-                ['type'=>'transcript',    'label'=>'Academic transcripts','required'=>true],
-                ['type'=>'photo',         'label'=>'Passport photo (2)','required'=>true],
-                ['type'=>'certificate',   'label'=>'Qualification certificate','required'=>true],
-                ['type'=>'language_cert', 'label'=>'Language certificate (IELTS/HSK)','required'=>false],
-                ['type'=>'medical',       'label'=>'Medical examination report','required'=>false],
-            ];
-            $uploadedTypes = $documents->pluck('document_type')->toArray();
-            @endphp
+            @php $uploadedTypes = $documents->pluck('document_type')->toArray(); @endphp
             <div style="display:flex; flex-direction:column; gap:8px;">
-                @foreach($required as $r)
-                @php $done = in_array($r['type'], $uploadedTypes); @endphp
+                @foreach($documentTypes as $type)
+                @php $done = in_array($type->name, $uploadedTypes); @endphp
                 <div style="display:flex; align-items:center; gap:10px; font-size:13px;">
                     <span style="width:18px; height:18px; border-radius:50%; border:1.5px solid {{ $done ? 'var(--accent)' : 'var(--rule-soft)' }}; background:{{ $done ? 'var(--accent)' : 'transparent' }}; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:10px; color:#fff;">{{ $done ? '✓' : '' }}</span>
-                    <span style="color:{{ $done ? 'var(--ink)' : 'var(--muted)' }};">{{ $r['label'] }} {{ !$r['required'] ? '(optional)' : '' }}</span>
+                    <span style="color:{{ $done ? 'var(--ink)' : 'var(--muted)' }};">
+                        {{ $type->label }}
+                        @if(!$type->required)<span style="font-size:11px; color:var(--muted);"> (optional)</span>@endif
+                    </span>
                 </div>
                 @endforeach
             </div>

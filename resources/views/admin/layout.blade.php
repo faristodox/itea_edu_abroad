@@ -172,6 +172,9 @@
         </a>
 
         <div class="adm-nav-section">Configuration</div>
+        <a href="{{ route('admin.document-types') }}" class="{{ request()->routeIs('admin.document-types*') ? 'active' : '' }}">
+            <span class="nav-icon">📎</span> Document Types
+        </a>
         <a href="{{ route('admin.settings') }}" class="{{ request()->routeIs('admin.settings*') ? 'active' : '' }}">
             <span class="nav-icon">⚙</span> Settings
         </a>

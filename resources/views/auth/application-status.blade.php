@@ -114,10 +114,10 @@
                 {{-- Submit action --}}
                 @if($application->status === 'draft')
                 @php
-                    $requiredDocs  = ['passport'=>'Passport','transcript'=>'Academic Transcript','photo'=>'Passport Photo','certificate'=>'Qualification Certificate'];
+                    $requiredDocs  = \App\Models\DocumentType::required()->get();
                     $uploadedTypes = $application->documents->pluck('document_type')->toArray();
-                    $missingDocs   = array_filter($requiredDocs, fn($v, $k) => !in_array($k, $uploadedTypes), ARRAY_FILTER_USE_BOTH);
-                    $canSubmit     = empty($missingDocs);
+                    $missingDocs   = $requiredDocs->filter(fn($t) => !in_array($t->name, $uploadedTypes));
+                    $canSubmit     = $missingDocs->isEmpty();
                 @endphp
                 <div class="card" style="padding:24px;">
                     <div class="eyebrow" style="margin-bottom:10px;">Ready to submit?</div>
@@ -132,11 +132,11 @@
                     <div style="margin-bottom:14px;">
                         <div style="font-size:12px; color:var(--muted); margin-bottom:8px;">Upload these required documents first:</div>
                         <div style="display:flex; flex-direction:column; gap:6px;">
-                            @foreach($requiredDocs as $type => $label)
-                            @php $done = in_array($type, $uploadedTypes); @endphp
+                            @foreach($requiredDocs as $docType)
+                            @php $done = in_array($docType->name, $uploadedTypes); @endphp
                             <div style="display:flex; align-items:center; gap:8px; font-size:13px; color:{{ $done ? 'var(--muted)' : 'var(--ink)' }};">
                                 <span style="width:16px; height:16px; border-radius:50%; border:1.5px solid {{ $done ? '#16a34a' : '#dc2626' }}; background:{{ $done ? '#16a34a' : 'transparent' }}; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:9px; color:#fff;">{{ $done ? '✓' : '' }}</span>
-                                <span style="{{ $done ? 'text-decoration:line-through; opacity:0.5;' : '' }}">{{ $label }}</span>
+                                <span style="{{ $done ? 'text-decoration:line-through; opacity:0.5;' : '' }}">{{ $docType->label }}</span>
                             </div>
                             @endforeach
                         </div>
