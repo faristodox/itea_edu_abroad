@@ -90,13 +90,13 @@ Route::middleware(['auth','admin'])->prefix('admin')->name('admin.')->group(func
     Route::patch('/applications/{application}/status',[AdminController::class, 'updateStatus'])->name('application.status');
 
     Route::get('/documents/{document}/download',           [AdminController::class, 'downloadDocument'])->name('document.download');
-    Route::post('/applications/{application}/offer-letter', [AdminController::class, 'uploadOfferLetter'])->name('admin.offer-letter.upload');
+    Route::post('/applications/{application}/offer-letter', [AdminController::class, 'uploadOfferLetter'])->name('offer-letter.upload');
     Route::get('/offer-letter/{application}/download', function(\App\Models\Application $application) {
         abort_unless($application->offer_letter_path, 404);
         $path = storage_path('app/' . $application->offer_letter_path);
         abort_unless(file_exists($path), 404);
         return response()->download($path, 'offer-letter-' . $application->id . '.pdf');
-    })->name('admin.offer-letter.download');
+    })->name('offer-letter.download');
     Route::get('/document-types',                  [DocumentTypeController::class, 'index'])->name('document-types');
     Route::post('/document-types',                 [DocumentTypeController::class, 'store'])->name('document-types.store');
     Route::put('/document-types/{documentType}',   [DocumentTypeController::class, 'update'])->name('document-types.update');
