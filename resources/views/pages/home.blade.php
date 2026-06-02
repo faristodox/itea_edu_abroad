@@ -25,7 +25,7 @@
                 ITEA EduAbroad places students from across Southeast Asia into top universities in China, Malaysia and Indonesia — with scholarship matching, visa support and a counsellor at every step.
             </p>
             <div style="display:flex; gap:14px; align-items:center; flex-wrap:wrap; margin-bottom:48px;">
-                <a href="{{ route('application') }}#apply" class="btn-primary">Start your application →</a>
+                <a href="{{ $applyUrl }}" class="btn-primary">Start your application →</a>
                 <a href="{{ route('contact') }}" style="color:rgba(255,255,255,0.7); text-decoration:underline; text-underline-offset:4px; font-size:14px;">Or book a 30-min consultation</a>
             </div>
 

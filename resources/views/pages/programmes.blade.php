@@ -236,7 +236,7 @@
             <h3 style="font-family:'Instrument Serif',serif; font-size:28px; font-weight:400; margin:0 0 14px; color:#fff;">One form, every university.</h3>
             <p style="font-size:15px; line-height:1.6; color:rgba(255,255,255,0.7); margin:0 0 22px;">Submit a single ITEA application and we forward it to all your chosen universities — diploma to PhD. Track everything from your dashboard.</p>
             <div style="display:flex; gap:14px; align-items:center;">
-                <a href="{{ route('application') }}#apply" class="btn-primary">Start application →</a>
+                <a href="{{ $applyUrl }}" class="btn-primary">Start application →</a>
                 <a href="{{ route('application') }}" style="color:rgba(255,255,255,0.6); font-size:14px; text-decoration:underline; text-underline-offset:4px;">How it works →</a>
             </div>
         </div>

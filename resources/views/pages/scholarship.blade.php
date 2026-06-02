@@ -12,7 +12,7 @@
     zhTitle="奖学金"
     body="One conversation, every scholarship you qualify for. ITEA has placed 1,400+ Southeast Asian students into RM 65M of funded study since 2009 — across federal, university and industry awards."
     cta1Text="Find scholarships for me"
-    :cta1Href="route('application').'#apply'"
+    :cta1Href="$applyUrl"
     cta2Text="Download scholarship guide (PDF) ↓"
     cta2Href="#"
     factTitle="Scholarships at a glance"
@@ -192,7 +192,7 @@
         <div>
             <p style="font-size:16px; line-height:1.65; color:rgba(255,255,255,0.75); margin:0 0 24px;">One form gets you screened against 42 active scholarships. A funding-desk advisor calls you within 48 hours with a personalised shortlist — and walks you through every application, free of charge.</p>
             <div style="display:flex; gap:14px; align-items:center; flex-wrap:wrap;">
-                <a href="{{ route('application') }}#apply" class="btn-primary">Start scholarship match →</a>
+                <a href="{{ $applyUrl }}" class="btn-primary">Start scholarship match →</a>
                 <a href="#" style="color:rgba(255,255,255,0.6); font-size:14px; text-decoration:underline; text-underline-offset:4px;">Or download the scholarship guide ↓</a>
             </div>
         </div>

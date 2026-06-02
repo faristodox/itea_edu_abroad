@@ -283,7 +283,7 @@
         <div>
             <p style="font-size:15px; line-height:1.65; color:rgba(255,255,255,0.85); margin:0 0 24px;">From document prep to scholarship submission — our China desk manages every step.</p>
             <div style="display:flex; gap:14px; flex-wrap:wrap;">
-                <a href="{{ route('application') }}#apply" style="background:#fff; color:var(--accent); padding:12px 28px; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; text-decoration:none; font-weight:500;">Start my application →</a>
+                <a href="{{ $applyUrl }}" style="background:#fff; color:var(--accent); padding:12px 28px; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; text-decoration:none; font-weight:500;">Start my application →</a>
                 <a href="{{ route('contact') }}" style="color:rgba(255,255,255,0.8); font-size:13px; text-decoration:underline; text-underline-offset:4px; align-self:center;">Or speak to a counsellor</a>
             </div>
         </div>

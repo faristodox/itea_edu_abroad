@@ -1,3 +1,6 @@
+@php
+    $applyUrl = auth()->check() ? route('portal.apply') : route('login');
+@endphp
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -210,7 +213,7 @@
 
         <!-- CTA + Hamburger -->
         <div style="display:flex; align-items:center; gap:10px; flex-shrink:0;">
-            <a href="{{ route('application') }}#apply" class="btn-primary nav-cta-btn" style="white-space:nowrap;">Apply Now</a>
+            <a href="{{ $applyUrl }}" class="btn-primary nav-cta-btn" style="white-space:nowrap;">Apply Now</a>
             <!-- Hamburger (mobile only) -->
             <button @click="mobileOpen = !mobileOpen" class="hamburger-btn" aria-label="Toggle menu">
                 <span class="hamburger-line" :class="mobileOpen ? 'rotate-45 translate-y' : ''"></span>
@@ -283,7 +286,7 @@
         <a href="{{ route('contact') }}" class="mob-link {{ request()->routeIs('contact') ? 'mob-active' : '' }}">Contact</a>
 
         <div style="padding:16px;">
-            <a href="{{ route('application') }}#apply" class="btn-primary" style="display:block; text-align:center; width:100%; box-sizing:border-box;">Apply Now →</a>
+            <a href="{{ $applyUrl }}" class="btn-primary" style="display:block; text-align:center; width:100%; box-sizing:border-box;">Apply Now →</a>
         </div>
     </div>
 </nav>

@@ -13,7 +13,7 @@
     zhTitle="马来西亚"
     body="ASEAN's most international education hub. UK and Australian branch campuses, English-medium teaching, and the most affordable route to a globally-recognised degree in tropical Southeast Asia."
     cta1Text="Match me to a programme"
-    :cta1Href="route('application').'#apply'"
+    :cta1Href="$applyUrl"
     cta2Text="Download Malaysia guide (PDF) ↓"
     cta2Href="#"
     factTitle="Malaysia at a glance"
@@ -190,7 +190,7 @@
         <div>
             <p style="font-size:16px; line-height:1.65; color:rgba(255,255,255,0.75); margin:0 0 24px;">One form gets you matched to up to five programmes and screened against six scholarships. A Malaysia desk counsellor calls you within 48 hours.</p>
             <div style="display:flex; gap:14px; align-items:center; flex-wrap:wrap;">
-                <a href="{{ route('application') }}#apply" class="btn-primary">Start Malaysia application →</a>
+                <a href="{{ $applyUrl }}" class="btn-primary">Start Malaysia application →</a>
                 <a href="#" style="color:rgba(255,255,255,0.6); font-size:14px; text-decoration:underline; text-underline-offset:4px;">Or download the Malaysia guide ↓</a>
             </div>
         </div>
