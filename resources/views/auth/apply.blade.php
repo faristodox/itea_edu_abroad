@@ -159,11 +159,11 @@
                     </div>
                     <div>
                         <label style="display:block; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:6px;">Date of Birth</label>
-                        <input type="date" name="date_of_birth" value="{{ old('date_of_birth', $existing?->date_of_birth?->format('Y-m-d')) }}" style="width:100%; padding:10px 12px; border:1px solid var(--rule-soft); background:var(--paper); color:var(--ink); font-size:14px; box-sizing:border-box;">
+                        <input type="date" name="date_of_birth" value="{{ old('date_of_birth', $existing?->date_of_birth?->format('Y-m-d') ?? Auth::user()->date_of_birth?->format('Y-m-d')) }}" style="width:100%; padding:10px 12px; border:1px solid var(--rule-soft); background:var(--paper); color:var(--ink); font-size:14px; box-sizing:border-box;">
                     </div>
                     <div>
                         <label style="display:block; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:6px;">Nationality</label>
-                        <input type="text" name="nationality" value="{{ old('nationality', $existing?->nationality) }}" placeholder="e.g. Malaysian" style="width:100%; padding:10px 12px; border:1px solid var(--rule-soft); background:var(--paper); color:var(--ink); font-size:14px; box-sizing:border-box;">
+                        <input type="text" name="nationality" value="{{ old('nationality', $existing?->nationality ?? Auth::user()->nationality) }}" placeholder="e.g. Malaysian" style="width:100%; padding:10px 12px; border:1px solid var(--rule-soft); background:var(--paper); color:var(--ink); font-size:14px; box-sizing:border-box;">
                     </div>
                     <div>
                         <label style="display:block; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:6px;">Phone / WhatsApp</label>
@@ -171,7 +171,7 @@
                     </div>
                     <div style="grid-column:span 2;">
                         <label style="display:block; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:6px;">Address</label>
-                        <textarea name="address" rows="2" style="width:100%; padding:10px 12px; border:1px solid var(--rule-soft); background:var(--paper); color:var(--ink); font-size:14px; box-sizing:border-box; resize:vertical; font-family:inherit;">{{ old('address', $existing?->address) }}</textarea>
+                        <textarea name="address" rows="2" style="width:100%; padding:10px 12px; border:1px solid var(--rule-soft); background:var(--paper); color:var(--ink); font-size:14px; box-sizing:border-box; resize:vertical; font-family:inherit;">{{ old('address', $existing?->address ?? Auth::user()->address) }}</textarea>
                     </div>
                 </div>
             </div>
