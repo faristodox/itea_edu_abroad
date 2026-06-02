@@ -77,6 +77,14 @@
             </div>
 
             <div class="adm-form-group">
+                <label>Card Image (filename in public/assets/)</label>
+                <input type="text" name="image"
+                    value="{{ old('image', $program?->image) }}"
+                    placeholder="e.g. uni-zust.png, sdut.jpg — must exist in public/assets/">
+                <div style="font-size:11px; color:var(--muted); margin-top:4px;">Leave blank for gradient background. Use filenames already uploaded to public/assets/.</div>
+            </div>
+
+            <div class="adm-form-group">
                 <label>Programme-specific application fee (USD) — leave blank to use default</label>
                 <input type="number" name="application_fee" step="0.01" min="0"
                     value="{{ old('application_fee', $program?->application_fee) }}"

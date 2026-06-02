@@ -8,6 +8,6 @@ class Program extends Model
 {
     protected $fillable = [
         'name','destination','level','university','city',
-        'duration','language','intake','tuition','description','status','application_fee',
+        'duration','language','intake','tuition','description','status','application_fee','image',
     ];
 }

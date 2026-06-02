@@ -58,6 +58,7 @@ class ProgramController extends Controller
             'description'     => 'nullable|string|max:1000',
             'status'          => 'required|in:active,inactive',
             'application_fee' => 'nullable|numeric|min:0',
+            'image'           => 'nullable|string|max:100',
         ]);
     }
 }

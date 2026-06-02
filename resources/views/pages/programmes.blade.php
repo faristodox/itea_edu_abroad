@@ -136,6 +136,7 @@
                     'tuition' => $p->tuition ?? '—',
                     'phA'     => $colors[0],
                     'phB'     => $colors[1],
+                    'image'   => $p->image,
                     'url'     => null,
                 ];
             })->toArray();
@@ -181,7 +182,12 @@
                 @foreach($programmes as $p)
                 <div class="card" style="overflow:hidden;"
                      x-show="(level === 'ALL' || level === '{{ $p['level'] }}') && (country === 'ALL' || country === '{{ $p['country'] }}')">
-                    <div style="height:160px; background:linear-gradient(135deg,{{ $p['phA'] }},{{ $p['phB'] }}); position:relative;">
+                    <div style="height:160px; background:linear-gradient(135deg,{{ $p['phA'] }},{{ $p['phB'] }}); position:relative; overflow:hidden;">
+                        @if(!empty($p['image']))
+                        <img src="{{ asset('assets/'.$p['image']) }}" alt="{{ $p['title'] }}"
+                             style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;">
+                        <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 55%);"></div>
+                        @endif
                         <span style="position:absolute; top:8px; left:8px; background:rgba(0,0,0,0.5); color:rgba(255,255,255,0.9); font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.1em; padding:3px 7px; text-transform:uppercase;">{{ $levelNames[$p['level']] ?? $p['level'] }}</span>
                     </div>
                     <div style="padding:16px;">
