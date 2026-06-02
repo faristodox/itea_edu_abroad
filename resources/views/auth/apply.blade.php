@@ -186,21 +186,21 @@
                         <select name="current_education_level" style="width:100%; padding:10px 12px; border:1px solid var(--rule-soft); background:var(--paper); color:var(--ink); font-size:14px; box-sizing:border-box;">
                             <option value="">Select level</option>
                             @foreach(['SPM / O-Level','STPM / A-Level','Diploma','Foundation','Undergraduate','Postgraduate'] as $level)
-                            <option value="{{ $level }}" {{ old('current_education_level', $existing?->current_education_level) === $level ? 'selected' : '' }}>{{ $level }}</option>
+                            <option value="{{ $level }}" {{ old('current_education_level', $existing?->current_education_level ?? Auth::user()->education_level) === $level ? 'selected' : '' }}>{{ $level }}</option>
                             @endforeach
                         </select>
                     </div>
                     <div>
                         <label style="display:block; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:6px;">Current / Last Institution</label>
-                        <input type="text" name="current_institution" value="{{ old('current_institution', $existing?->current_institution) }}" placeholder="School or university name" style="width:100%; padding:10px 12px; border:1px solid var(--rule-soft); background:var(--paper); color:var(--ink); font-size:14px; box-sizing:border-box;">
+                        <input type="text" name="current_institution" value="{{ old('current_institution', $existing?->current_institution ?? Auth::user()->institution) }}" placeholder="School or university name" style="width:100%; padding:10px 12px; border:1px solid var(--rule-soft); background:var(--paper); color:var(--ink); font-size:14px; box-sizing:border-box;">
                     </div>
                     <div>
                         <label style="display:block; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:6px;">Graduation Year</label>
-                        <input type="text" name="graduation_year" value="{{ old('graduation_year', $existing?->graduation_year) }}" placeholder="e.g. 2024" style="width:100%; padding:10px 12px; border:1px solid var(--rule-soft); background:var(--paper); color:var(--ink); font-size:14px; box-sizing:border-box;">
+                        <input type="text" name="graduation_year" value="{{ old('graduation_year', $existing?->graduation_year ?? Auth::user()->graduation_year) }}" placeholder="e.g. 2024" style="width:100%; padding:10px 12px; border:1px solid var(--rule-soft); background:var(--paper); color:var(--ink); font-size:14px; box-sizing:border-box;">
                     </div>
                     <div>
                         <label style="display:block; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:6px;">GPA / CGPA</label>
-                        <input type="text" name="gpa" value="{{ old('gpa', $existing?->gpa) }}" placeholder="e.g. 3.50 / 4.00" style="width:100%; padding:10px 12px; border:1px solid var(--rule-soft); background:var(--paper); color:var(--ink); font-size:14px; box-sizing:border-box;">
+                        <input type="text" name="gpa" value="{{ old('gpa', $existing?->gpa ?? Auth::user()->gpa) }}" placeholder="e.g. 3.50 / 4.00" style="width:100%; padding:10px 12px; border:1px solid var(--rule-soft); background:var(--paper); color:var(--ink); font-size:14px; box-sizing:border-box;">
                     </div>
                     <div style="grid-column:span 2;">
                         <label style="display:block; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:6px;">Personal Statement <span style="color:var(--muted); font-size:9px;">(max 3,000 characters)</span></label>
