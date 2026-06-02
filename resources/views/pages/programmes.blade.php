@@ -101,21 +101,46 @@
 <section class="section" style="background:var(--bg-2);">
     <div class="wrap">
         @php
-        $programmes = [
-            ['level'=>'UG','country'=>'CHINA','title'=>'B.Sc. in Computer Science & Technology','uni'=>'Tsinghua University','city'=>'Beijing','duration'=>'4 years','lang'=>'English / 中文','intake'=>'September','tuition'=>'RMB 30,000 / yr','phA'=>'#0a1f5e','phB'=>'#061240'],
-            ['level'=>'PG','country'=>'CHINA','title'=>'M.A. in International Relations','uni'=>'Peking University','city'=>'Beijing','duration'=>'2 years','lang'=>'English','intake'=>'September','tuition'=>'RMB 38,000 / yr','phA'=>'#a51717','phB'=>'#3d0808'],
-            ['level'=>'DIPLOMA','country'=>'MALAYSIA','title'=>'Diploma in Hospitality Management','uni'=>'Taylor\'s University','city'=>'Subang Jaya','duration'=>'2.5 years','lang'=>'English','intake'=>'Jan / May / Aug','tuition'=>'RM 38,000 total','phA'=>'#142a6e','phB'=>'#08164a'],
-            ['level'=>'UG','country'=>'MALAYSIA','title'=>'B.B.A. in International Business','uni'=>'Universiti Malaya','city'=>'Kuala Lumpur','duration'=>'4 years','lang'=>'English','intake'=>'September','tuition'=>'RM 21,000 / yr','phA'=>'#0a1f5e','phB'=>'#061240'],
-            ['level'=>'PG','country'=>'CHINA','title'=>'Master of Civil Engineering','uni'=>'Zhejiang University','city'=>'Hangzhou','duration'=>'3 years','lang'=>'English','intake'=>'September','tuition'=>'RMB 32,000 / yr','phA'=>'#a01a1a','phB'=>'#3c0a0a'],
-            ['level'=>'MANDARIN','country'=>'CHINA','title'=>'Chinese Language Programme — HSK 1 to 6','uni'=>'Beijing Language and Culture University','city'=>'Beijing','duration'=>'1 semester +','lang'=>'中文','intake'=>'Mar / Sep','tuition'=>'RMB 11,600 / sem','phA'=>'#c98a1d','phB'=>'#5e3f10'],
-            ['level'=>'UG','country'=>'CHINA','title'=>'B.Eng. in Mechanical Engineering','uni'=>'Shanghai Jiao Tong University','city'=>'Shanghai','duration'=>'4 years','lang'=>'English','intake'=>'September','tuition'=>'RMB 28,000 / yr','phA'=>'#891414','phB'=>'#330606'],
-            ['level'=>'PG','country'=>'CHINA','title'=>'Ph.D. in Artificial Intelligence','uni'=>'Fudan University','city'=>'Shanghai','duration'=>'4 years','lang'=>'English','intake'=>'September','tuition'=>'Full scholarship','phA'=>'#bb2424','phB'=>'#420c0c'],
-            ['level'=>'UG','country'=>'MALAYSIA','title'=>'Bachelor of Architecture','uni'=>'Universiti Putra Malaysia','city'=>'Selangor','duration'=>'4 years','lang'=>'English','intake'=>'September','tuition'=>'RM 18,200 / yr','phA'=>'#0c2670','phB'=>'#061240'],
-            ['level'=>'SHORT','country'=>'CHINA','title'=>'4-week Summer Cultural Camp','uni'=>'Tsinghua + Beijing Tours','city'=>'Beijing','duration'=>'4 weeks','lang'=>'English / 中文','intake'=>'July / Aug','tuition'=>'USD 2,400','phA'=>'#e8a93b','phB'=>'#7a5a16'],
-            ['level'=>'MANDARIN','country'=>'CHINA','title'=>'ITEA Learning Platform','uni'=>'Free online Mandarin','city'=>'Online · itealearning.com','duration'=>'Self-paced','lang'=>'中文 · English','intake'=>'Enrol anytime','tuition'=>'Free','phA'=>'#d18a2a','phB'=>'#5e3f10','url'=>'https://itealearning.com/'],
-            ['level'=>'SHORT','country'=>'MALAYSIA','title'=>'2-week Customised University Sit-in','uni'=>'Sunway / Monash / Taylor\'s','city'=>'Selangor','duration'=>'2 weeks','lang'=>'English','intake'=>'Custom','tuition'=>'On request','phA'=>'#1d4e3f','phB'=>'#0a2520'],
+        use App\Models\Program;
+
+        $levelMap = [
+            'Diploma'          => 'DIPLOMA',
+            'Undergraduate'    => 'UG',
+            'Postgraduate'     => 'PG',
+            'Mandarin Learning'=> 'MANDARIN',
+            'Short-term'       => 'SHORT',
         ];
-        $levelNames = ['DIPLOMA'=>'Diploma','UG'=>'Undergraduate','PG'=>'Postgraduate','MANDARIN'=>'Mandarin','SHORT'=>'Short-term'];
+        $colorMap = [
+            'DIPLOMA'  => ['#142a6e','#08164a'],
+            'UG'       => ['#0a1f5e','#061240'],
+            'PG'       => ['#a51717','#3d0808'],
+            'MANDARIN' => ['#d18a2a','#5e3f10'],
+            'SHORT'    => ['#1d4e3f','#0a2520'],
+        ];
+
+        $programmes = Program::where('status','active')
+            ->orderBy('destination')->orderBy('level')->orderBy('name')
+            ->get()
+            ->map(function($p) use ($levelMap, $colorMap) {
+                $levelCode = $levelMap[$p->level] ?? 'UG';
+                $colors    = $colorMap[$levelCode] ?? ['#0a1f5e','#061240'];
+                return [
+                    'level'   => $levelCode,
+                    'country' => strtoupper($p->destination),
+                    'title'   => $p->name,
+                    'uni'     => $p->university ?? '',
+                    'city'    => $p->city ?? '',
+                    'duration'=> $p->duration ?? '—',
+                    'lang'    => $p->language ?? '—',
+                    'intake'  => $p->intake ?? '—',
+                    'tuition' => $p->tuition ?? '—',
+                    'phA'     => $colors[0],
+                    'phB'     => $colors[1],
+                    'url'     => null,
+                ];
+            })->toArray();
+
+        $levelNames = ['DIPLOMA'=>'Diploma','UG'=>'Undergraduate','PG'=>'Postgraduate','MANDARIN'=>'Mandarin Learning','SHORT'=>'Short-term'];
         @endphp
 
         <div style="scroll-margin-top:90px;" x-data="{
@@ -145,6 +170,13 @@
                 @endforeach
             </div>
 
+            @if(empty($programmes))
+            <div style="text-align:center; padding:60px 0; color:var(--muted);">
+                <div style="font-size:36px; margin-bottom:12px;">📚</div>
+                <div style="font-family:'Instrument Serif',serif; font-size:22px; color:var(--ink); margin-bottom:8px;">No programmes yet</div>
+                <div style="font-size:14px;">Programmes will appear here once added by the admin.</div>
+            </div>
+            @else
             <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:24px;">
                 @foreach($programmes as $p)
                 <div class="card" style="overflow:hidden;"
@@ -167,6 +199,7 @@
                 </div>
                 @endforeach
             </div>
+            @endif
         </div>
     </div>
 </section>
