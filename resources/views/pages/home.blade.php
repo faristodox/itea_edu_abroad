@@ -283,14 +283,14 @@
 {{-- ── Universities grid ──────────────────────────────────── --}}
 @php
 $unis = [
-    ['country'=>'CHINA','name'=>'Zhejiang Univ. of Science & Technology','city'=>'Hangzhou · Zhejiang','rank'=>'ZUST','progs'=>6,'intake'=>'Sep / Mar','phA'=>'#1c3d5a','phB'=>'#0a1f3a','image'=>'uni-zust.png'],
-    ['country'=>'CHINA','name'=>'Shandong University of Technology','city'=>'Zibo · Shandong','rank'=>'SDUT','progs'=>4,'intake'=>'Sep / Mar','phA'=>'#34526e','phB'=>'#1a2a3e','image'=>'sdut.jpg'],
-    ['country'=>'CHINA','name'=>'Jiangxi Univ. of Finance & Economics','city'=>'Nanchang · Jiangxi','rank'=>'JUFE','progs'=>5,'intake'=>'Sep / Feb','phA'=>'#a51717','phB'=>'#3d0808','image'=>'jufe.jpg'],
-    ['country'=>'CHINA','name'=>'Hainan Medical University','city'=>'Haikou · Hainan','rank'=>'HMU','progs'=>4,'intake'=>'Sep / Mar','phA'=>'#2a8a6a','phB'=>'#0e3527','image'=>'hmu.jpg'],
-    ['country'=>'MALAYSIA','name'=>'Universiti Malaya','city'=>'Kuala Lumpur','rank'=>'QS #60','progs'=>31,'intake'=>'Sep / Feb','phA'=>'#0a1f5e','phB'=>'#061240','image'=>null],
-    ['country'=>'MALAYSIA','name'=>'Taylor\'s University','city'=>'Subang Jaya','rank'=>'QS #251','progs'=>27,'intake'=>'Aug / Jan / May','phA'=>'#142a6e','phB'=>'#08164a','image'=>null],
-    ['country'=>'MALAYSIA','name'=>'Monash University Malaysia','city'=>'Bandar Sunway','rank'=>'QS #44 Asia','progs'=>22,'intake'=>'Feb / Jul','phA'=>'#0c2670','phB'=>'#061240','image'=>null],
-    ['country'=>'INDONESIA','name'=>'Universitas Indonesia','city'=>'Depok','rank'=>'QS #237','progs'=>18,'intake'=>'Sep / Feb','phA'=>'#c98a1d','phB'=>'#5e3f10','image'=>null],
+    ['country'=>'CHINA','name'=>'Zhejiang Univ. of Science & Technology','city'=>'Hangzhou · Zhejiang','rank'=>'ZUST','progs'=>6,'intake'=>'Sep / Mar','phA'=>'#1c3d5a','phB'=>'#0a1f3a','image'=>'uni-zust.png','profile'=>route('china.zust')],
+    ['country'=>'CHINA','name'=>'Shandong University of Technology','city'=>'Zibo · Shandong','rank'=>'SDUT','progs'=>4,'intake'=>'Sep / Mar','phA'=>'#34526e','phB'=>'#1a2a3e','image'=>'sdut.jpg','profile'=>route('china.sdut')],
+    ['country'=>'CHINA','name'=>'Jiangxi Univ. of Finance & Economics','city'=>'Nanchang · Jiangxi','rank'=>'JUFE','progs'=>5,'intake'=>'Sep / Feb','phA'=>'#a51717','phB'=>'#3d0808','image'=>'jufe.jpg','profile'=>route('china.jufe')],
+    ['country'=>'CHINA','name'=>'Hainan Medical University','city'=>'Haikou · Hainan','rank'=>'HMU','progs'=>4,'intake'=>'Sep / Mar','phA'=>'#2a8a6a','phB'=>'#0e3527','image'=>'hmu.jpg','profile'=>route('china.hmu')],
+    ['country'=>'MALAYSIA','name'=>'Universiti Malaya','city'=>'Kuala Lumpur','rank'=>'QS #60','progs'=>31,'intake'=>'Sep / Feb','phA'=>'#0a1f5e','phB'=>'#061240','image'=>null,'profile'=>route('malaysia')],
+    ['country'=>'MALAYSIA','name'=>'Taylor\'s University','city'=>'Subang Jaya','rank'=>'QS #251','progs'=>27,'intake'=>'Aug / Jan / May','phA'=>'#142a6e','phB'=>'#08164a','image'=>null,'profile'=>route('malaysia')],
+    ['country'=>'MALAYSIA','name'=>'Monash University Malaysia','city'=>'Bandar Sunway','rank'=>'QS #44 Asia','progs'=>22,'intake'=>'Feb / Jul','phA'=>'#0c2670','phB'=>'#061240','image'=>null,'profile'=>route('malaysia')],
+    ['country'=>'INDONESIA','name'=>'Universitas Indonesia','city'=>'Depok','rank'=>'QS #237','progs'=>18,'intake'=>'Sep / Feb','phA'=>'#c98a1d','phB'=>'#5e3f10','image'=>null,'profile'=>null],
 ];
 @endphp
 
@@ -331,9 +331,14 @@ $unis = [
                     <div class="eyebrow" style="margin-bottom:4px;">{{ $u['country'] }}</div>
                     <h4 style="font-family:'Instrument Serif',serif; font-size:18px; font-weight:400; margin:0 0 3px; color:var(--ink);">{{ $u['name'] }}</h4>
                     <div style="font-size:12px; color:var(--muted); margin-bottom:10px;">{{ $u['city'] }}</div>
-                    <div style="display:flex; gap:16px; font-size:12px; color:var(--muted);">
-                        <span><strong style="color:var(--ink);">{{ $u['progs'] }}</strong> programmes</span>
-                        <span>Intake {{ $u['intake'] }}</span>
+                    <div style="display:flex; justify-content:space-between; align-items:center; font-size:12px; color:var(--muted);">
+                        <div style="display:flex; gap:16px;">
+                            <span><strong style="color:var(--ink);">{{ $u['progs'] }}</strong> programmes</span>
+                            <span>Intake {{ $u['intake'] }}</span>
+                        </div>
+                        @if($u['profile'])
+                        <a href="{{ $u['profile'] }}" style="font-size:12px; color:var(--accent); text-decoration:none; font-family:'JetBrains Mono',monospace; letter-spacing:0.06em; white-space:nowrap; flex-shrink:0;">View →</a>
+                        @endif
                     </div>
                 </div>
             </div>
