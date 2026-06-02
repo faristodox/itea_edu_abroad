@@ -1,6 +1,3 @@
-@php
-    $applyUrl = auth()->check() ? route('portal.apply') : route('login');
-@endphp
 <!DOCTYPE html>
 <html lang="en">
 <head>
