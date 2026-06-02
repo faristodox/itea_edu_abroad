@@ -15,7 +15,7 @@
 @endif
 
 <div style="max-width:760px;">
-    <form action="{{ $program ? route('admin.programs.update', $program->id) : route('admin.programs.store') }}" method="POST">
+    <form action="{{ $program ? route('admin.programs.update', $program->id) : route('admin.programs.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         @if($program) @method('PUT') @endif
 
@@ -77,11 +77,21 @@
             </div>
 
             <div class="adm-form-group">
-                <label>Card Image (filename in public/assets/)</label>
-                <input type="text" name="image"
-                    value="{{ old('image', $program?->image) }}"
-                    placeholder="e.g. uni-zust.png, sdut.jpg — must exist in public/assets/">
-                <div style="font-size:11px; color:var(--muted); margin-top:4px;">Leave blank for gradient background. Use filenames already uploaded to public/assets/.</div>
+                <label>Card Image (JPG, PNG · max 5MB)</label>
+                @if($program?->image)
+                <div style="margin-bottom:8px; display:flex; align-items:center; gap:12px;">
+                    <img src="{{ asset('assets/'.$program->image) }}" alt="Current image"
+                         style="height:60px; width:100px; object-fit:cover; border:1px solid var(--rule-soft);">
+                    <div>
+                        <div style="font-size:12px; color:var(--muted);">Current: {{ $program->image }}</div>
+                        <label style="display:flex; align-items:center; gap:6px; font-size:12px; color:#dc2626; cursor:pointer; margin-top:4px; font-family:'Geist',sans-serif; text-transform:none; letter-spacing:0;">
+                            <input type="checkbox" name="remove_image" value="1"> Remove current image
+                        </label>
+                    </div>
+                </div>
+                @endif
+                <input type="file" name="image_file" accept=".jpg,.jpeg,.png,.webp">
+                <div style="font-size:11px; color:var(--muted); margin-top:4px;">Upload a new image to replace. Leave blank to keep current. No image = gradient background.</div>
             </div>
 
             <div class="adm-form-group">

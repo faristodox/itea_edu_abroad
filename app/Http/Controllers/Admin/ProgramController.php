@@ -22,6 +22,7 @@ class ProgramController extends Controller
     public function store(Request $request)
     {
         $validated = $this->validated($request);
+        $validated['image'] = $this->handleImageUpload($request, null);
         Program::create($validated);
         return redirect()->route('admin.programs')->with('success', 'Programme added.');
     }
@@ -33,32 +34,64 @@ class ProgramController extends Controller
 
     public function update(Request $request, Program $program)
     {
-        $program->update($this->validated($request));
+        $validated = $this->validated($request);
+        $validated['image'] = $this->handleImageUpload($request, $program);
+        $program->update($validated);
         return redirect()->route('admin.programs')->with('success', 'Programme updated.');
     }
 
     public function destroy(Program $program)
     {
+        if ($program->image && !in_array($program->image, ['uni-zust.png','sdut.jpg','jufe.jpg','hmu.jpg'])) {
+            $path = public_path('assets/' . $program->image);
+            if (file_exists($path)) unlink($path);
+        }
         $program->delete();
         return back()->with('success', 'Programme deleted.');
+    }
+
+    private function handleImageUpload(Request $request, ?Program $program): ?string
+    {
+        // Remove image if checkbox ticked
+        if ($request->boolean('remove_image')) {
+            if ($program?->image) {
+                $path = public_path('assets/' . $program->image);
+                if (file_exists($path) && !in_array($program->image, ['uni-zust.png','sdut.jpg','jufe.jpg','hmu.jpg'])) {
+                    unlink($path);
+                }
+            }
+            return null;
+        }
+
+        // Upload new image
+        if ($request->hasFile('image_file') && $request->file('image_file')->isValid()) {
+            $file      = $request->file('image_file');
+            $extension = $file->getClientOriginalExtension() ?: 'jpg';
+            $filename  = 'prog_' . time() . '_' . uniqid() . '.' . strtolower($extension);
+            $file->move(public_path('assets'), $filename);
+            return $filename;
+        }
+
+        // Keep existing image
+        return $program?->image;
     }
 
     private function validated(Request $request): array
     {
         return $request->validate([
-            'name'        => 'required|string|max:200',
-            'destination' => 'required|string|max:60',
-            'level'       => 'required|string|max:60',
-            'university'  => 'nullable|string|max:200',
-            'city'        => 'nullable|string|max:100',
-            'duration'    => 'nullable|string|max:60',
-            'language'    => 'nullable|string|max:60',
-            'intake'      => 'nullable|string|max:100',
-            'tuition'     => 'nullable|string|max:100',
+            'name'            => 'required|string|max:200',
+            'destination'     => 'required|string|max:60',
+            'level'           => 'required|string|max:60',
+            'university'      => 'nullable|string|max:200',
+            'city'            => 'nullable|string|max:100',
+            'duration'        => 'nullable|string|max:60',
+            'language'        => 'nullable|string|max:60',
+            'intake'          => 'nullable|string|max:100',
+            'tuition'         => 'nullable|string|max:100',
             'description'     => 'nullable|string|max:1000',
             'status'          => 'required|in:active,inactive',
             'application_fee' => 'nullable|numeric|min:0',
-            'image'           => 'nullable|string|max:100',
+            'image_file'      => 'nullable|image|max:5120',
         ]);
     }
 }
