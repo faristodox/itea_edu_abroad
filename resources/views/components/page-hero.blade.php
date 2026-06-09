@@ -3,7 +3,6 @@
     'breadcrumbs' => [],
     'label'    => '',
     'title'    => '',
-    'zhTitle'  => '',
     'body'     => '',
     'cta1Text' => 'Start my application',
     'cta1Href' => '',
@@ -22,13 +21,6 @@ $glowMap = [
     'lavender'=> 'rgba(170,135,220,0.28)',
 ];
 $glowColor = $glowMap[$glow] ?? $glowMap['red'];
-$zhColor = [
-    'red'      => '#d81f1f',
-    'gold'     => '#e8a93b',
-    'jade'     => '#2f9e6e',
-    'sky'      => '#78aae6',
-    'lavender' => '#aa87dc',
-][$glow] ?? '#d81f1f';
 @endphp
 
 <section style="background:var(--ink-deep); color:#fff; padding:56px 0; position:relative; overflow:hidden;">
@@ -37,7 +29,7 @@ $zhColor = [
     <div class="wrap" style="position:relative; z-index:1;">
         {{-- Breadcrumb --}}
         @if(count($breadcrumbs))
-        <div style="display:flex; gap:8px; align-items:center; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.1em; color:rgba(255,255,255,0.45); margin-bottom:32px; text-transform:uppercase;">
+        <div style="display:flex; gap:8px; align-items:center; font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.1em; color:rgba(255,255,255,0.45); margin-bottom:32px; text-transform:uppercase;">
             @foreach($breadcrumbs as $crumb)
                 @if(!$loop->last)
                     <a href="{{ $crumb['href'] }}" style="color:rgba(255,255,255,0.45); text-decoration:none; transition:color 0.15s;">{{ $crumb['label'] }}</a>
@@ -52,7 +44,7 @@ $zhColor = [
         <div style="display:grid; grid-template-columns:1fr 340px; gap:60px; align-items:start;">
             <div>
                 @if($label)
-                <div style="display:flex; align-items:center; gap:10px; font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.14em; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-bottom:18px;">
+                <div style="display:flex; align-items:center; gap:10px; font-family:'DM Mono',monospace; font-size:10.5px; letter-spacing:0.14em; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-bottom:18px;">
                     <span style="display:inline-block; width:28px; height:1px; background:var(--accent);"></span>
                     {{ $label }}
                 </div>
@@ -60,9 +52,6 @@ $zhColor = [
 
                 <h1 style="font-family:'Instrument Serif',serif; font-size:clamp(48px,6vw,80px); font-weight:400; line-height:0.95; letter-spacing:-0.02em; margin:0 0 8px;">
                     {!! $title !!}
-                    @if($zhTitle)
-                    <span class="zh" style="display:block; font-size:clamp(20px,3vw,42px); color:{{ $zhColor }}; opacity:0.85; letter-spacing:0.06em; margin-top:8px;">{{ $zhTitle }}</span>
-                    @endif
                 </h1>
 
                 <p style="font-size:17px; line-height:1.6; color:rgba(255,255,255,0.8); max-width:520px; margin:20px 0 28px;">{{ $body }}</p>
@@ -89,7 +78,7 @@ $zhColor = [
                 <div style="display:flex; justify-content:space-between; align-items:baseline; padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.08);">
                     <span style="font-size:13px; color:rgba(255,255,255,0.55);">{{ $s['key'] }}</span>
                     <span style="font-family:'Instrument Serif',serif; font-size:24px; color:#fff;">
-                        {{ $s['val'] }}<small style="font-family:'Geist',sans-serif; font-size:13px; opacity:0.6;">{{ $s['sup'] ?? '' }}</small>
+                        {{ $s['val'] }}<small style="font-family:'DM Sans',sans-serif; font-size:13px; opacity:0.6;">{{ $s['sup'] ?? '' }}</small>
                     </span>
                 </div>
                 @endforeach

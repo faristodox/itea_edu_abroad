@@ -8,7 +8,7 @@
 {{-- ── Hero ──────────────────────────────────────────────── --}}
 <section style="background:var(--bg); border-bottom:1px solid var(--rule-soft); padding:48px 0;">
     <div class="wrap">
-        <div style="display:flex; gap:8px; align-items:center; font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.1em; color:var(--muted); margin-bottom:28px; text-transform:uppercase;">
+        <div style="display:flex; gap:8px; align-items:center; font-family:'DM Mono',monospace; font-size:10.5px; letter-spacing:0.1em; color:var(--muted); margin-bottom:28px; text-transform:uppercase;">
             <a href="{{ route('home') }}" style="color:var(--muted); text-decoration:none;">Home</a>
             <span>/</span>
             <span style="color:var(--ink);">Programmes</span>
@@ -24,7 +24,7 @@
                 <div style="background:var(--ink-deep); color:#fff; padding:20px;">
                     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
                         <span class="eyebrow" style="color:rgba(255,255,255,0.45);">Trending now</span>
-                        <span style="display:flex; align-items:center; gap:5px; font-family:'JetBrains Mono',monospace; font-size:9px; color:rgba(255,255,255,0.45);">
+                        <span style="display:flex; align-items:center; gap:5px; font-family:'DM Mono',monospace; font-size:9px; color:rgba(255,255,255,0.45);">
                             <span style="width:6px; height:6px; border-radius:50%; background:#2fa86e; display:inline-block;"></span>
                             Live · May 2026
                         </span>
@@ -38,7 +38,7 @@
                     @endphp
                     @foreach($trending as $i => $t)
                     <div style="display:flex; gap:12px; align-items:center; padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.07);">
-                        <span style="font-family:'JetBrains Mono',monospace; font-size:13px; color:rgba(255,255,255,0.25); flex-shrink:0; width:20px;">{{ str_pad($i+1,2,'0',STR_PAD_LEFT) }}</span>
+                        <span style="font-family:'DM Mono',monospace; font-size:13px; color:rgba(255,255,255,0.25); flex-shrink:0; width:20px;">{{ str_pad($i+1,2,'0',STR_PAD_LEFT) }}</span>
                         <div style="width:38px; height:38px; background:linear-gradient(135deg,{{ $t['phA'] }},{{ $t['phB'] }}); flex-shrink:0;"></div>
                         <div style="flex:1; min-width:0;">
                             <div style="font-size:13px; color:#fff; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">{{ $t['title'] }}</div>
@@ -49,13 +49,13 @@
                     @endforeach
                     <div style="display:flex; justify-content:space-between; align-items:center; margin-top:12px; font-size:11px; color:rgba(255,255,255,0.35);">
                         <span>Updated hourly · ranked by enquiries</span>
-                        <a href="#" style="color:var(--gold); text-decoration:none;">See top 25 →</a>
+                        <a href="#" style="color:var(--accent); text-decoration:none;">See top 25 →</a>
                     </div>
                 </div>
                 <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:0; border:1px solid var(--rule-soft); border-top:none;">
                     @foreach([['Programmes','1,520+','across 5 levels'],['Universities','300+','direct partners'],['Countries','3','live destinations']] as [$lbl,$num,$sub])
                     <div style="padding:14px 16px; border-right:1px solid var(--rule-soft); text-align:center;">
-                        <div style="font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted);">{{ $lbl }}</div>
+                        <div style="font-family:'DM Mono',monospace; font-size:9px; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted);">{{ $lbl }}</div>
                         <div style="font-family:'Instrument Serif',serif; font-size:26px; color:var(--ink); line-height:1;">{{ $num }}</div>
                         <div style="font-size:11px; color:var(--muted);">{{ $sub }}</div>
                     </div>
@@ -73,16 +73,15 @@
         <div style="display:grid; grid-template-columns:repeat(5,1fr); gap:2px;">
             @php
             $levels = [
-                ['id'=>'DIPLOMA','short'=>'Diploma','count'=>'220+ programmes','body'=>'1–3 year vocational and pre-university qualifications. Strong in Malaysia.','zh'=>'大专'],
-                ['id'=>'UG','short'=>'Undergraduate','count'=>'480+ programmes','body'=>'Bachelor\'s degrees, 3–4 years. Engineering to liberal arts.','zh'=>'本科'],
-                ['id'=>'PG','short'=>'Postgraduate','count'=>'380+ programmes','body'=>'Master\'s and PhD programmes. Strong research scholarships available.','zh'=>'研究生'],
-                ['id'=>'MANDARIN','short'=>'Mandarin','count'=>'Online + 6 cities','body'=>'Free online HSK-aligned course, or full immersion in China.','zh'=>'汉语'],
-                ['id'=>'SHORT','short'=>'Short-term','count'=>'40+ cohorts/year','body'=>'Two to eight week summer camps and study tours.','zh'=>'短期'],
+                ['id'=>'DIPLOMA','short'=>'Diploma','count'=>'220+ programmes','body'=>'1–3 year vocational and pre-university qualifications. Strong in Malaysia.'],
+                ['id'=>'UG','short'=>'Undergraduate','count'=>'480+ programmes','body'=>'Bachelor\'s degrees, 3–4 years. Engineering to liberal arts.'],
+                ['id'=>'PG','short'=>'Postgraduate','count'=>'380+ programmes','body'=>'Master\'s and PhD programmes. Strong research scholarships available.'],
+                ['id'=>'MANDARIN','short'=>'Mandarin','count'=>'Online + 6 cities','body'=>'Free online HSK-aligned course, or full immersion in China.'],
+                ['id'=>'SHORT','short'=>'Short-term','count'=>'40+ cohorts/year','body'=>'Two to eight week summer camps and study tours.'],
             ];
             @endphp
             @foreach($levels as $i => $lvl)
             <div class="card" style="padding:24px; cursor:pointer;" onclick="document.getElementById('programme-filter').scrollIntoView({behavior:'smooth'})">
-                <div style="font-family:'Noto Serif SC',serif; font-size:28px; color:var(--ink-2); opacity:0.25; margin-bottom:10px;">{{ $lvl['zh'] }}</div>
                 <div class="eyebrow" style="margin-bottom:4px;">0{{ $i+1 }}</div>
                 <h3 style="font-family:'Instrument Serif',serif; font-size:20px; font-weight:400; margin:0 0 4px; color:var(--ink);">{{ $lvl['short'] }}</h3>
                 <div class="eyebrow" style="color:var(--accent); margin-bottom:8px;">{{ $lvl['count'] }}</div>
@@ -188,17 +187,17 @@
                              style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;">
                         <div style="position:absolute; inset:0; background:linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 55%);"></div>
                         @endif
-                        <span style="position:absolute; top:8px; left:8px; background:rgba(0,0,0,0.5); color:rgba(255,255,255,0.9); font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.1em; padding:3px 7px; text-transform:uppercase;">{{ $levelNames[$p['level']] ?? $p['level'] }}</span>
+                        <span style="position:absolute; top:8px; left:8px; background:rgba(0,0,0,0.5); color:rgba(255,255,255,0.9); font-family:'DM Mono',monospace; font-size:9px; letter-spacing:0.1em; padding:3px 7px; text-transform:uppercase;">{{ $levelNames[$p['level']] ?? $p['level'] }}</span>
                     </div>
                     <div style="padding:16px;">
                         <div class="eyebrow" style="margin-bottom:4px;">{{ $p['country'] }}</div>
                         <h4 style="font-family:'Instrument Serif',serif; font-size:16px; font-weight:400; margin:0 0 3px; color:var(--ink); line-height:1.25;">{{ $p['title'] }}</h4>
                         <div style="font-size:12px; color:var(--muted); margin-bottom:10px;">{{ $p['uni'] }} · {{ $p['city'] }}</div>
                         <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; font-size:11px; color:var(--muted); margin-bottom:10px;">
-                            <div><span style="display:block; font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:2px;">Duration</span>{{ $p['duration'] }}</div>
-                            <div><span style="display:block; font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:2px;">Language</span>{{ $p['lang'] }}</div>
-                            <div><span style="display:block; font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:2px;">Intake</span>{{ $p['intake'] }}</div>
-                            <div><span style="display:block; font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:2px;">Tuition</span>{{ $p['tuition'] }}</div>
+                            <div><span style="display:block; font-family:'DM Mono',monospace; font-size:9px; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:2px;">Duration</span>{{ $p['duration'] }}</div>
+                            <div><span style="display:block; font-family:'DM Mono',monospace; font-size:9px; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:2px;">Language</span>{{ $p['lang'] }}</div>
+                            <div><span style="display:block; font-family:'DM Mono',monospace; font-size:9px; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:2px;">Intake</span>{{ $p['intake'] }}</div>
+                            <div><span style="display:block; font-family:'DM Mono',monospace; font-size:9px; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:2px;">Tuition</span>{{ $p['tuition'] }}</div>
                         </div>
                         <a href="{{ $p['url'] ?? '#' }}" {{ isset($p['url']) ? 'target="_blank" rel="noopener"' : '' }} style="font-size:12px; color:var(--accent); font-weight:500; text-decoration:none;">View details →</a>
                     </div>
@@ -215,7 +214,7 @@
     <div class="wrap" style="display:grid; grid-template-columns:1fr 420px; gap:60px; align-items:center;">
         <div>
             <div class="eyebrow" style="color:rgba(255,255,255,0.4); margin-bottom:12px;">04 · ITEA Learning</div>
-            <h2 style="font-family:'Instrument Serif',serif; font-size:clamp(28px,3.5vw,42px); font-weight:400; margin:0 0 16px; line-height:1;">Start Mandarin <em style="color:var(--gold);">before you fly.</em></h2>
+            <h2 style="font-family:'Instrument Serif',serif; font-size:clamp(28px,3.5vw,42px); font-weight:400; margin:0 0 16px; line-height:1;">Start Mandarin <em style="color:var(--accent);">before you fly.</em></h2>
             <p style="font-size:16px; line-height:1.65; color:rgba(255,255,255,0.75); margin:0 0 24px; max-width:460px;">Twelve free, HSK-aligned online levels — built by ITEA's own instructors and the Beijing Language &amp; Culture University. Continue in-country at any of our six partner language schools.</p>
             <div style="display:flex; gap:28px; margin-bottom:28px;">
                 @foreach([['12','HSK-aligned levels'],['240+','Video lessons'],['Free','For ITEA students']] as [$n,$l])
@@ -244,14 +243,14 @@
             @endphp
             @foreach($hsk as [$lvl,$name,$sub,$dur,$fill])
             <div style="display:flex; align-items:center; gap:10px; padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.06);">
-                <span style="font-family:'JetBrains Mono',monospace; font-size:9.5px; color:var(--gold); width:38px; flex-shrink:0;">{{ $lvl }}</span>
+                <span style="font-family:'DM Mono',monospace; font-size:9.5px; color:var(--accent); width:38px; flex-shrink:0;">{{ $lvl }}</span>
                 <div style="flex:1; min-width:0;">
                     <div style="font-size:12px; color:#fff;">{{ $name }} <small style="color:rgba(255,255,255,0.4); font-size:10px;">{{ $sub }}</small></div>
                     <div style="height:3px; background:rgba(255,255,255,0.1); margin-top:4px; border-radius:2px; overflow:hidden;">
                         <div style="height:100%; width:{{ $fill }}%; background:var(--gold); border-radius:2px;"></div>
                     </div>
                 </div>
-                <span style="font-family:'JetBrains Mono',monospace; font-size:9px; color:rgba(255,255,255,0.4); flex-shrink:0;">{{ $dur }}</span>
+                <span style="font-family:'DM Mono',monospace; font-size:9px; color:rgba(255,255,255,0.4); flex-shrink:0;">{{ $dur }}</span>
             </div>
             @endforeach
         </div>

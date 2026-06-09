@@ -9,8 +9,7 @@
     glow="gold"
     :breadcrumbs="[['href'=>route('home'),'label'=>'Home'],['href'=>'#','label'=>'Destinations'],['href'=>route('malaysia'),'label'=>'Study in Malaysia']]"
     label="Destination · 02 of 03"
-    title="Study in <em style='color:var(--gold)'>Malaysia.</em>"
-    zhTitle="马来西亚"
+    title="Study in <em style='color:var(--accent)'>Malaysia.</em>"
     body="ASEAN's most international education hub. UK and Australian branch campuses, English-medium teaching, and the most affordable route to a globally-recognised degree in tropical Southeast Asia."
     cta1Text="Match me to a programme"
     :cta1Href="$applyUrl"
@@ -33,12 +32,12 @@
     title="What level <em>are you?</em>"
     body="Six routes into the Malaysian higher-education system — from foundation programmes to research doctorates."
     :cards="[
-        ['glyph'=>'基','zh'=>'基础','title'=>'Foundation','count'=>'60 programmes','body'=>'1-year pre-degree pathway','href'=>route('programmes')],
-        ['glyph'=>'大专','zh'=>'大专','title'=>'Diploma','count'=>'110 programmes','body'=>'2 years · vocational entry','href'=>route('programmes')],
-        ['glyph'=>'本科','zh'=>'本科','title'=>'Degree','count'=>'380 programmes','body'=>'Bachelor, 3 years','href'=>route('programmes')],
-        ['glyph'=>'硕士','zh'=>'硕士','title'=>'Master','count'=>'210 programmes','body'=>'Master\'s, 1–2 years','href'=>route('programmes')],
-        ['glyph'=>'博士','zh'=>'博士','title'=>'PhD','count'=>'90 programmes','body'=>'Doctorate, 3–5 years','href'=>route('programmes')],
-        ['glyph'=>'A','zh'=>'英语','title'=>'English','count'=>'Online + 4 cities','body'=>'Intensive English · MUET prep','href'=>route('programmes')],
+        ['glyph'=>'FD','title'=>'Foundation','count'=>'60 programmes','body'=>'1-year pre-degree pathway','href'=>route('programmes')],
+        ['glyph'=>'D','title'=>'Diploma','count'=>'110 programmes','body'=>'2 years · vocational entry','href'=>route('programmes')],
+        ['glyph'=>'UG','title'=>'Degree','count'=>'380 programmes','body'=>'Bachelor, 3 years','href'=>route('programmes')],
+        ['glyph'=>'MA','title'=>'Master','count'=>'210 programmes','body'=>'Master\'s, 1–2 years','href'=>route('programmes')],
+        ['glyph'=>'PhD','title'=>'PhD','count'=>'90 programmes','body'=>'Doctorate, 3–5 years','href'=>route('programmes')],
+        ['glyph'=>'EN','title'=>'English','count'=>'Online + 4 cities','body'=>'Intensive English · MUET prep','href'=>route('programmes')],
     ]"
 />
 
@@ -47,12 +46,11 @@
     <div class="wrap" style="display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start;">
         <div>
             <div class="eyebrow" style="margin-bottom:10px;">Why Malaysia</div>
-            <h2 style="font-family:'Instrument Serif',serif; font-size:clamp(28px,3.5vw,44px); font-weight:400; margin:0 0 16px; line-height:1.1;">The smartest <em style="color:var(--gold);">shortcut</em> into a UK or Australian degree.</h2>
+            <h2 style="font-family:'Instrument Serif',serif; font-size:clamp(28px,3.5vw,44px); font-weight:400; margin:0 0 16px; line-height:1.1;">The smartest <em style="color:var(--accent);">shortcut</em> into a UK or Australian degree.</h2>
             <p style="font-size:15px; line-height:1.65; color:var(--muted); margin:0 0 24px;">Malaysia is the world's largest transnational-education host. Five UK universities, four Australian, and a layer of strong local institutions all operate full branch campuses in KL, Selangor, Penang and Sarawak. For a Malaysian, Indonesian or Chinese student, no destination offers more degree value per ringgit.</p>
-            <div style="display:flex; gap:16px; align-items:center; background:var(--ink-deep); padding:16px 20px;">
-                <div class="zh" style="font-size:52px; color:rgba(255,255,255,0.15); flex-shrink:0;">学</div>
+            <div style="background:var(--ink-deep); padding:16px 20px;">
                 <div style="color:rgba(255,255,255,0.75); font-size:13px; line-height:1.5;">
-                    <strong style="display:block; color:#fff; margin-bottom:4px;">Ilmu — knowledge, learning</strong>
+                    <strong style="display:block; color:#fff; margin-bottom:4px;">Ilmu — knowledge, learning.</strong>
                     The Malay word for learning. The motto of every Malaysian university and the foundation of the nation's education vision.
                 </div>
             </div>
@@ -83,7 +81,7 @@
         <div style="display:flex; justify-content:space-between; align-items:end; margin-bottom:28px;">
             <div>
                 <div class="eyebrow" style="margin-bottom:8px;">Top trending in Malaysia</div>
-                <h2 style="font-family:'Instrument Serif',serif; font-size:clamp(24px,3vw,38px); font-weight:400; margin:0;">Programmes <em style="color:var(--gold);">students are picking</em> this month.</h2>
+                <h2 style="font-family:'Instrument Serif',serif; font-size:clamp(24px,3vw,38px); font-weight:400; margin:0;">Programmes <em style="color:var(--accent);">students are picking</em> this month.</h2>
             </div>
             <a href="{{ route('programmes') }}" class="btn-outline">See all Malaysia programmes →</a>
         </div>
@@ -99,7 +97,7 @@
             @foreach($trending as $t)
             <div class="card" style="overflow:hidden; cursor:pointer;">
                 <div style="height:160px; background:linear-gradient(135deg,{{ $t['phA'] }},{{ $t['phB'] }}); position:relative; display:flex; align-items:flex-end; padding:10px;">
-                    <span style="font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:0.1em; text-transform:uppercase; background:rgba(0,0,0,0.45); color:rgba(255,255,255,0.85); padding:3px 8px;">{{ $t['lvl'] }}</span>
+                    <span style="font-family:'DM Mono',monospace; font-size:9.5px; letter-spacing:0.1em; text-transform:uppercase; background:rgba(0,0,0,0.45); color:rgba(255,255,255,0.85); padding:3px 8px;">{{ $t['lvl'] }}</span>
                 </div>
                 <div style="padding:16px;">
                     <div style="font-size:12px; color:var(--muted); margin-bottom:4px;">{{ $t['uni'] }}</div>
@@ -185,7 +183,7 @@
     <div class="wrap" style="display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center;">
         <div>
             <div class="eyebrow" style="color:rgba(255,255,255,0.4); margin-bottom:12px;">Ready when you are</div>
-            <h2 style="font-family:'Instrument Serif',serif; font-size:clamp(36px,4vw,56px); font-weight:400; margin:0; line-height:1;">Your future,<br><em style="color:var(--gold);">studied in Malaysia.</em></h2>
+            <h2 style="font-family:'Instrument Serif',serif; font-size:clamp(36px,4vw,56px); font-weight:400; margin:0; line-height:1;">Your future,<br><em style="color:var(--accent);">studied in Malaysia.</em></h2>
         </div>
         <div>
             <p style="font-size:16px; line-height:1.65; color:rgba(255,255,255,0.75); margin:0 0 24px;">One form gets you matched to up to five programmes and screened against six scholarships. A Malaysia desk counsellor calls you within 48 hours.</p>

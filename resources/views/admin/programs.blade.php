@@ -1,4 +1,4 @@
-@extends('admin.layout')
+﻿@extends('admin.layout')
 @section('title', 'Manage Programmes')
 @section('breadcrumb', 'Programmes')
 
@@ -14,7 +14,7 @@
 
 <div class="adm-table-wrap">
     <div class="adm-table-header">
-        <h2>All Programmes <span style="font-family:'Geist',sans-serif; font-weight:400; font-size:13px; color:var(--muted); text-transform:none; letter-spacing:0;">({{ $programs->total() }})</span></h2>
+        <h2>All Programmes <span style="font-family:'DM Sans',sans-serif; font-weight:400; font-size:13px; color:var(--muted); text-transform:none; letter-spacing:0;">({{ $programs->total() }})</span></h2>
     </div>
     <table>
         <thead>
@@ -35,7 +35,7 @@
                         <a href="{{ route('admin.programs.edit', $prog->id) }}" class="adm-link">Edit</a>
                         <form action="{{ route('admin.programs.destroy', $prog->id) }}" method="POST" onsubmit="return confirm('Delete this programme?')">
                             @csrf @method('DELETE')
-                            <button type="submit" style="background:none; border:none; font-size:12px; color:#dc2626; cursor:pointer; font-family:'JetBrains Mono',monospace; letter-spacing:0.06em; padding:0;">Delete</button>
+                            <button type="submit" style="background:none; border:none; font-size:12px; color:#dc2626; cursor:pointer; font-family:'DM Mono',monospace; letter-spacing:0.06em; padding:0;">Delete</button>
                         </form>
                     </div>
                 </td>
@@ -51,3 +51,4 @@
 </div>
 
 @endsection
+

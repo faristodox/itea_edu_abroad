@@ -1,4 +1,4 @@
-@extends('admin.layout')
+﻿@extends('admin.layout')
 @section('title', 'All Applications')
 @section('breadcrumb', 'Applications')
 
@@ -6,7 +6,7 @@
 
 <div class="adm-table-wrap">
     <div class="adm-table-header">
-        <h2>All Applications <span style="font-family:'Geist',sans-serif; font-weight:400; font-size:13px; color:var(--muted); text-transform:none; letter-spacing:0;">({{ $applications->total() }})</span></h2>
+        <h2>All Applications <span style="font-family:'DM Sans',sans-serif; font-weight:400; font-size:13px; color:var(--muted); text-transform:none; letter-spacing:0;">({{ $applications->total() }})</span></h2>
     </div>
     <table>
         <thead>
@@ -25,7 +25,7 @@
         <tbody>
             @forelse($applications as $app)
             <tr>
-                <td><span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--muted);">{{ str_pad($app->id,5,'0',STR_PAD_LEFT) }}</span></td>
+                <td><span style="font-family:'DM Mono',monospace; font-size:11px; color:var(--muted);">{{ str_pad($app->id,5,'0',STR_PAD_LEFT) }}</span></td>
                 <td>
                     <div style="font-weight:500;">{{ $app->user->name }}</div>
                     <div style="font-size:11px; color:var(--muted);">{{ $app->user->email }}</div>
@@ -37,7 +37,7 @@
                     @php $badge = match($app->status) { 'draft'=>'badge-draft','submitted'=>'badge-submitted','reviewing'=>'badge-reviewing','result'=>($app->result==='accepted'?'badge-accepted':'badge-rejected'),default=>'badge-draft'}; @endphp
                     <span class="badge {{ $badge }}">{{ $app->statusLabel() }}</span>
                 </td>
-                <td style="text-align:center; font-family:'JetBrains Mono',monospace; font-size:12px;">{{ $app->documents->count() }}</td>
+                <td style="text-align:center; font-family:'DM Mono',monospace; font-size:12px;">{{ $app->documents->count() }}</td>
                 <td style="font-size:12px; color:var(--muted); white-space:nowrap;">{{ $app->submitted_at?->format('d M Y') ?? '—' }}</td>
                 <td><a href="{{ route('admin.application.show', $app->id) }}" class="adm-link">Review →</a></td>
             </tr>
@@ -52,3 +52,4 @@
 </div>
 
 @endsection
+

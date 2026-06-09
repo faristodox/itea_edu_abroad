@@ -1,0 +1,18 @@
+Category,Change Description,Files Affected,Status
+Brand Colors Reference,Primary color: Navy used for main background / sidebar / hero sections / deep ink,resources/css/app.css,Reference
+,Secondary color: Red used for CTA buttons / highlighted text / active nav states / brand accents,resources/css/app.css,Reference
+,Tertiary color: Cream/Off-white used for card backgrounds / page backgrounds / light surfaces,resources/css/app.css,Reference
+Hero Slider,Rewrote slider architecture with separated background images / text / navigation into 3 distinct layers to fix text invisibility bug,resources/views/pages/home.blade.php,Done
+,Updated text content on all 4 slides (titles + descriptions + button labels),resources/views/pages/home.blade.php,Done
+,Standardized overlay color to dark navy across all 4 slides,resources/views/pages/home.blade.php,Done
+,Standardized eyebrow label style (white text + red accent line) across all slides,resources/views/pages/home.blade.php,Done
+Featured Countries Section,Replaced tab-based interface with a 3-card image grid (China / Malaysia / Indonesia),resources/views/pages/home.blade.php,Done
+,Updated section description text,resources/views/pages/home.blade.php,Done
+Font Standardization,Replaced Geist + JetBrains Mono with DM Sans,resources/views/admin/applications.blade.php + programs.blade.php + program-form.blade.php,Done
+Applicant Portal,Created new dedicated portal layout with dark sidebar + white topbar matching admin portal style,resources/views/auth/layout.blade.php,Done
+,Rebuilt Dashboard page with stat cards + applications table + account/quick-actions grid,resources/views/auth/portal.blade.php,Done
+,Rebuilt Profile page with admin-style form cards and inputs,resources/views/auth/profile.blade.php,Done
+,Rebuilt Application Form page with step badges and admin-style form layout,resources/views/auth/apply.blade.php,Done
+,Rebuilt Application Status page with status tracker + programme details + action sidebar,resources/views/auth/application-status.blade.php,Done
+,Rebuilt Documents page with upload form + file list + required checklist sidebar,resources/views/auth/documents.blade.php,Done
+,Rebuilt Payment Success page with success card + payment summary + next steps,resources/views/auth/payment-success.blade.php,Done

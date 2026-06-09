@@ -9,7 +9,6 @@
     :breadcrumbs="[['href'=>route('home'),'label'=>'Home'],['href'=>route('application'),'label'=>'Application']]"
     label="Service desk · 6-step process"
     title="Application."
-    zhTitle="申请"
     body="From shortlist to acceptance in twelve weeks. One service, every destination. ITEA handles programme matching, document prep, submission, scholarship parallel-tracking, visa applications and pre-departure briefing — start to plane."
     cta1Text="Start my application"
     cta1Href="#apply"
@@ -32,12 +31,12 @@
     title="Apply <em>your way.</em>"
     body="Six things you'll need to know to file a complete, scholarship-ready application. Tap any to jump there directly."
     :cards="[
-        ['glyph'=>'申','zh'=>'申请流程','title'=>'How to Apply','count'=>'6 steps','body'=>'Step-by-step process','href'=>'#how'],
-        ['glyph'=>'费','zh'=>'费用','title'=>'Fees','count'=>'Refundable','body'=>'Service fees & refund policy','href'=>'#fees'],
-        ['glyph'=>'文','zh'=>'文件','title'=>'Documents','count'=>'By level','body'=>'Checklist for every programme','href'=>'#docs'],
-        ['glyph'=>'签','zh'=>'签证','title'=>'Visa Guidance','count'=>'3 destinations','body'=>'End-to-end visa support','href'=>'#visa'],
-        ['glyph'=>'行','zh'=>'行前','title'=>'Pre-Departure','count'=>'10 essentials','body'=>'Briefing before you travel','href'=>'#depart'],
-        ['glyph'=>'立','zh'=>'立即申请','title'=>'Apply Now','count'=>'5-min form','body'=>'Start your application today','href'=>'#apply'],
+        ['glyph'=>'01','title'=>'How to Apply','count'=>'6 steps','body'=>'Step-by-step process','href'=>'#how'],
+        ['glyph'=>'02','title'=>'Fees','count'=>'Refundable','body'=>'Service fees & refund policy','href'=>'#fees'],
+        ['glyph'=>'03','title'=>'Documents','count'=>'By level','body'=>'Checklist for every programme','href'=>'#docs'],
+        ['glyph'=>'04','title'=>'Visa Guidance','count'=>'3 destinations','body'=>'End-to-end visa support','href'=>'#visa'],
+        ['glyph'=>'05','title'=>'Pre-Departure','count'=>'10 essentials','body'=>'Briefing before you travel','href'=>'#depart'],
+        ['glyph'=>'06','title'=>'Apply Now','count'=>'5-min form','body'=>'Start your application today','href'=>'#apply'],
     ]"
 />
 
@@ -60,7 +59,7 @@
                 @endphp
                 @foreach($steps as $i => $s)
                 <div style="padding:0 {{ $loop->last ? '0' : '20px' }} 0 0; {{ !$loop->first ? 'border-left:1px solid rgba(255,255,255,0.1); padding-left:20px;' : '' }} opacity:{{ $i < 2 ? '1' : '0.55' }};">
-                    <div style="width:28px; height:28px; border-radius:50%; background:{{ $i < 2 ? '#78aae6' : 'rgba(255,255,255,0.15)' }}; display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono',monospace; font-size:11px; margin-bottom:12px; color:{{ $i < 2 ? 'var(--ink-deep)' : '#fff' }};">{{ $i+1 }}</div>
+                    <div style="width:28px; height:28px; border-radius:50%; background:{{ $i < 2 ? '#78aae6' : 'rgba(255,255,255,0.15)' }}; display:flex; align-items:center; justify-content:center; font-family:'DM Mono',monospace; font-size:11px; margin-bottom:12px; color:{{ $i < 2 ? 'var(--ink-deep)' : '#fff' }};">{{ $i+1 }}</div>
                     <div class="eyebrow" style="color:rgba(255,255,255,0.4); margin-bottom:6px;">{{ $s['mo'] }}</div>
                     <h5 style="font-family:'Instrument Serif',serif; font-size:17px; font-weight:400; margin:0 0 6px;">{{ $s['t'] }}</h5>
                     <p style="font-size:13px; line-height:1.55; color:rgba(255,255,255,0.6); margin:0;">{{ $s['body'] }}</p>
@@ -76,7 +75,7 @@
     <div class="wrap">
         <div style="display:flex; justify-content:space-between; align-items:end; margin-bottom:28px;">
             <div>
-                <div class="eyebrow" style="margin-bottom:8px;">Fees · 费用</div>
+                <div class="eyebrow" style="margin-bottom:8px;">Fees</div>
                 <h2 style="font-family:'Instrument Serif',serif; font-size:clamp(28px,3.5vw,42px); font-weight:400; margin:0 0 10px;">Transparent <em style="color:var(--accent);">pricing.</em></h2>
                 <p style="font-size:15px; color:var(--muted); margin:0; max-width:400px;">One quoted service fee. No hidden add-ons. Scholarship support and pre-departure briefing always included, free of charge.</p>
             </div>
@@ -116,7 +115,7 @@
             </div>
             <div style="background:var(--ink-deep); color:#fff; padding:24px;">
                 <div class="eyebrow" style="color:rgba(255,255,255,0.4); margin-bottom:12px;">Refund Policy</div>
-                <h3 style="font-family:'Instrument Serif',serif; font-size:24px; font-weight:400; margin:0 0 18px; line-height:1.1;">Your money <em style="color:var(--gold);">back, fairly.</em></h3>
+                <h3 style="font-family:'Instrument Serif',serif; font-size:24px; font-weight:400; margin:0 0 18px; line-height:1.1;">Your money <em style="color:var(--accent);">back, fairly.</em></h3>
                 <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:12px;">
                     @foreach([['100%','Full refund of ITEA service fee if no offer is secured within 90 days of submission.'],['50%','Half refund of ITEA service fee if you voluntarily withdraw before submission to any university.'],['0%','No refund of service fee once visa application has been filed on your behalf.'],['N/A','University application fees are non-refundable per each institution\'s own policy.']] as [$pct,$text])
                     <li style="display:flex; gap:12px; align-items:baseline;">
@@ -134,7 +133,7 @@
 <section id="docs" class="section" style="background:var(--bg);">
     <div class="wrap">
         <div style="margin-bottom:28px;">
-            <div class="eyebrow" style="margin-bottom:8px;">Required documents · 所需文件</div>
+            <div class="eyebrow" style="margin-bottom:8px;">Required Documents</div>
             <h2 style="font-family:'Instrument Serif',serif; font-size:clamp(28px,3.5vw,42px); font-weight:400; margin:0 0 12px;">What you need <em style="color:var(--accent);">by programme level.</em></h2>
             <p style="font-size:15px; color:var(--muted); max-width:600px; margin:0; line-height:1.6;">The base checklist. Top universities and scholarship-funded routes layer additional items. Your counsellor confirms the exact list during the profile review.</p>
         </div>
@@ -170,7 +169,7 @@
     <div class="wrap">
         <div style="display:flex; justify-content:space-between; align-items:end; margin-bottom:28px;">
             <div>
-                <div class="eyebrow" style="margin-bottom:8px;">Visa guidance · 签证</div>
+                <div class="eyebrow" style="margin-bottom:8px;">Visa Guidance</div>
                 <h2 style="font-family:'Instrument Serif',serif; font-size:clamp(28px,3.5vw,42px); font-weight:400; margin:0;">End-to-end <em style="color:#78aae6;">visa support.</em></h2>
             </div>
             <p style="font-size:14px; color:var(--muted); max-width:340px; margin:0; text-align:right;">99.4% visa-success rate across China, Malaysia and Indonesia. We prepare the forms, schedule appointments, and stand with you at the embassy interview.</p>
@@ -178,14 +177,14 @@
         <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:2px;">
             @php
             $visas = [
-                ['code'=>'cn','country'=>'China','flag'=>'中','type'=>'X1 (Long-stay) / X2 (Short-stay) Student Visa','process'=>'2 – 3 weeks','fee'=>'RM 480 – 780','items'=>['JW202 admission notice','Foreigner Physical Examination Form','Bank statement (USD 5,000+)','Visa interview at Chinese embassy'],'soon'=>false],
-                ['code'=>'my','country'=>'Malaysia','flag'=>'马','type'=>'Student Pass · via EMGS portal','process'=>'4 – 6 weeks','fee'=>'RM 1,060 – 2,500','items'=>['EMGS application + medical screening','eVAL approval letter','Single-entry visa at arrival','Renewal handled by ITEA each year'],'soon'=>false],
-                ['code'=>'id','country'=>'Indonesia','flag'=>'印','type'=>'VITAS · Limited Stay Visa','process'=>'4 – 6 weeks','fee'=>'USD 200 – 400','items'=>['Available 2026','Available 2026','Available 2026','Available 2026'],'soon'=>true],
+                ['code'=>'cn','country'=>'China','flag'=>'CN','type'=>'X1 (Long-stay) / X2 (Short-stay) Student Visa','process'=>'2 – 3 weeks','fee'=>'RM 480 – 780','items'=>['JW202 admission notice','Foreigner Physical Examination Form','Bank statement (USD 5,000+)','Visa interview at Chinese embassy'],'soon'=>false],
+                ['code'=>'my','country'=>'Malaysia','flag'=>'MY','type'=>'Student Pass · via EMGS portal','process'=>'4 – 6 weeks','fee'=>'RM 1,060 – 2,500','items'=>['EMGS application + medical screening','eVAL approval letter','Single-entry visa at arrival','Renewal handled by ITEA each year'],'soon'=>false],
+                ['code'=>'id','country'=>'Indonesia','flag'=>'ID','type'=>'VITAS · Limited Stay Visa','process'=>'4 – 6 weeks','fee'=>'USD 200 – 400','items'=>['Available 2026','Available 2026','Available 2026','Available 2026'],'soon'=>true],
             ];
             @endphp
             @foreach($visas as $v)
             <div class="card" style="padding:28px; {{ $v['soon'] ? 'opacity:0.55;' : '' }}">
-                <div style="font-family:'Noto Serif SC',serif; font-size:48px; color:var(--ink-2); opacity:0.2; line-height:1; margin-bottom:12px;">{{ $v['flag'] }}</div>
+                <div style="font-family:'DM Mono',monospace; font-size:20px; font-weight:700; color:var(--ink-2); opacity:0.3; line-height:1; margin-bottom:12px; letter-spacing:0.1em;">{{ $v['flag'] }}</div>
                 <div class="eyebrow" style="margin-bottom:6px;">Destination · {{ $v['country'] }}</div>
                 <h4 style="font-family:'Instrument Serif',serif; font-size:22px; font-weight:400; margin:0 0 6px; color:var(--ink);">{{ $v['country'] }} <em style="color:#78aae6;">visa</em></h4>
                 <div style="font-size:13px; color:var(--muted); margin-bottom:16px; line-height:1.4;">{{ $v['type'] }}</div>
@@ -206,7 +205,7 @@
                     @endforeach
                 </div>
                 @if($v['soon'])
-                <div style="margin-top:14px; text-align:center; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); border:1px solid var(--rule-soft); padding:6px;">Coming Soon</div>
+                <div style="margin-top:14px; text-align:center; font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); border:1px solid var(--rule-soft); padding:6px;">Coming Soon</div>
                 @endif
             </div>
             @endforeach
@@ -218,7 +217,7 @@
 <section id="depart" class="section" style="background:var(--bg-2);">
     <div class="wrap" style="display:grid; grid-template-columns:380px 1fr; gap:60px; align-items:start;">
         <div>
-            <div class="eyebrow" style="margin-bottom:10px;">Pre-departure · 行前</div>
+            <div class="eyebrow" style="margin-bottom:10px;">Pre-Departure</div>
             <h2 style="font-family:'Instrument Serif',serif; font-size:clamp(28px,3.5vw,42px); font-weight:400; margin:0 0 16px; line-height:1.1;">Ten things <em style="color:#78aae6;">handled</em> before you board.</h2>
             <p style="font-size:15px; line-height:1.65; color:var(--muted); margin:0 0 24px;">The two-hour briefing every ITEA student attends in the month before departure. Group session at our KL office, plus a 1-on-1 with your destination desk.</p>
             <div style="background:var(--ink-deep); color:#fff; padding:20px;">
@@ -243,7 +242,7 @@
             @endphp
             @foreach($predep as $p)
             <div class="card" style="padding:18px;">
-                <div style="font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--muted); margin-bottom:6px;">{{ $p['num'] }}</div>
+                <div style="font-family:'DM Mono',monospace; font-size:11px; color:var(--muted); margin-bottom:6px;">{{ $p['num'] }}</div>
                 <h5 style="font-family:'Instrument Serif',serif; font-size:17px; font-weight:400; margin:0 0 6px; color:var(--ink);">{{ $p['t'] }}</h5>
                 <p style="font-size:13px; line-height:1.5; color:var(--muted); margin:0;">{{ $p['body'] }}</p>
             </div>
@@ -256,11 +255,11 @@
 <section id="apply" style="padding:72px 0; background:var(--bg);">
     <div class="wrap" style="display:grid; grid-template-columns:380px 1fr; gap:60px; align-items:start;">
         <div>
-            <div class="eyebrow" style="margin-bottom:12px;">Apply now · 立即申请</div>
+            <div class="eyebrow" style="margin-bottom:12px;">Apply Now</div>
             <h2 style="font-family:'Instrument Serif',serif; font-size:clamp(28px,3.5vw,42px); font-weight:400; margin:0 0 16px; line-height:1.1;">Start your <em style="color:#78aae6;">application.</em></h2>
             <p style="font-size:15px; line-height:1.65; color:var(--muted); margin:0 0 24px;">Five minutes is all it takes. A destination-desk counsellor calls you within 48 hours with a personalised shortlist and a clear next step.</p>
             <div style="display:flex; flex-direction:column; gap:12px;">
-                @foreach(['<strong>Free initial consultation.</strong> Zero commitment, zero cost until you sign the service agreement.','<strong>Reply within 48 hours.</strong> Counsellor on WhatsApp, English / 中文 / BM — your choice.','<strong>Your data is private.</strong> Used only for your application. Never sold, never shared.'] as $promise)
+                @foreach(['<strong>Free initial consultation.</strong> Zero commitment, zero cost until you sign the service agreement.','<strong>Reply within 48 hours.</strong> Counsellor on WhatsApp, English / BM — your choice.','<strong>Your data is private.</strong> Used only for your application. Never sold, never shared.'] as $promise)
                 <div style="display:flex; gap:10px; align-items:flex-start; font-size:14px; color:var(--ink-2); line-height:1.5;">
                     <span style="width:7px; height:7px; border-radius:50%; background:var(--accent); flex-shrink:0; margin-top:5px;"></span>
                     <span>{!! $promise !!}</span>
@@ -272,7 +271,7 @@
         @if(session('enquiry_success'))
         <div style="background:var(--paper); border:1px solid var(--rule-soft); padding:40px 32px; text-align:center;">
             <div style="width:56px; height:56px; border-radius:50%; background:#2a8a6a; display:flex; align-items:center; justify-content:center; margin:0 auto 18px; font-size:24px; color:#fff;">✓</div>
-            <div class="eyebrow" style="color:#2a8a6a; margin-bottom:10px;">Received · 收到</div>
+            <div class="eyebrow" style="color:#2a8a6a; margin-bottom:10px;">Received</div>
             <h3 style="font-family:'Instrument Serif',serif; font-size:28px; font-weight:400; margin:0 0 12px; color:var(--ink);">Thanks <em style="color:#78aae6;">{{ session('enquiry_name') }},<br>we'll be in touch.</em></h3>
             <p style="font-size:15px; color:var(--muted); margin:0 0 8px;">Your <strong>{{ session('enquiry_destination') }}</strong> application has been received.</p>
             <p style="font-size:14px; color:var(--muted); margin:0;">A counsellor will WhatsApp you within <strong>48 hours</strong>. Look out for a message from <strong>+60 3 7890 0000</strong>.</p>
@@ -281,27 +280,27 @@
         <div style="background:var(--paper); border:1px solid var(--rule-soft);">
             <div style="display:flex; justify-content:space-between; align-items:center; padding:16px 24px; border-bottom:1px solid var(--rule-soft);">
                 <span class="eyebrow">Enquiry / Application form</span>
-                <span style="background:var(--ink-deep); color:#fff; font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.12em; text-transform:uppercase; padding:4px 10px;">REPLY · 48 HRS</span>
+                <span style="background:var(--ink-deep); color:#fff; font-family:'DM Mono',monospace; font-size:9px; letter-spacing:0.12em; text-transform:uppercase; padding:4px 10px;">REPLY · 48 HRS</span>
             </div>
             <form action="{{ route('enquiry.store') }}" method="POST" style="padding:24px;">
                 @csrf
                 <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:14px;">
                     <div>
-                        <label style="display:block; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); margin-bottom:5px;">Full name</label>
+                        <label style="display:block; font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); margin-bottom:5px;">Full name</label>
                         <input name="name" required value="{{ old('name') }}" placeholder="As shown on passport" style="width:100%; border:1px solid var(--rule-soft); background:var(--bg); padding:10px 12px; font-size:14px; box-sizing:border-box; color:var(--ink); outline:none;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--rule-soft)'">
                     </div>
                     <div>
-                        <label style="display:block; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); margin-bottom:5px;">Email</label>
+                        <label style="display:block; font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); margin-bottom:5px;">Email</label>
                         <input type="email" name="email" required value="{{ old('email') }}" placeholder="you@example.com" style="width:100%; border:1px solid var(--rule-soft); background:var(--bg); padding:10px 12px; font-size:14px; box-sizing:border-box; color:var(--ink); outline:none;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--rule-soft)'">
                     </div>
                 </div>
                 <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:14px;">
                     <div>
-                        <label style="display:block; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); margin-bottom:5px;">WhatsApp</label>
+                        <label style="display:block; font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); margin-bottom:5px;">WhatsApp</label>
                         <input name="whatsapp" required value="{{ old('whatsapp') }}" placeholder="+60 12 345 6789" style="width:100%; border:1px solid var(--rule-soft); background:var(--bg); padding:10px 12px; font-size:14px; box-sizing:border-box; color:var(--ink); outline:none;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--rule-soft)'">
                     </div>
                     <div>
-                        <label style="display:block; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); margin-bottom:5px;">Destination of interest</label>
+                        <label style="display:block; font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); margin-bottom:5px;">Destination of interest</label>
                         <select name="destination" style="width:100%; border:1px solid var(--rule-soft); background:var(--bg); padding:10px 12px; font-size:14px; box-sizing:border-box; color:var(--ink); outline:none;">
                             <option value="China" {{ old('destination') === 'China' ? 'selected' : '' }}>China</option>
                             <option value="Malaysia" {{ old('destination') === 'Malaysia' ? 'selected' : '' }}>Malaysia</option>
@@ -312,7 +311,7 @@
                 </div>
                 <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:14px;">
                     <div>
-                        <label style="display:block; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); margin-bottom:5px;">Programme level</label>
+                        <label style="display:block; font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); margin-bottom:5px;">Programme level</label>
                         <select name="level" style="width:100%; border:1px solid var(--rule-soft); background:var(--bg); padding:10px 12px; font-size:14px; box-sizing:border-box; color:var(--ink); outline:none;">
                             @foreach(['Foundation','Diploma','Undergraduate','Master','PhD','Mandarin / English'] as $l)
                             <option value="{{ $l }}" {{ old('level') === $l ? 'selected' : '' }}>{{ $l }}</option>
@@ -320,7 +319,7 @@
                         </select>
                     </div>
                     <div>
-                        <label style="display:block; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); margin-bottom:5px;">Intended intake</label>
+                        <label style="display:block; font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); margin-bottom:5px;">Intended intake</label>
                         <select name="intake" style="width:100%; border:1px solid var(--rule-soft); background:var(--bg); padding:10px 12px; font-size:14px; box-sizing:border-box; color:var(--ink); outline:none;">
                             @foreach(['Aug / Sep 2026','Feb / Mar 2027','Aug / Sep 2027','I\'m not sure yet'] as $opt)
                             <option value="{{ $opt }}" {{ old('intake') === $opt ? 'selected' : '' }}>{{ $opt }}</option>
@@ -329,7 +328,7 @@
                     </div>
                 </div>
                 <div style="margin-bottom:14px;">
-                    <label style="display:block; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); margin-bottom:5px;">Anything we should know?</label>
+                    <label style="display:block; font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); margin-bottom:5px;">Anything we should know?</label>
                     <textarea name="message" rows="3" placeholder="Scholarship goals, preferred universities, family budget, language proficiency…" style="width:100%; border:1px solid var(--rule-soft); background:var(--bg); padding:10px 12px; font-size:14px; box-sizing:border-box; color:var(--ink); outline:none; resize:vertical;">{{ old('message') }}</textarea>
                 </div>
                 <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">

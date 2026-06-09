@@ -14,7 +14,7 @@
 
             <!-- Programmes -->
             <div>
-                <h6 style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.15em; text-transform:uppercase; color:rgba(255,255,255,0.4); margin:0 0 14px;">Programmes</h6>
+                <h6 style="font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.15em; text-transform:uppercase; color:rgba(255,255,255,0.4); margin:0 0 14px;">Programmes</h6>
                 <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:8px;">
                     @foreach(['Diploma','Undergraduate','Postgraduate','Mandarin Learning','Short-term & Camps'] as $item)
                     <li><a href="{{ route('programmes') }}" style="color:rgba(251,249,242,0.7); text-decoration:none; font-size:14px; transition:color 0.15s;">{{ $item }}</a></li>
@@ -24,7 +24,7 @@
 
             <!-- Destinations -->
             <div>
-                <h6 style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.15em; text-transform:uppercase; color:rgba(255,255,255,0.4); margin:0 0 14px;">Destinations</h6>
+                <h6 style="font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.15em; text-transform:uppercase; color:rgba(255,255,255,0.4); margin:0 0 14px;">Destinations</h6>
                 <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:8px;">
                     <li><a href="{{ route('china') }}" style="color:rgba(251,249,242,0.7); text-decoration:none; font-size:14px;">Study in China</a></li>
                     <li><a href="{{ route('malaysia') }}" style="color:rgba(251,249,242,0.7); text-decoration:none; font-size:14px;">Study in Malaysia</a></li>
@@ -35,7 +35,7 @@
 
             <!-- Application / Scholarships -->
             <div>
-                <h6 style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.15em; text-transform:uppercase; color:rgba(255,255,255,0.4); margin:0 0 14px;">
+                <h6 style="font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.15em; text-transform:uppercase; color:rgba(255,255,255,0.4); margin:0 0 14px;">
                     @if(request()->routeIs('scholarship'))Scholarships@else Application @endif
                 </h6>
                 @if(request()->routeIs('scholarship'))
@@ -59,7 +59,7 @@
 
             <!-- Company -->
             <div>
-                <h6 style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.15em; text-transform:uppercase; color:rgba(255,255,255,0.4); margin:0 0 14px;">Company</h6>
+                <h6 style="font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.15em; text-transform:uppercase; color:rgba(255,255,255,0.4); margin:0 0 14px;">Company</h6>
                 <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:8px;">
                     <li><a href="#" style="color:rgba(251,249,242,0.7); text-decoration:none; font-size:14px;">About ITEA</a></li>
                     <li><a href="#" style="color:rgba(251,249,242,0.7); text-decoration:none; font-size:14px;">Partners</a></li>
@@ -71,13 +71,12 @@
         </div>
 
         <!-- Bottom bar -->
-        <div style="display:flex; justify-content:space-between; align-items:center; padding:18px 0; font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.06em; color:rgba(255,255,255,0.35);">
+        <div class="footer-bottom" style="display:flex; justify-content:space-between; align-items:center; padding:18px 0; font-family:'DM Mono',monospace; font-size:10.5px; letter-spacing:0.06em; color:rgba(255,255,255,0.35);">
             <div>© 2026 ITEA Education Sdn Bhd. All rights reserved.</div>
-            <div style="display:flex; gap:20px;">
+            <div class="footer-links" style="display:flex; gap:20px;">
                 @foreach(['Privacy','Terms','Cookies'] as $link)
                 <a href="#" style="color:rgba(255,255,255,0.35); text-decoration:none;">{{ $link }}</a>
                 @endforeach
-                <span>EN / 中文 / BM</span>
             </div>
         </div>
     </div>

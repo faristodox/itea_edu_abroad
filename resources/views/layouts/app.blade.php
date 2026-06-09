@@ -10,7 +10,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @stack('styles')
@@ -30,16 +30,16 @@
         <div style="display:flex; gap:12px; align-items:center;">
             @auth
                 @if(Auth::user()->is_admin)
-                <a href="{{ route('admin.dashboard') }}" style="color:rgba(255,255,255,0.7); text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.1em;">Admin Dashboard</a>
+                <a href="{{ route('admin.dashboard') }}" style="color:rgba(255,255,255,0.7); text-decoration:none; font-family:'DM Mono',monospace; font-size:10.5px; letter-spacing:0.1em;">Admin Dashboard</a>
                 @else
-                <a href="{{ route('portal') }}" style="color:rgba(255,255,255,0.7); text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.1em;">My Portal</a>
+                <a href="{{ route('portal') }}" style="color:rgba(255,255,255,0.7); text-decoration:none; font-family:'DM Mono',monospace; font-size:10.5px; letter-spacing:0.1em;">My Portal</a>
                 @endif
             @else
-                <a href="{{ route('login') }}" style="color:rgba(255,255,255,0.7); text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.1em;">Sign In</a>
+                <a href="{{ route('login') }}" style="color:rgba(255,255,255,0.7); text-decoration:none; font-family:'DM Mono',monospace; font-size:10.5px; letter-spacing:0.1em;">Sign In</a>
                 <span style="opacity:0.25; color:#fff;">|</span>
-                <a href="{{ route('register') }}" style="color:rgba(255,255,255,0.7); text-decoration:none; font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:0.1em;">Sign Up</a>
+                <a href="{{ route('register') }}" style="color:rgba(255,255,255,0.7); text-decoration:none; font-family:'DM Mono',monospace; font-size:10.5px; letter-spacing:0.1em;">Sign Up</a>
             @endauth
-            <!-- <span class="lang-pill" style="color:rgba(255,255,255,0.75);">EN / 中文 / BM</span> -->
+            <!-- <span class="lang-pill" style="color:rgba(255,255,255,0.75);">EN / BM</span> -->
         </div>
     </div>
 </div>
@@ -100,10 +100,9 @@
                     <div style="display:grid; grid-template-columns:60% 40%;">
                         <!-- Featured panel — dynamic based on current page -->
                         @if(request()->routeIs('malaysia'))
-                        <div style="background:#7a4f10; padding:28px; color:#fff;">
+                        <div style="background:var(--ink-deep); padding:28px; color:#fff;">
                             <div class="eyebrow" style="color:rgba(255,255,255,0.5); margin-bottom:12px;">Current destination</div>
-                            <div style="font-family:'Instrument Serif',serif; font-size:32px; line-height:1; margin-bottom:6px;">Study in <em style="color:#f5c842;">Malaysia</em></div>
-                            <div class="zh" style="font-size:18px; color:rgba(255,255,255,0.5); margin-bottom:16px;">马来西亚留学</div>
+                            <div style="font-family:'Instrument Serif',serif; font-size:32px; line-height:1; margin-bottom:6px;">Study in <em style="color:var(--accent);">Malaysia</em></div>
                             <div style="display:flex; gap:24px; font-size:13px; color:rgba(255,255,255,0.7);">
                                 <div><div style="font-family:'Instrument Serif',serif; font-size:22px; color:#fff;">90+</div><div>Partner unis</div></div>
                                 <div><div style="font-family:'Instrument Serif',serif; font-size:22px; color:#fff;">88%</div><div>Scholarship match</div></div>
@@ -114,7 +113,6 @@
                         <div style="background:var(--ink-deep); padding:28px; color:#fff;">
                             <div class="eyebrow" style="color:rgba(255,255,255,0.5); margin-bottom:12px;">Featured destination</div>
                             <div style="font-family:'Instrument Serif',serif; font-size:32px; line-height:1; margin-bottom:6px;">Study in <em style="color:var(--accent);">China</em></div>
-                            <div class="zh" style="font-size:18px; color:rgba(255,255,255,0.5); margin-bottom:16px;">中国留学</div>
                             <div style="display:flex; gap:24px; font-size:13px; color:rgba(255,255,255,0.7);">
                                 <div><div style="font-family:'Instrument Serif',serif; font-size:22px; color:#fff;">280+</div><div>Partner unis</div></div>
                                 <div><div style="font-family:'Instrument Serif',serif; font-size:22px; color:#fff;">94%</div><div>Scholarship match</div></div>
@@ -290,11 +288,10 @@
 
 <style>
 .nav-link {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
     font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
+    letter-spacing: 0.01em;
     color: var(--ink-2);
     text-decoration: none;
     padding: 6px 12px;

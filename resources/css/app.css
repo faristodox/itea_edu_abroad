@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
 @theme {
-    --color-bg: #f5f3ec;
-    --color-bg-2: #ebe7da;
-    --color-paper: #fbf9f2;
+    --color-bg: #f7f7f4;
+    --color-bg-2: #ededea;
+    --color-paper: #fdfdfb;
     --color-ink: #0a1f5e;
     --color-ink-2: #1c2c5e;
     --color-ink-deep: #061240;
@@ -12,10 +12,9 @@
     --color-accent: #d81f1f;
     --color-gold: #e8a93b;
 
-    --font-serif: "Instrument Serif", serif;
-    --font-sans: "Geist", system-ui, sans-serif;
-    --font-sc: "Noto Serif SC", serif;
-    --font-mono: "JetBrains Mono", monospace;
+    --font-serif: "Outfit", sans-serif;
+    --font-sans: "DM Sans", system-ui, sans-serif;
+    --font-mono: "DM Mono", monospace;
 
     --max-width-wrap: 1320px;
 }
@@ -34,14 +33,21 @@
     --accent:    #d81f1f;
     --accent-2:  #e8a93b;
     --gold:      #e8a93b;
+    --font-mono: "DM Mono", monospace;
 }
 
 html { font-family: var(--font-sans); background: var(--bg); color: var(--ink-2); }
 body { margin: 0; }
 
 /* Typography */
-h1, h2, h3, h4 { font-family: var(--font-serif); font-weight: 400; }
-h1 em, h2 em, h3 em, h4 em { color: var(--accent); font-style: italic; }
+h1, h2, h3, h4 { font-family: var(--font-serif); font-weight: 700; }
+h1 em, h2 em, h3 em, h4 em { color: var(--accent); font-style: normal; }
+
+/* Override legacy inline font-family references sitewide */
+[style*="Instrument Serif"] { font-family: 'Outfit', sans-serif !important; }
+[style*="Geist"]             { font-family: 'DM Sans', sans-serif !important; }
+[style*="JetBrains Mono"]    { font-family: 'DM Mono', monospace !important; }
+[style*="Noto Serif SC"]     { font-family: 'DM Sans', sans-serif !important; }
 
 /* Container */
 .wrap { max-width: var(--max-width-wrap); padding-left: 40px; padding-right: 40px; margin: 0 auto; }
@@ -76,10 +82,10 @@ h1 em, h2 em, h3 em, h4 em { color: var(--accent); font-style: italic; }
     background: var(--accent);
     color: #fff;
     padding: 10px 22px;
-    font-family: var(--font-mono);
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.12em;
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
     text-transform: uppercase;
     text-decoration: none;
     border: none;
@@ -95,10 +101,10 @@ h1 em, h2 em, h3 em, h4 em { color: var(--accent); font-style: italic; }
     background: transparent;
     color: var(--ink);
     padding: 9px 20px;
-    font-family: var(--font-mono);
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.12em;
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
     text-transform: uppercase;
     text-decoration: none;
     border: 1px solid var(--ink);
@@ -114,10 +120,10 @@ h1 em, h2 em, h3 em, h4 em { color: var(--accent); font-style: italic; }
     background: transparent;
     color: #fff;
     padding: 9px 20px;
-    font-family: var(--font-mono);
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.12em;
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
     text-transform: uppercase;
     text-decoration: none;
     border: 1px solid rgba(255,255,255,0.35);
@@ -151,7 +157,7 @@ h1 em, h2 em, h3 em, h4 em { color: var(--accent); font-style: italic; }
     background: transparent;
     color: var(--ink-2);
     cursor: pointer;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'DM Mono', monospace;
     font-size: 10px;
     letter-spacing: 0.1em;
     transition: all 0.15s ease;
@@ -165,7 +171,7 @@ h1 em, h2 em, h3 em, h4 em { color: var(--accent); font-style: italic; }
 
 /* Logo: blend out the white JPEG background against the cream nav */
 .nav-logo-img {
-    height: 44px;
+    height: 64px;
     width: auto;
     display: block;
     mix-blend-mode: multiply;
@@ -231,8 +237,6 @@ h1 em, h2 em, h3 em, h4 em { color: var(--accent); font-style: italic; }
 /* Rule */
 .rule-h { height: 1px; background: var(--rule-soft); }
 
-/* Chinese characters */
-.zh { font-family: var(--font-sc); }
 
 /* Utility bar pill */
 .lang-pill {
@@ -286,10 +290,10 @@ h1 em, h2 em, h3 em, h4 em { color: var(--accent); font-style: italic; }
 .mob-link {
     display: block;
     padding: 13px 20px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 12px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
     color: var(--ink-2);
     text-decoration: none;
     border-bottom: 1px solid var(--rule-soft);
@@ -297,14 +301,14 @@ h1 em, h2 em, h3 em, h4 em { color: var(--accent); font-style: italic; }
 }
 .mob-link:hover  { background: var(--bg-2); color: var(--accent); }
 .mob-link.mob-active { color: var(--accent); }
-.mob-link.mob-sub { padding-left: 36px; font-size: 11px; color: var(--muted); }
+.mob-link.mob-sub { padding-left: 36px; font-size: 13px; color: var(--muted); }
 .mob-link.mob-sub:hover { color: var(--accent); }
-.mob-link.mob-toggle { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-2); padding: 13px 20px; border-bottom: 1px solid var(--rule-soft); }
+.mob-link.mob-toggle { font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; letter-spacing: 0.01em; color: var(--ink-2); padding: 13px 20px; border-bottom: 1px solid var(--rule-soft); }
 .mob-link.mob-toggle:hover { background: var(--bg-2); color: var(--accent); }
-.mob-sub-item-muted { padding: 10px 20px 10px 36px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid var(--rule-soft); opacity: 0.6; }
+.mob-sub-item-muted { padding: 10px 20px 10px 36px; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid var(--rule-soft); opacity: 0.6; }
 .mob-divider {
     padding: 8px 20px;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'DM Mono', monospace;
     font-size: 9px;
     letter-spacing: 0.15em;
     text-transform: uppercase;
@@ -426,10 +430,26 @@ h1 em, h2 em, h3 em, h4 em { color: var(--accent); font-style: italic; }
         gap: 16px !important;
     }
 
+    /* ── Country cards: 3-col → 1-col ── */
+    [style*="grid-template-columns:1fr 1fr 1fr; gap:20px"] {
+        grid-template-columns: 1fr !important;
+    }
+
     /* ── Footer ── */
     [style*="grid-template-columns:2fr 1fr 1fr 1fr 1fr"] {
         grid-template-columns: 1fr 1fr !important;
         gap: 28px !important;
+    }
+    .footer-bottom {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 12px !important;
+        padding-bottom: 24px !important;
+    }
+    .hero-nav-arrow { display: none !important; }
+    .footer-links {
+        flex-wrap: wrap !important;
+        gap: 16px !important;
     }
 
     /* ── Section headers with 2-col: stack them ── */

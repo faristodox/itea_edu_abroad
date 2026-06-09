@@ -1,9 +1,9 @@
-@extends('admin.layout')
+﻿@extends('admin.layout')
 @section('title', $program ? 'Edit Programme' : 'Add Programme')
 @section('breadcrumb', $program ? 'Edit Programme' : 'Add Programme')
 
 @section('topbar_actions')
-<a href="{{ route('admin.programs') }}" class="adm-link-muted" style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.08em; text-transform:uppercase;">← Back</a>
+<a href="{{ route('admin.programs') }}" class="adm-link-muted" style="font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.08em; text-transform:uppercase;">← Back</a>
 @endsection
 
 @section('content')
@@ -84,7 +84,7 @@
                          style="height:60px; width:100px; object-fit:cover; border:1px solid var(--rule-soft);">
                     <div>
                         <div style="font-size:12px; color:var(--muted);">Current: {{ $program->image }}</div>
-                        <label style="display:flex; align-items:center; gap:6px; font-size:12px; color:#dc2626; cursor:pointer; margin-top:4px; font-family:'Geist',sans-serif; text-transform:none; letter-spacing:0;">
+                        <label style="display:flex; align-items:center; gap:6px; font-size:12px; color:#dc2626; cursor:pointer; margin-top:4px; font-family:'DM Sans',sans-serif; text-transform:none; letter-spacing:0;">
                             <input type="checkbox" name="remove_image" value="1"> Remove current image
                         </label>
                     </div>
@@ -123,3 +123,4 @@
 </div>
 
 @endsection
+

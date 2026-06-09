@@ -7,10 +7,10 @@ Alpine.plugin(Collapse);
 // Hero slider component
 Alpine.data('heroSlider', () => ({
     current: 0,
-    total: 3,
+    total: 4,
     timer: null,
     start() {
-        this.timer = setInterval(() => this.next(), 6500);
+        this.timer = setInterval(() => this.next(), 30000);
     },
     stop() {
         clearInterval(this.timer);
