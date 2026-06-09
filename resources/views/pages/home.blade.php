@@ -7,7 +7,7 @@
 @section('content')
 
 {{-- ── Hero Slider ─────────────────────────────────────────── --}}
-<section style="position:relative; overflow:hidden; height:640px; color:#fff;" x-data="heroSlider()" x-init="start()" @mouseenter="stop()" @mouseleave="start()">
+<section style="position:relative; overflow:hidden; height:640px; color:#fff;" x-data="heroSlider()" x-init="start()" @mouseenter="stop()" @mouseleave="start()" @touchstart.passive="touchStart($event)" @touchend.passive="touchEnd($event)">
 
     {{-- ══ Layer 1: Background images — fade between slides ══ --}}
 
